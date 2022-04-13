@@ -15,3 +15,7 @@ We would like to create an app that would allow users to both learn and teach th
 - HTML
 - CSS
 - Java
+- Thymeleaf
+- Hibernate
+- MySQL
+- Spring Boot
