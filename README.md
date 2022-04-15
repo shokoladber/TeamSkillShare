@@ -28,3 +28,6 @@ We would like to create an app that would allow users to both learn and teach th
 ---
 ### Project Tracker
 - https://trello.com/b/lak5fpZP/teamskillshare
+---
+### Authors
+- Cody Helm
