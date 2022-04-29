@@ -1,38 +1,33 @@
 package com.skills.skills.models;
 
-
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class User extends AbstractEntity {
 
+    @NotNull
+    private String username;
 
-    private String firstName;
+    @NotNull
+    private String pwHash;
 
-    private String lastName;
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    private String email;
+    public User() {}
 
-    public User(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+    public User(String username, String password) {
+        this.username = username;
+        this.pwHash = encoder.encode(password);
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public boolean isMatchingPassword(String password) {
+        return encoder.matches(password, pwHash);
     }
 
     public String getEmail() {
