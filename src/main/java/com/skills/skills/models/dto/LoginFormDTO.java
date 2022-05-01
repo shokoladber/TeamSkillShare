@@ -1,5 +1,6 @@
 package com.skills.skills.models.dto;
 
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -8,12 +9,12 @@ public class LoginFormDTO {
 
     @NotNull
     @NotBlank
-    @Size(min = 3, max = 20, message = "Invalid username. Must be between 3 and 30 characters.")
+    @Size(min = 3, max= 20, message ="Invalid username. Must be between 3 and 20 Characters.")
     private String username;
 
     @NotNull
     @NotBlank
-    @Size(min = 5, max = 20, message = "Invalid password. Must be between 5 and 30 characters.")
+    @Size(min= 6, max= 50, message = "Invalid password. Must be between 6 and 50 characters.")
     private String password;
 
     public String getUsername() {
@@ -31,5 +32,30 @@ public class LoginFormDTO {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    @NotNull
+//    @Size(message = "Invalid email address, Please provide the right one!")
+//    private String email;
+
+//    public String getEmail(){
+//        return email;
+//    }
+//
+//    public void setEmail(String email){
+//        this.email= email;
+//    }
