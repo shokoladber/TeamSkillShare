@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:fragment="head">
+
+        <meta charset="UTF-8"/>
+        <title>SkillShare</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<!--        <link rel="stylesheet" th:href="@{/styles.css}">-->
+    <link th:href="@{/css/skillshare.css}" rel="stylesheet" />
+
+
+
+</head>
+
+<body>
+
+<header th:fragment="header">
+    <h1>SkillShare</h1>
+            <ul class="nav">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/learn">Learn</a></li>
+                <li class="nav-item"><a class="nav-link" href="/share">Share</a></li>
+                <li class="nav-item"><a class="nav-link" href="/community">Community</a></li>
+                <li class="nav-item"><a class="nav-link" href="/logout">Log out</a></li>
+            </ul>
+
+</header>
+
+<header th:fragment="header">
+    <br>
+    <h1 th:text="${title}"></h1>
+</header>
+
+<footer th:fragment="footer">
+    <br>
+    <div class="bg-light text-center text-lg-start fixed-bottom">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            Copyright © 2022 TeamSkillShare
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>&ndash;&gt;-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org/">-->
+<!--<head th:fragment="head">-->
+<!--    <meta charset="UTF-8"/>-->
+<!--    <title>SkillShare</title>-->
+
+<!--        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
+<!--        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">-->
+
+
+<!--&lt;!&ndash;    <link rel="stylesheet" th:href="@{/styles.css}">&ndash;&gt;-->
+<!--    <title th:text="'SkillShare' + ${title == null ? '' : ' :: ' + title}">SkillShare</title>-->
+
+<!--</head>-->
+<!--<body>-->
+
+<!--<header th:fragment="header">-->
+<!--&lt;!&ndash;    <h1 th:text="${title}">SkillShare</h1>&ndash;&gt;-->
+<!--    <ul class="nav" style="float:right;">-->
+<!--        <li class="nav-item"><a class="nav-link" href="/logout">Log out</a></li>-->
+<!--    </ul>-->
+<!--    <ul class="nav">-->
+<!--        <li class="nav-item"><a class="nav-link" href="/learn">Learn</a></li>-->
+<!--        <li class="nav-item"><a class="nav-link" href="/share">Share</a></li>-->
+<!--        <li class="nav-item"><a class="nav-link" href="/community">Community</a></li>-->
+<!--        <li class="nav-item"><a class="nav-link" href="/events">All Events</a></li>-->
+
+<!--&lt;!&ndash;        <li class="nav-item"><a class="nav-link" href="/events/create">Create Event</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;        <li class="nav-item"><a class="nav-link" href="/events/delete">Delete Events</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;        <li class="nav-item"><a class="nav-link" href="/eventCategories">All Categories</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;        <li class="nav-item"><a class="nav-link" href="/eventCategories/create">Create Category</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;        <li class="nav-item"><a class="nav-link" href="/tags">All Tags</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;        <li class="nav-item"><a class="nav-link" href="/tags/create">Create Tag</a></li>&ndash;&gt;-->
+<!--    </ul>-->
+<!--</header>-->
+
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
