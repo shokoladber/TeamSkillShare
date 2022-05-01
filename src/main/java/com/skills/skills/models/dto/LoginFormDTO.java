@@ -35,27 +35,3 @@ public class LoginFormDTO {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    @NotNull
-//    @Size(message = "Invalid email address, Please provide the right one!")
-//    private String email;
-
-//    public String getEmail(){
-//        return email;
-//    }
-//
-//    public void setEmail(String email){
-//        this.email= email;
-//    }
