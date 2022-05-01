@@ -53,7 +53,6 @@ public class AuthenticationController {
         User user = getUserFormSession(session);
         model.addAttribute("user", user);
         return "index";
-       // return "users/index";
     }
 
     @GetMapping("/register")

@@ -6,12 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
-//@Controller
-//@RequestMapping("")
+@Controller
+@RequestMapping("")
 public class HomeController {
 
     //HomePage
-  // @GetMapping
+  //@GetMapping
     public String displayHomepage(Model model){
        model.addAttribute("title","What is SkillShare");
 
@@ -19,18 +19,3 @@ public class HomeController {
    }
 
 }
-
-
-
-
-
-
-
-
-
-//        model.addAttribute("test","This is a Hello World Test");
-//        model.addAttribute("people", Arrays.asList(
-//                new User("John","Smith","test@aol.com"),
-//                new User("Jane","Doe","test@google.com"),
-//                new User("Richard","Roe", "test@yahoo.com")
-//        ));
