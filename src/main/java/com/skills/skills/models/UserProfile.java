@@ -10,19 +10,19 @@ import javax.validation.constraints.Size;
 @Entity
 public class UserProfile extends AbstractEntity{
 
-//    @NotBlank(message = "Name is required")
+    @NotBlank(message = "Name is required")
     @Size(min= 2, max=20, message = "Please enter 2 to 20 characters")
     private String firstName;
 
-//    @NotBlank(message = "Name is required")
+    @NotBlank(message = "Name is required")
     @Size(min= 2, max=20, message = "Please enter 2 to 20 characters")
     private String lastName;
 
-//  @NotBlank(message = "Email is required")
+   @NotBlank(message = "Email is required")
     @Email(message = "Invalid email. Try again.")
     private String email;
 
-//    @Column(length = 10)
+    @Column(length = 10)
     private String phoneNumber;
 
     @Column(length = 5)
@@ -70,7 +70,6 @@ public class UserProfile extends AbstractEntity{
     public void setPhoneNumber(String phoneName) {
         this.phoneNumber = phoneName;
     }
-
 
     public String getZipCode() {
         return zipCode;

@@ -28,8 +28,8 @@ public class UserController {
     @GetMapping
     public String displayUsers(Model model, HttpSession session){
         User user= authenticationController.getUserFormSession(session);
-        //List<User> users = new ArrayList<>();
-        //users.add(user);
+        List<User> users = new ArrayList<>();
+        users.add(user);
         model.addAttribute("Users", userRepository.findAll());
 
         return "users/index";
