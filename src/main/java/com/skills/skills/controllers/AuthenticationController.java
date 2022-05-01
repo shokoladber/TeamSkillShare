@@ -96,8 +96,8 @@ public class AuthenticationController {
         setUserInSession(request.getSession(), newUser);
 
         //return "redirect:login";
-        return "users/index";
-       // return "index";
+        //return "users/index";
+        return "index";
 
     }
 

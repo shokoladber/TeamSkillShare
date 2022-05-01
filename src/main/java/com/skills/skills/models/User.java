@@ -9,11 +9,11 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class User extends AbstractEntity {
 
-    @Column(name = "username")
+   // @Column(name = "username")
     @NotNull
     private String username;
 
-    @Column(name = "password")
+    //@Column(name = "password")
     @NotNull
     private String pwHash;
 
