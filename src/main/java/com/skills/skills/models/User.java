@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class User extends AbstractEntity {
 
-   // @Column(name = "username")
+    //@Column(name = "username")
     @NotNull
     private String username;
 
@@ -57,8 +57,8 @@ public class User extends AbstractEntity {
         this.userProfile = userProfile;
     }
 
-    public String getPwHash() {
-        return pwHash;
-    }
+//    public String getPwHash() {
+//        return pwHash;
+//    }
 
 }
