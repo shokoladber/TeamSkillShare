@@ -57,8 +57,14 @@ public class User extends AbstractEntity {
         this.userProfile = userProfile;
     }
 
+<<<<<<< HEAD
 //    public String getPwHash() {
 //        return pwHash;
 //    }
+=======
+    public String getPwHash() {
+        return pwHash;
+    }
+>>>>>>> 520f72b3fe0b4c938ffcf2b186f422c52aba6950
 
 }
