@@ -91,7 +91,7 @@ public class UserController {
             currentUser.getUserProfile().setFirstName(user.getFirstName());
             currentUser.getUserProfile().setLastName(user.getLastName());
             currentUser.getUserProfile().setEmail(user.getEmail());
-            currentUser.getUserProfile().setPhoneNumber(user.getPhoneNumber());
+            //currentUser.getUserProfile().setPhoneNumber(user.getPhoneNumber());
             currentUser.getUserProfile().setZipCode(user.getZipCode());
         }
 

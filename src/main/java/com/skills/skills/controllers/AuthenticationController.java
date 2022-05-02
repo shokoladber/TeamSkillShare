@@ -64,7 +64,7 @@ public class AuthenticationController {
         return "register";
     }
 
-    @PostMapping("register")
+    @PostMapping("/register")
     public String processRegistrationForm(@ModelAttribute @Valid  UserProfile userProfile, Errors errors1,
                                           @ModelAttribute @Valid RegisterFormDTO registerFormDTO,
                                           Errors errors, HttpServletRequest request, Model model){
@@ -84,6 +84,7 @@ public class AuthenticationController {
 
         String password = registerFormDTO.getPassword();
         String verifyPassword = registerFormDTO.getVerifyPassword();
+
         if (!password.equals(verifyPassword)) {
             errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
             model.addAttribute("title", "Registration");
@@ -94,9 +95,10 @@ public class AuthenticationController {
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
 
-        //return "redirect:login";
+         //return "redirect:login";
         //return "users/index";
-        return "index";
+       //return "register_success";
+        return "redirect:";
 
     }
 

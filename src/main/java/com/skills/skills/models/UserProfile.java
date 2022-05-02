@@ -22,7 +22,7 @@ public class UserProfile extends AbstractEntity{
     @Email(message = "Invalid email. Try again.")
     private String email;
 
-    @Column(length = 10)
+    @Column(length = 1000)
     private String phoneNumber;
 
     @Column(length = 5)
