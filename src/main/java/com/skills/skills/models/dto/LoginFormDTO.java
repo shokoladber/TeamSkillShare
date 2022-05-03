@@ -1,6 +1,5 @@
 package com.skills.skills.models.dto;
 
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -33,5 +32,3 @@ public class LoginFormDTO {
         this.password = password;
     }
 }
-
-

@@ -1,6 +1,5 @@
 package com.skills.skills.models;
 
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -19,6 +18,7 @@ public abstract class AbstractEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         AbstractEntity that = (AbstractEntity) o;
         return id == that.id;
     }

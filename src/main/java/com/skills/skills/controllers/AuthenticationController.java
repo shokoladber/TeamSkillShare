@@ -77,7 +77,7 @@ public class AuthenticationController {
         User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
 
         if(existingUser != null){
-            errors.rejectValue("username","username.alreadyexists","Please choose a different username.");
+            errors.rejectValue("username","username.alreadyexists","A user with that username already exists.");
             model.addAttribute("title","Registration");
             return "register";
         }
@@ -115,7 +115,6 @@ public class AuthenticationController {
                                    Errors errors, HttpServletRequest request,
                                    Model model) {
 
-
         if (errors.hasErrors()) {
             model.addAttribute("title", "LOG IN");
             return "login";
@@ -125,6 +124,7 @@ public class AuthenticationController {
 
         if (theUser == null) {
             errors.rejectValue("username", "user.invalid", "The given username does not exist");
+
             model.addAttribute("title", "LOG IN");
             return "login";
         }
@@ -133,6 +133,7 @@ public class AuthenticationController {
 
         if (!theUser.isMatchingPassword(password)) {
             errors.rejectValue("password", "password.invalid", "Invalid password");
+
             model.addAttribute("title", "LOG IN");
             return "login";
         }
@@ -149,4 +150,5 @@ public class AuthenticationController {
     }
 
 }
+
 
