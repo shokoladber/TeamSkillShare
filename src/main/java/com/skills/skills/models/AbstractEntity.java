@@ -20,6 +20,7 @@ public abstract class AbstractEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         AbstractEntity entity = (AbstractEntity) o;
         return id == entity.id;
     }
@@ -28,5 +29,4 @@ public abstract class AbstractEntity {
     public int hashCode() {
         return Objects.hash(id);
     }
-
 }
