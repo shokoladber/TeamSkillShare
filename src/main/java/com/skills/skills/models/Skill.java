@@ -12,6 +12,7 @@ public class Skill extends AbstractEntity {
     @Max(value = 30, message = "Name must be 30 characters or less")
     private String name;
 
+//Comment!
     @NotBlank(message = "Description is required")
     private SkillCategory category;
 
