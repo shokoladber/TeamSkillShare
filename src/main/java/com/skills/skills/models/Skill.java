@@ -18,17 +18,17 @@ public class Skill extends AbstractEntity {
 
     @NotBlank(message = "Description is required")
     @Max(value = 500, message = "Description must be 500 characters or less")
-    private SkillDescription description;
+//    private SkillDescription description;
 
-    @NotNull
-    @Max(value = 15, message = "Tag must be 15 characters or less")
-    private Tag tag;
+//    @NotNull
+//    @Max(value = 15, message = "Tag must be 15 characters or less")
+//    private Tag tag;
 
-    public Skill(String name, SkillCategory category, SkillDescription description, Tag tag) {
+    public Skill(String name, SkillCategory category) {
         this.name = name;
         this.category = category;
-        this.description = description;
-        this.tag = tag;
+//        this.description = description;
+//        this.tag = tag;
     }
 
     public Skill() {
@@ -50,19 +50,19 @@ public class Skill extends AbstractEntity {
         this.category = category;
     }
 
-    public SkillDescription getDescription() {
-        return description;
-    }
+//    public SkillDescription getDescription() {
+//        return description;
+//    }
+//
+//    public void setDescription(SkillDescription description) {
+//        this.description = description;
+//    }
 
-    public void setDescription(SkillDescription description) {
-        this.description = description;
-    }
-
-    public Tag getTag() {
-        return tag;
-    }
-
-    public void setTag(Tag tag) {
-        this.tag = tag;
-    }
+//    public Tag getTag() {
+//        return tag;
+//    }
+//
+//    public void setTag(Tag tag) {
+//        this.tag = tag;
+//    }
 }

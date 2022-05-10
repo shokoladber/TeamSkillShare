@@ -1,10 +1,14 @@
 package com.skills.skills.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
+import java.util.List;
 
-@Entity
-public class SkillCategory extends AbstractEntity {
+public enum SkillCategory {
 
-
+    DANCE,
+    LANGUAGE,
+    ARTS;
 
 }
