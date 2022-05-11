@@ -1,6 +1,8 @@
 package com.skills.skills.controllers;
 
 import com.skills.skills.data.UserRepository;
+import com.skills.skills.models.Category;
+import com.skills.skills.models.Skill;
 import com.skills.skills.models.User;
 import com.skills.skills.models.UserProfile;
 import com.skills.skills.models.dto.LoginFormDTO;
@@ -22,6 +24,8 @@ import java.util.Optional;
 @Controller
 @RequestMapping("")
 public class AuthenticationController {
+
+
 
     @Autowired
     UserRepository userRepository;
@@ -147,6 +151,15 @@ public class AuthenticationController {
         request.getSession().invalidate();
         return "redirect:/login";
     }
+
+    @GetMapping("create")
+    public String createNewSkill (Model model){
+        model.addAttribute("title", "Create New Skill");
+        model.addAttribute(new Skill());
+        model.addAttribute("categories", Category.values());
+        return  "create";
+    }
+
 
 }
 
