@@ -1,43 +1,36 @@
 package com.skills.skills.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Skill extends AbstractEntity {
 
     @NotBlank(message = "Name is required")
-    @Max(value = 30, message = "Name must be 30 characters or less")
+    @Size(max = 30, message = "Name must be 30 characters or less")
     private String name;
 
-    private Category catName;
+    @ManyToOne
+    @NotNull(message = "Skill category is required")
+    private SkillsCategory catName;
 
-    public Skill(String name, Category catName) {
+    public Skill(String name, SkillsCategory catName) {
         this.name = name;
         this.catName = catName;
-//        this.description = description;
-//        this.tag = tag;
     }
 
-    public Skill() {
-    }
+    public Skill() {}
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
-    public Category catName() {
-        return catName;
-    }
+    public SkillsCategory getCatName() { return catName; }
 
-    public void setCategory(Category catName) {
-        this.catName = catName;
-    }
+    public void setCatName(SkillsCategory catName) { this.catName = catName; }
+}
 //    public SkillDescription getDescription() {
 //        return description;
 //    }
@@ -53,4 +46,4 @@ public class Skill extends AbstractEntity {
 //    public void setTag(Tag tag) {
 //        this.tag = tag;
 //    }
-}
+

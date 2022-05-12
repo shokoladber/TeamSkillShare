@@ -1,8 +1,10 @@
 package com.skills.skills.controllers;
 
+import com.skills.skills.data.SkillsCategoryRepository;
+import com.skills.skills.data.SkillsRepository;
 import com.skills.skills.data.UserRepository;
-import com.skills.skills.models.Category;
 import com.skills.skills.models.Skill;
+import com.skills.skills.models.SkillsCategory;
 import com.skills.skills.models.User;
 import com.skills.skills.models.UserProfile;
 import com.skills.skills.models.dto.LoginFormDTO;
@@ -21,11 +23,16 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Optional;
 
+
 @Controller
 @RequestMapping("")
 public class AuthenticationController {
 
+    @Autowired
+    SkillsRepository skillsRepository;
 
+    @Autowired
+    public SkillsCategoryRepository skillsCategoryRepository;
 
     @Autowired
     UserRepository userRepository;
@@ -156,10 +163,17 @@ public class AuthenticationController {
     public String createNewSkill (Model model){
         model.addAttribute("title", "Create New Skill");
         model.addAttribute(new Skill());
-        model.addAttribute("categories", Category.values());
+        model.addAttribute("categories", skillsCategoryRepository.findAll());
         return  "create";
     }
 
-
-}
+    @PostMapping("create")
+    public String processNewSkill(Model model, @ModelAttribute @Valid Skill newSkill, Errors errors) {
+        if (errors.hasErrors()) {
+            return "create";
+        }
+            skillsRepository.save(newSkill);
+            return "redirect:";
+        }
+    }
 
