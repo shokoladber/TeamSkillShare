@@ -29,32 +29,26 @@ import java.util.Optional;
 public class AuthenticationController {
 
     @Autowired
-    SkillsRepository skillsRepository;
-
-    @Autowired
-    public SkillsCategoryRepository skillsCategoryRepository;
-
-    @Autowired
     UserRepository userRepository;
 
     private static final String userSessionKey = "user";
 
-    public User getUserFormSession(HttpSession session){
+    public User getUserFormSession(HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
-        if (userId == null){
-            return  null;
+        if (userId == null) {
+            return null;
         }
 
         Optional<User> user = userRepository.findById(userId);
 
-        if(user.isEmpty()){
+        if (user.isEmpty()) {
             return null;
         }
 
         return user.get();
     }
 
-    private static void setUserInSession(HttpSession session, User user){
+    private static void setUserInSession(HttpSession session, User user) {
         session.setAttribute(userSessionKey, user.getId());
 
     }
@@ -67,29 +61,29 @@ public class AuthenticationController {
     }
 
     @GetMapping("/register")
-    public String displayRegistrationForm(Model model){
+    public String displayRegistrationForm(Model model) {
 
         model.addAttribute(new RegisterFormDTO());
         model.addAttribute(new UserProfile());
-        model.addAttribute("title","REGISTER");
+        model.addAttribute("title", "REGISTER");
         return "register";
     }
 
     @PostMapping("/register")
-    public String processRegistrationForm(@ModelAttribute @Valid  UserProfile userProfile, Errors errors1,
+    public String processRegistrationForm(@ModelAttribute @Valid UserProfile userProfile, Errors errors1,
                                           @ModelAttribute @Valid RegisterFormDTO registerFormDTO,
-                                          Errors errors, HttpServletRequest request, Model model){
+                                          Errors errors, HttpServletRequest request, Model model) {
 
-        if(errors.hasErrors() || errors1.hasErrors()){
-           // model.addAttribute("title", "Registration");
+        if (errors.hasErrors() || errors1.hasErrors()) {
+            // model.addAttribute("title", "Registration");
             return "register";
         }
 
         User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
 
-        if(existingUser != null){
-            errors.rejectValue("username","username.alreadyexists","Please choose a different username.");
-            model.addAttribute("title","Registration");
+        if (existingUser != null) {
+            errors.rejectValue("username", "username.alreadyexists", "Please choose a different username.");
+            model.addAttribute("title", "Registration");
             return "register";
         }
 
@@ -102,22 +96,22 @@ public class AuthenticationController {
             return "register";
         }
 
-        User newUser = new User(registerFormDTO.getUsername(),registerFormDTO.getPassword(), userProfile);
+        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), userProfile);
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
 
-         //return "redirect:login";
+        //return "redirect:login";
         //return "users/index";
-       //return "register_success";
+        //return "register_success";
         return "redirect:";
 
     }
 
     @GetMapping("login")
-    public String displayLoginForm(Model model){
+    public String displayLoginForm(Model model) {
 
         model.addAttribute(new LoginFormDTO());
-        model.addAttribute("title","LOG IN");
+        model.addAttribute("title", "LOG IN");
         return "login";
     }
 
@@ -154,26 +148,9 @@ public class AuthenticationController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request){
+    public String logout(HttpServletRequest request) {
         request.getSession().invalidate();
         return "redirect:/login";
     }
-
-    @GetMapping("create")
-    public String createNewSkill (Model model){
-        model.addAttribute("title", "Create New Skill");
-        model.addAttribute(new Skill());
-        model.addAttribute("categories", skillsCategoryRepository.findAll());
-        return  "create";
-    }
-
-    @PostMapping("create")
-    public String processNewSkill(Model model, @ModelAttribute @Valid Skill newSkill, Errors errors) {
-        if (errors.hasErrors()) {
-            return "create";
-        }
-            skillsRepository.save(newSkill);
-            return "redirect:";
-        }
-    }
+}
 
