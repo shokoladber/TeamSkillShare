@@ -35,6 +35,7 @@ public class UserController {
         return "users/index";
     }
 
+    //logged in profile page
     @GetMapping("view/{userId}")
     public String viewUser(@PathVariable int userId, HttpSession session, Model model){
 
