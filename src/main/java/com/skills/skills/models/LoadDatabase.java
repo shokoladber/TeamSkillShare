@@ -21,11 +21,9 @@
 //            log.info("Preloading " + repository.save(new SkillsCategory("Performing Arts")));
 //            log.info("Preloading " + repository.save(new SkillsCategory("Woodworking")));
 //            log.info("Preloading " + repository.save(new SkillsCategory("Language")));
-//            log.info("Preloading " + repository.save(new SkillsCategory("Crafts")));
-//            log.info("Preloading " + repository.save(new SkillsCategory("Sports")));
 //            log.info("Preloading " + repository.save(new SkillsCategory("Music")));
 //            log.info("Preloading " + repository.save(new SkillsCategory("Coding")));
-//            log.info("Preloading " + repository.save(new SkillsCategory("Horseback Riding")));
+//            log.info("Preloading " + repository.save(new SkillsCategory("Leisure Sports")));
 //            log.info("Preloading " + repository.save(new SkillsCategory("Home Repair")));
 //        };
 //    }

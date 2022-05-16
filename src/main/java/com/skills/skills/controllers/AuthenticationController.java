@@ -31,6 +31,12 @@ public class AuthenticationController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    SkillsRepository skillsRepository;
+
+    @Autowired
+    public SkillsCategoryRepository skillsCategoryRepository;
+
     private static final String userSessionKey = "user";
 
     public User getUserFormSession(HttpSession session) {
@@ -52,13 +58,22 @@ public class AuthenticationController {
         session.setAttribute(userSessionKey, user.getId());
 
     }
+//
+//    @GetMapping
+//    public String displayPageAfterLogin(HttpSession session, Model model) {
+//        User user = getUserFormSession(session);
+//        model.addAttribute("user", user);
+//        return "index";
+//    }
 
     @GetMapping
-    public String displayPageAfterLogin(HttpSession session, Model model) {
+    public String displayProfilePageAfterNewSkillCreated (HttpSession session, Model model) {
         User user = getUserFormSession(session);
         model.addAttribute("user", user);
+        model.addAttribute("skills", user.getSkills());
         return "index";
     }
+
 
     @GetMapping("/register")
     public String displayRegistrationForm(Model model) {
