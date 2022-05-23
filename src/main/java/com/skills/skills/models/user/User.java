@@ -1,5 +1,8 @@
-package com.skills.skills.models;
+package com.skills.skills.models.user;
 
+import com.skills.skills.models.AbstractEntity;
+import com.skills.skills.models.user.UserProfile;
+import com.skills.skills.models.skill.Skill;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;

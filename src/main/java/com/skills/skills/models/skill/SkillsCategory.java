@@ -1,10 +1,10 @@
-package com.skills.skills.models;
+package com.skills.skills.models.skill;
+
+import com.skills.skills.models.AbstractEntity;
+import com.skills.skills.models.skill.Skill;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 

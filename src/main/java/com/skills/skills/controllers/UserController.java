@@ -1,8 +1,9 @@
 package com.skills.skills.controllers;
 
 import com.skills.skills.data.UserRepository;
-import com.skills.skills.models.User;
-import com.skills.skills.models.UserProfile;
+import com.skills.skills.models.user.User;
+import com.skills.skills.models.user.UserProfile;
+import com.skills.skills.models.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

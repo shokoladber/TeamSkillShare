@@ -1,4 +1,6 @@
-package com.skills.skills.models;
+package com.skills.skills.models.user;
+
+import com.skills.skills.models.AbstractEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class UserProfile extends AbstractEntity{
+public class UserProfile extends AbstractEntity {
 
     @NotBlank(message = "Name is required")
     @Size(min= 2, max=20, message = "Please enter 2 to 20 characters")

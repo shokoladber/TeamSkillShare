@@ -4,9 +4,9 @@ import com.skills.skills.data.SkillsCategoryRepository;
 import com.skills.skills.data.SkillsRepository;
 import com.skills.skills.data.TagRepository;
 import com.skills.skills.data.UserRepository;
-import com.skills.skills.models.Skill;
+import com.skills.skills.models.skill.Skill;
 import com.skills.skills.models.Tag;
-import com.skills.skills.models.User;
+import com.skills.skills.models.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +14,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.swing.text.html.HTML;
 import javax.validation.Valid;
 import java.util.Optional;
 
