@@ -1,4 +1,6 @@
-package com.skills.skills.models;
+package com.skills.skills.models.skill;
+
+import com.skills.skills.models.AbstractEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
