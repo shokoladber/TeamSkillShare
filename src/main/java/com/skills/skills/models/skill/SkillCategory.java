@@ -1,4 +1,4 @@
-package com.skills.skills.models;
+package com.skills.skills.models.skill;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;

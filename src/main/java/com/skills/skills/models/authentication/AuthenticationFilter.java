@@ -2,7 +2,7 @@ package com.skills.skills;
 
 import com.skills.skills.controllers.AuthenticationController;
 import com.skills.skills.data.UserRepository;
-import com.skills.skills.models.User;
+import com.skills.skills.models.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
