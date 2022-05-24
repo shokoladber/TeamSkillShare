@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <div th:replace="fragments :: head"></div>
-</head>
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
 <body>
 
-<header th:replace="fragments :: header"></header>
+<div th:replace="fragments :: navbar"></div>
 <main>
     <p>Welcome, <span th:text="${user.username}"></span></p>
 
