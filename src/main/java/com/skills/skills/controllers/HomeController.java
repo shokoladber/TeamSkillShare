@@ -14,7 +14,6 @@ public class HomeController {
   //@GetMapping
     public String displayHomepage(Model model){
        model.addAttribute("title","What is SkillShare");
-
         return "index";
    }
 

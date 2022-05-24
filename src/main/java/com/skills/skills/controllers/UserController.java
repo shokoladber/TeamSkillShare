@@ -31,15 +31,17 @@ public class UserController {
         List<User> users = new ArrayList<>();
         users.add(user);
         model.addAttribute("Users", userRepository.findAll());
-
         return "users/index";
     }
 
+    //logged in profile page
     @GetMapping("view/{userId}")
     public String viewUser(@PathVariable int userId, HttpSession session, Model model){
 
         User currentUser = authenticationController.getUserFormSession(session);
         Optional<User> user = userRepository.findById(userId);
+        User newUser = user.get();
+        model.addAttribute("skills", newUser.getSkills());
 
         if(user.isEmpty()){
            // return null;
@@ -50,7 +52,7 @@ public class UserController {
         }else {
             model.addAttribute("user", currentUser);
         }
-//      model.addAttribute("user", user.get());
+
        //return user.get();
         return "users/view";
     }

@@ -19,11 +19,10 @@
     <form class="noPaddingLeft" th:action="@{/users/edit/{id}(id=${user.id})}" method="get">
         <button class="submit">Edit User</button>
     </form>
+<div>
+    <li class="nav-link"><a th:href="@{/skills/create/{id}(id=${user.id})}">Add New Skill</a></li>
+</div>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 520f72b3fe0b4c938ffcf2b186f422c52aba6950
 </main>
 </body>
 </html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <div th:replace="fragments :: head"></div>
+</head>
+
+<body>
+
+<header th:replace="fragments :: header"></header>
+<main>
+    <p>Welcome, <span th:text="${user.username}"></span></p>
+
+    <li class="nav-link"><a th:href="@{/users/view/{id}(id=${user.id})}">User Profile</a></li>
+    <form method="post">
+        <div class="form-group">
+            <label>Filter By:
+                <select>
+                    <option th:each="tag : ${tags}"
+                            th:value="${tag.displayName}"
+                            th:text="${tag.displayName}"
+                    ></option>
+                </select>
+            </label>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Filter" class="btn btn-success">
+        </div>
+    </form>
+    <div>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Skill</th>
+                <th>Skill Category</th>
+                <th>Tag</th>
+            </tr>
+            </thead>
+            <tr th:each="skill : ${skills}">
+                <td th:text="${skill.name}"></a></td>
+                <td th:text="${skill.catName.catName}"></a></td>
+                <td th:text="${skill.skillTag}"></a></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <li class="nav-link"><a th:href="@{/skills/create/{id}(id=${user.id})}">Add New Skill</a></li>
+    </div>
+</main>
+</body>
+</html>
+
+
+
