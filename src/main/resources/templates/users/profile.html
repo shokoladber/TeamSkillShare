@@ -10,7 +10,7 @@
 <main>
     <p>Welcome, <span th:text="${user.username}"></span></p>
 
-            <li class="nav-link"><a th:href="@{/users/view/{id}(id=${user.id})}">INDEX PAGE User Profile</a></li>
+    <li class="nav-link"><a th:href="@{/users/view/{id}(id=${user.id})}">User Profile</a></li>
     <form method="post">
         <div class="form-group">
             <label>Filter By:
@@ -22,9 +22,9 @@
                 </select>
             </label>
         </div>
-    <div class="form-group">
-        <input type="submit" value="Filter" class="btn btn-success">
-    </div>
+        <div class="form-group">
+            <input type="submit" value="Filter" class="btn btn-success">
+        </div>
     </form>
     <div>
         <table class="table table-striped">
@@ -42,9 +42,9 @@
             </tr>
         </table>
     </div>
-<div>
-    <li class="nav-link"><a th:href="@{/skills/create/{id}(id=${user.id})}">Add New Skill</a></li>
-</div>
+    <div>
+        <li class="nav-link"><a th:href="@{/skills/create/{id}(id=${user.id})}">Add New Skill</a></li>
+    </div>
 </main>
 </body>
 </html>

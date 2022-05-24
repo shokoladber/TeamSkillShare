@@ -4,6 +4,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Skill extends AbstractEntity {
@@ -37,6 +39,7 @@ public class Skill extends AbstractEntity {
     public String getSkillTag() { return skillTag; }
 
     public void setSkillTag(String skillTag) { this.skillTag = skillTag; }
+
 }
 
 

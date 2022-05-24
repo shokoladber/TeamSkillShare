@@ -74,7 +74,7 @@ public class SkillsController {
         //resave user to update
         userRepository.save(currentUser);
         model.addAttribute("skills", currentUser.getSkills());
-        return "redirect:/";
+        return "users/profile";
     }
 
 }

@@ -28,7 +28,7 @@
             <label>Skill Tag
             <select th:field="${skill.skillTag}">
                 <option th:each="tag : ${tags}"
-                        th:value="${tag}"
+                        th:value="${tag.displayName}"
                         th:text="${tag.displayName}"
                 ></option>
             </select>

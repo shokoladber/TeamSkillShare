@@ -3,10 +3,7 @@ package com.skills.skills.controllers;
 import com.skills.skills.data.SkillsCategoryRepository;
 import com.skills.skills.data.SkillsRepository;
 import com.skills.skills.data.UserRepository;
-import com.skills.skills.models.Skill;
-import com.skills.skills.models.SkillsCategory;
-import com.skills.skills.models.User;
-import com.skills.skills.models.UserProfile;
+import com.skills.skills.models.*;
 import com.skills.skills.models.dto.LoginFormDTO;
 import com.skills.skills.models.dto.RegisterFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -58,21 +57,35 @@ public class AuthenticationController {
         session.setAttribute(userSessionKey, user.getId());
 
     }
-//
-//    @GetMapping
-//    public String displayPageAfterLogin(HttpSession session, Model model) {
-//        User user = getUserFormSession(session);
-//        model.addAttribute("user", user);
-//        return "index";
-//    }
 
-    @GetMapping("")
+    @GetMapping("/users/profile")
     public String displayPageAfterLogin (HttpSession session, Model model) {
         User user = getUserFormSession(session);
         model.addAttribute("user", user);
         model.addAttribute("skills", user.getSkills());
-        model.addAttribute("tag", user.getSkills());
-        return "index";
+        model.addAttribute(new Skill());
+        model.addAttribute("tags", Tag.values());
+        return "users/profile";
+    }
+
+    @PostMapping("/users/profile")
+        public String displayPageAfterFilter (HttpSession session, Model model, String displayName) {
+        User user = getUserFormSession(session);
+
+        List<Skill> skills;
+        List<Skill> filteredSkills = new ArrayList<>();
+        skills = user.getSkills();
+        skills.forEach(skill -> {
+            if (skill.getSkillTag() == displayName) {
+                filteredSkills.add(skill);
+            } else {
+            }
+        });
+        model.addAttribute("user", user);
+        model.addAttribute("skills", filteredSkills);
+        model.addAttribute(new Skill());
+        model.addAttribute("tags", Tag.values());
+        return "users/profile";
     }
 
 
@@ -119,7 +132,7 @@ public class AuthenticationController {
         //return "redirect:login";
         //return "users/index";
         //return "register_success";
-        return "redirect:";
+        return "redirect:/users/profile";
 
     }
 
@@ -160,7 +173,7 @@ public class AuthenticationController {
 
         setUserInSession(request.getSession(), theUser);
 
-        return "redirect:";
+        return "redirect:/users/profile";
     }
 
     @GetMapping("/logout")
