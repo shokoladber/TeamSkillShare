@@ -1,11 +1,14 @@
 package com.skills.skills.models.skill;
 
 import com.skills.skills.models.AbstractEntity;
+import com.skills.skills.models.Tag;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Skill extends AbstractEntity {
@@ -19,6 +22,9 @@ public class Skill extends AbstractEntity {
     private SkillsCategory catName;
 
     private String skillTag;
+
+    @ManyToMany
+    private final List<Tag> tags = new ArrayList<>();
 
     public Skill(String name, SkillsCategory catName, String skillTag) {
         this.name = name;

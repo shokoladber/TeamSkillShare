@@ -55,7 +55,7 @@ public class SkillsController {
         User currentUser = result.get();
         model.addAttribute("title", "Create New Skill");
         model.addAttribute(new Skill());
-        model.addAttribute("tags",Tag.values());
+//        model.addAttribute("tags",Tag.getSkills());
         model.addAttribute("categories", skillsCategoryRepository.findAll());
         return  "skills/create";
     }
