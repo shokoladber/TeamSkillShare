@@ -27,10 +27,10 @@
         </div>
         <div class="form-group">
             <label>Skill Tag
-            <select th:field="${skill.skillTag}">
+            <select th:field="${skill.tagName}">
                 <option th:each="tag : ${tags}"
-                        th:value="${tag.displayName}"
-                        th:text="${tag.displayName}"
+                        th:value="${tag.id}"
+                        th:text="${tag.tagName}"
                 ></option>
             </select>
             </label>
