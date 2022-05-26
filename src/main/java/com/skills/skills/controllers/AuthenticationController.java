@@ -2,6 +2,7 @@ package com.skills.skills.controllers;
 
 import com.skills.skills.data.SkillsCategoryRepository;
 import com.skills.skills.data.SkillsRepository;
+import com.skills.skills.data.TagRepository;
 import com.skills.skills.data.UserRepository;
 import com.skills.skills.models.*;
 import com.skills.skills.models.dto.LoginFormDTO;
@@ -29,6 +30,9 @@ public class AuthenticationController {
 
     @Autowired
     SkillsRepository skillsRepository;
+
+    @Autowired
+    public TagRepository tagRepository;
 
     @Autowired
     public SkillsCategoryRepository skillsCategoryRepository;
@@ -61,38 +65,28 @@ public class AuthenticationController {
         model.addAttribute("user", user);
         model.addAttribute("skills", user.getSkills());
         model.addAttribute(new Skill());
-        model.addAttribute("tags", Tag.values());
+        model.addAttribute(new Tag());
+        model.addAttribute("tags", tagRepository.findAll());
         return "users/profile";
     }
 
-    @GetMapping("/users/profile/{userId}")
-    public String displayPageAfterLogin ( @PathVariable Integer userId, HttpSession session, Model model) {
-        Optional<User> result = userRepository.findById(userId);
-        User user = result.get();
-        model.addAttribute("user", user);
-        model.addAttribute("skills", user.getSkills());
-        model.addAttribute(new Skill());
-        model.addAttribute("tags", Tag.values());
-        return "users/profile/{userId}";
-    }
-
     @PostMapping("/users/profile")
-        public String displayPageAfterFilter (HttpSession session, Model model, String displayName) {
+        public String displayPageAfterFilter (@RequestParam int tagId, HttpSession session, Model model) {
         User user = getUserFormSession(session);
 
         List<Skill> skills;
         List<Skill> filteredSkills = new ArrayList<>();
         skills = user.getSkills();
+
         skills.forEach(skill -> {
-            if (skill.getSkillTag() == displayName) {
+            if (skill.tag.getTagName() == tagId) {
                 filteredSkills.add(skill);
-            } else {
             }
         });
         model.addAttribute("user", user);
         model.addAttribute("skills", filteredSkills);
         model.addAttribute(new Skill());
-        model.addAttribute("tags", Tag.values());
+        model.addAttribute("tags", tagRepository.findAll());
         return "users/profile";
     }
 
