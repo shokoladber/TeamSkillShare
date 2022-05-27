@@ -1,6 +1,6 @@
 package com.skills.skills.data;
 
-import com.skills.skills.models.Skill;
+import com.skills.skills.models.skill.Skill;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,7 @@
 package com.skills.skills.models.skill;
 
 import com.skills.skills.models.AbstractEntity;
+import com.skills.skills.models.Tag;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

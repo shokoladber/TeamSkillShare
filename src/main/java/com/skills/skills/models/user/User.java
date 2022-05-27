@@ -1,5 +1,8 @@
-package com.skills.skills.models;
+package com.skills.skills.models.user;
 
+import com.skills.skills.models.AbstractEntity;
+import com.skills.skills.models.UserProfile;
+import com.skills.skills.models.skill.Skill;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
@@ -34,7 +37,7 @@ public class User extends AbstractEntity {
         this.pwHash = encoder.encode(password);
     }
 
-    public User(String username, String password, UserProfile userProfile) {
+    public User(String username, String password, com.skills.skills.models.UserProfile userProfile) {
         this(username, password);
         this.userProfile = userProfile;
     }
