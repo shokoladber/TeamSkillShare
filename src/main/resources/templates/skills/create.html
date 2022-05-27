@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+
+<div th:replace="fragments :: navbar"></div>
+
+<main>
+
+    <form method="post">
+       <div class="form-group">
+        <label>Skill Name
+            <input th:field="${skill.name}" class="form-control" />
+        </label>
+<!--        <p class="errors" th:errors="${skill.name}"></p>-->
+       </div>
+        <div class="form-group">
+        <label>Skill Category
+            <select th:field="${skill.catName}">
+                <option th:each="cat : ${categories}"
+                        th:value="${cat.id}"
+                        th:text="${cat.catName}"
+                ></option>
+            </select>
+            </label>
+<!--            <p class="errors" th:errors="${skill.catName}"></p>-->
+        </div>
+        <div class="form-group">
+            <label>Skill Tag
+            <select th:field="${skill.tagName}">
+                <option th:each="tag : ${tags}"
+                        th:value="${tag.id}"
+                        th:text="${tag.tagName}"
+                ></option>
+            </select>
+            </label>
+        </div>
+        <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-success">
+        </div>
+    </form>
+
+</main>
+</body>
+</html>

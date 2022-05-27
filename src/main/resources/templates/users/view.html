@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <div th:replace="fragments :: head"></div>
-</head>
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
 <body>
-<header th:replace="fragments :: header"></header>
 
-</body>
+<div th:replace="fragments :: navbar"></div>
 
 <main>
     <h1 th:text="${user.userProfile.firstName} +' '+ ${user.userProfile.lastName}"></h1>
@@ -20,10 +16,6 @@
         <button class="submit">Edit User</button>
     </form>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 520f72b3fe0b4c938ffcf2b186f422c52aba6950
 </main>
 </body>
 </html>
