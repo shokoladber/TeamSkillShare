@@ -1,4 +1,4 @@
-package com.skills.skills;
+package com.skills.skills.models.authentication;
 
 import com.skills.skills.controllers.AuthenticationController;
 import com.skills.skills.data.UserRepository;
