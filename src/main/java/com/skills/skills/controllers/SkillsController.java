@@ -20,7 +20,6 @@ import java.util.Optional;
 @RequestMapping("")
 public class SkillsController {
 
-
     @Autowired
     UserRepository userRepository;
 

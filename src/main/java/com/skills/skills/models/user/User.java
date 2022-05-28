@@ -1,6 +1,7 @@
 package com.skills.skills.models.user;
 
 import com.skills.skills.models.AbstractEntity;
+import com.skills.skills.models.event.Event;
 import com.skills.skills.models.user.UserProfile;
 import com.skills.skills.models.skill.Skill;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class User extends AbstractEntity {
+public class fUser extends AbstractEntity {
 
    // @Column(name = "username")
     @NotNull
@@ -31,6 +32,9 @@ public class User extends AbstractEntity {
 
     @ManyToMany
     private final List<Skill> skills = new ArrayList<>();
+
+ @ManyToMany
+ private final List<Event> events = new ArrayList<>();
 
     public User(String username, String password) {
         this.username = username;
@@ -57,6 +61,8 @@ public class User extends AbstractEntity {
     public String getPwHash() { return pwHash; }
 
     public List<Skill> getSkills() { return skills; }
+
+    public List<Event> getEvents() { return events; }
 
     public void addSkillsToProfile (Skill skill){ this.skills.add(skill); }
 

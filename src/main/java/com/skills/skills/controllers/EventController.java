@@ -1,76 +1,85 @@
 package com.skills.skills.controllers;
 
-import com.skills.skills.data.EventCategoryRepository;
 import com.skills.skills.data.EventRepository;
+import com.skills.skills.data.EventsCategoryRepository;
+import com.skills.skills.data.UserRepository;
 import com.skills.skills.models.event.Event;
-import com.skills.skills.models.event.EventCategory;
+import com.skills.skills.models.skill.Skill;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("events")
+@RequestMapping("")
 public class EventController {
+
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
     private EventRepository eventRepository;
 
     @Autowired
-    private EventCategoryRepository eventCategoryRepository;
+    private EventsCategoryRepository eventsCategoryRepository;
 
-    @GetMapping
-    public String displayEvents(@RequestParam(required = false) Integer categoryId, Model model) {
+    private static final String userSessionKey = "user";
 
-        if (categoryId == null) {
-            model.addAttribute("title", "All Events");
-            model.addAttribute("events", eventRepository.findAll());
-        } else {
-            Optional<EventCategory> result = eventCategoryRepository.findById(categoryId);
-            if (result.isEmpty()) {
-                model.addAttribute("title", "Invalid Category ID: " + categoryId);
-            } else {
-                EventCategory category = result.get();
-                model.addAttribute("title", "Events in category: " + category.getName());
-                model.addAttribute("events", category.getEvents());
-            }
+    public User getUserFormSession(HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        if (userId == null) {
+            return null;
         }
 
-        return "events/index";
+        Optional<User> user = userRepository.findById(userId);
+
+        if (user.isEmpty()) {
+            return null;
+        }
+
+        return user.get();
     }
 
-    @GetMapping("create")
-    public String displayCreateEventForm(Model model) {
-        model.addAttribute("title", "Create Event");
+    @GetMapping("events/create/{userId}")
+    public String createNewEvent (@PathVariable Integer userId, Model model){
+        Optional<User> result = userRepository.findById(userId);
+        User currentUser = result.get();
+        model.addAttribute("title", "Create New Skill");
         model.addAttribute(new Event());
-        model.addAttribute("categories", eventCategoryRepository.findAll());
-        return "events/create";
+//        model.addAttribute("tags",Tag.getEvents());
+        model.addAttribute("categories", eventsCategoryRepository.findAll());
+        return  "events/create";
     }
 
-    @PostMapping("create")
-    public String processCreateEventForm(@ModelAttribute @Valid Event newEvent,
-                                         Errors errors, Model model) {
-        if(errors.hasErrors()) {
-            model.addAttribute("title", "Create Event");
-            return "events/create";
-        }
+    @PostMapping("events/create/{userId}")
+    public String processNewSkill(@PathVariable Integer userId, HttpSession session, Model model, @ModelAttribute @Valid Skill newSkill, Errors errors) {
 
+        Optional<User> result = userRepository.findById(userId);
+        User currentUser = result.get();
+        // save new event
         eventRepository.save(newEvent);
-        return "redirect:";
+        //add event to user
+        currentUser.addEventsToProfile(newSkill);
+        //resave user to update
+        userRepository.save(currentUser);
+        model.addAttribute("events", currentUser.getEvents());
+        return "redirect:/";
     }
 
-    @GetMapping("delete")
+    @GetMapping("events/delete/{userId}")
     public String displayDeleteEventForm(Model model) {
         model.addAttribute("title", "Delete Events");
         model.addAttribute("events", eventRepository.findAll());
         return "events/delete";
     }
 
-    @PostMapping("delete")
+    @PostMapping("events/delete/{userId}")
     public String processDeleteEventsForm(@RequestParam(required = false) int[] eventIds) {
 
         if (eventIds != null) {

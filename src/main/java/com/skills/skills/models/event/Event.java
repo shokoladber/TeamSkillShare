@@ -15,7 +15,7 @@ import java.util.List;
 public class Event extends AbstractEntity {
 
     @NotBlank(message = "Name is required")
-    @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
+    @Size(max = 250, message = "Name must be 250 characters or less")
     private String name;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -24,7 +24,7 @@ public class Event extends AbstractEntity {
     private EventDetails eventDetails;
 
     @ManyToOne
-    @NotNull(message = "Category is required")
+    @NotNull(message = "Event category is required")
     private EventCategory eventCategory;
 
     @ManyToMany
