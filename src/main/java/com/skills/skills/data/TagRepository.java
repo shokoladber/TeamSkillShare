@@ -1,11 +1,10 @@
 package com.skills.skills.data;
 
-import com.skills.skills.models.user.User;
+import com.skills.skills.models.Tag;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface TagRepository extends CrudRepository<Tag, Integer> {
 
-    User findByUsername(String username);
 }

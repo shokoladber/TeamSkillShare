@@ -1,19 +1,19 @@
 package com.skills.skills.models.user;
 
 import com.skills.skills.models.AbstractEntity;
-import com.skills.skills.models.event.Event;
-import com.skills.skills.models.user.UserProfile;
 import com.skills.skills.models.skill.Skill;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class fUser extends AbstractEntity {
+public class User extends AbstractEntity {
 
    // @Column(name = "username")
     @NotNull
@@ -32,9 +32,6 @@ public class fUser extends AbstractEntity {
 
     @ManyToMany
     private final List<Skill> skills = new ArrayList<>();
-
- @ManyToMany
- private final List<Event> events = new ArrayList<>();
 
     public User(String username, String password) {
         this.username = username;
@@ -61,8 +58,6 @@ public class fUser extends AbstractEntity {
     public String getPwHash() { return pwHash; }
 
     public List<Skill> getSkills() { return skills; }
-
-    public List<Event> getEvents() { return events; }
 
     public void addSkillsToProfile (Skill skill){ this.skills.add(skill); }
 

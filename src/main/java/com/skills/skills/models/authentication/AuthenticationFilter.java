@@ -1,4 +1,4 @@
-package com.skills.skills;
+package com.skills.skills.models.authentication;
 
 import com.skills.skills.controllers.AuthenticationController;
 import com.skills.skills.data.UserRepository;
@@ -21,7 +21,7 @@ public class AuthenticationFilter extends HandlerInterceptorAdapter {
     @Autowired
     AuthenticationController authenticationController;
 
-    private static final List<String> whitelist = Arrays.asList("/login", "/register", "/logout", "/css");
+    private static final List<String> whitelist = Arrays.asList("/login", "/register", "/logout", "/css", "/");
 
     private static boolean isWhitelisted(String path) {
         for (String pathRoot : whitelist) {

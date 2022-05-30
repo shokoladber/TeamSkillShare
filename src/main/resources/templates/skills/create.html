@@ -1,8 +1,9 @@
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
-
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container">
-<header th:replace="fragments :: header"></header>
+<body>
+
+<div th:replace="fragments :: navbar"></div>
 
 <main>
 
@@ -23,6 +24,16 @@
             </select>
             </label>
 <!--            <p class="errors" th:errors="${skill.catName}"></p>-->
+        </div>
+        <div class="form-group">
+            <label>Skill Tag
+            <select th:field="${skill.tagName}">
+                <option th:each="tag : ${tags}"
+                        th:value="${tag.id}"
+                        th:text="${tag.tagName}"
+                ></option>
+            </select>
+            </label>
         </div>
         <div class="form-group">
         <input type="submit" value="Create" class="btn btn-success">

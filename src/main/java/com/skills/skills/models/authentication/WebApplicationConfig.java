@@ -1,4 +1,4 @@
-package com.skills.skills;
+package com.skills.skills.models.authentication;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
