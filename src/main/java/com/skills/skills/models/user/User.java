@@ -41,7 +41,7 @@ public class User extends AbstractEntity {
         this.pwHash = encoder.encode(password);
     }
 
-    public User(String username, String password, UserProfile userProfile) {
+    public User(String username, String password, com.skills.skills.models.UserProfile userProfile) {
         this(username, password);
         this.userProfile = userProfile;
     }
