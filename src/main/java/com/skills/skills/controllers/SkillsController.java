@@ -53,12 +53,11 @@ public class SkillsController {
 
     //responds to request at skills/create?userId=##
     @GetMapping("skills/create/{userId}")
-    public String createNewSkill (@PathVariable Integer userId, Model model){
+    public String createNewSkill (@PathVariable Integer userId, Model model, HttpSession session){
         Optional<User> result = userRepository.findById(userId);
         User currentUser = result.get();
         model.addAttribute("title", "Create New Skill");
         model.addAttribute(new Skill());
-        model.addAttribute(new Tag());
         model.addAttribute("tags", tagRepository.findAll());
         model.addAttribute("categories", skillsCategoryRepository.findAll());
         return  "skills/create";
