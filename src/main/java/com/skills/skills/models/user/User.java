@@ -1,11 +1,12 @@
 package com.skills.skills.models.user;
 
 import com.skills.skills.models.AbstractEntity;
-import com.skills.skills.models.UserProfile;
 import com.skills.skills.models.skill.Skill;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class User extends AbstractEntity {
         this.pwHash = encoder.encode(password);
     }
 
-    public User(String username, String password, com.skills.skills.models.UserProfile userProfile) {
+    public User(String username, String password, UserProfile userProfile) {
         this(username, password);
         this.userProfile = userProfile;
     }
