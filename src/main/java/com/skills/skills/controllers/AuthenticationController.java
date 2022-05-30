@@ -26,8 +26,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -68,6 +66,13 @@ public class AuthenticationController {
         session.setAttribute(userSessionKey, user.getId());
 
     }
+//
+//    @GetMapping
+//    public String displayPageAfterLogin(HttpSession session, Model model) {
+//        User user = getUserFormSession(session);
+//        model.addAttribute("user", user);
+//        return "index";
+//    }
 
     @GetMapping("/users/profile")
     public String displayPageAfterLogin (HttpSession session, Model model) {
