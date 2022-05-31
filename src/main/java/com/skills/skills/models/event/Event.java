@@ -27,10 +27,6 @@ public class Event extends AbstractEntity {
     @NotNull
     private EventDetails eventDetails;
 
-    @ManyToOne
-    @NotNull(message = "Event category is required")
-    private EventCategory eventCategory;
-
     @ManyToMany
     private final List<Tag> tags = new ArrayList<>();
 
