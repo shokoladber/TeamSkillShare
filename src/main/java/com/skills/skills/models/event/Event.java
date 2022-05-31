@@ -27,6 +27,10 @@ public class Event extends AbstractEntity {
     @NotNull
     private EventDetails eventDetails;
 
+    @ManyToOne
+    @NotNull
+    public Tag tagName;
+
     @ManyToMany
     private final List<Tag> tags = new ArrayList<>();
 
@@ -64,6 +68,8 @@ public class Event extends AbstractEntity {
     public List<Tag> getTags() {
         return tags;
     }
+
+    public Tag getTagName() { return tagName; }
 
     public void addTag(Tag tag) {
         this.tags.add(tag);
