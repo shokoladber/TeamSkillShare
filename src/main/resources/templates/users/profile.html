@@ -8,6 +8,7 @@
     <p>Welcome, <span th:text="${user.username}"></span></p>
 
     <li class="nav-link"><a th:href="@{/users/view/{id}(id=${user.id})}">User Profile</a></li>
+
     <form method="post">
         <div class="form-group">
             <label>Filter By:
@@ -23,6 +24,33 @@
             <input type="submit" value="Filter" class="btn btn-success">
         </div>
     </form>
+
+    <div>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Event</th>
+                <th>Event Category</th>
+                <th>Tag</th>
+            </tr>
+            </thead>
+            <tr th:each="event : ${events}">
+                <td th:text="${event.name}"></a></td>
+                <td th:text="${event.catName.catName}"></a></td>
+                <td th:text="${event.eventTag}"></a></td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <li class="nav-link"><a th:href="@{/events/create/{id}(id=${user.id})}">Add Event</a></li>
+        <li class="nav-link"><a th:href="@{/events/delete/{id}(id=${user.id})}">Remove Remove</a></li>
+    </div>
+
+    <div>
+        <li class="nav-link"><a th:href="@{/events/create/{id}(id=${user.id})}">Add New Event</a></li>
+    </div>
+
     <div>
         <table class="table table-striped">
             <thead class="thead-dark">
@@ -39,10 +67,12 @@
             </tr>
         </table>
     </div>
+
     <div>
         <li class="nav-link"><a th:href="@{/skills/create/{id}(id=${user.id})}">Add Skill</a></li>
         <li class="nav-link"><a th:href="@{/skills/delete/{id}(id=${user.id})}">Remove Skill</a></li>
     </div>
+
 </main>
 </body>
 </html>

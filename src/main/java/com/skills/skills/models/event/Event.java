@@ -18,14 +18,14 @@ public class Event extends AbstractEntity {
     @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
     private String name;
 
+    @ManyToOne
+    @NotNull(message = "Event category is required")
+    private EventCategory eventCategory;
+
     @OneToOne(cascade = CascadeType.ALL)
     @Valid
     @NotNull
     private EventDetails eventDetails;
-
-    @ManyToOne
-    @NotNull(message = "Category is required")
-    private EventCategory eventCategory;
 
     @ManyToMany
     private final List<Tag> tags = new ArrayList<>();
