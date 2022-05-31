@@ -19,7 +19,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("skills")
 public class SkillsController {
 
     @Autowired
@@ -53,7 +53,7 @@ public class SkillsController {
 
 
     //responds to request at skills/create?userId=##
-    @GetMapping("skills/create/{userId}")
+    @GetMapping("create/{userId}")
     public String createNewSkill (@PathVariable Integer userId, Model model){
         Optional<User> result = userRepository.findById(userId);
         User currentUser = result.get();
@@ -65,7 +65,7 @@ public class SkillsController {
         return  "skills/create";
     }
 
-    @PostMapping("skills/create/{userId}")
+    @PostMapping("create/{userId}")
     public String processNewSkill(@PathVariable Integer userId, HttpSession session, Model model, @ModelAttribute @Valid Skill newSkill, Errors errors) {
 
         Optional<User> result = userRepository.findById(userId);
@@ -80,13 +80,13 @@ public class SkillsController {
         return "redirect:/users/profile";
     }
 
-    @GetMapping("skills/delete/{userId}")
+    @GetMapping("delete/{userId}")
     public String displayDeleteSkillForm(Model model){
         model.addAttribute("skills", skillsRepository.findAll());
         return "skills/delete";
     }
 
-    @PostMapping("skills/delete/{userId}")
+    @PostMapping("delete/{userId}")
     public String processDeleteSkillForm(@RequestParam (required = false) int [] skillIds, HttpSession session, Model model, @PathVariable Integer userId){
         Optional<User> result = userRepository.findById(userId);
         User currentUser = result.get();

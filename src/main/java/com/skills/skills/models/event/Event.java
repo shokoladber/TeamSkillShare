@@ -18,6 +18,10 @@ public class Event extends AbstractEntity {
     @Size(max = 250, message = "Name must be 250 characters or less")
     private String name;
 
+    @ManyToOne
+    @NotNull(message = "Event category is required")
+    private EventCategory eventCategory;
+
     @OneToOne(cascade = CascadeType.ALL)
     @Valid
     @NotNull

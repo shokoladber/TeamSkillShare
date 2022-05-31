@@ -41,7 +41,7 @@ public class User extends AbstractEntity {
         this.pwHash = encoder.encode(password);
     }
 
-    public User(String username, String password, com.skills.skills.models.UserProfile userProfile) {
+    public User(String username, String password, UserProfile userProfile) {
         this(username, password);
         this.userProfile = userProfile;
     }
@@ -62,8 +62,9 @@ public class User extends AbstractEntity {
 
     public List<Skill> getSkills() { return skills; }
 
-    public List<Event> getEvents() { return events; }
-
     public void addSkillsToProfile (Skill skill){ this.skills.add(skill); }
 
+    public void addEventToProfile(Event event) { this.events.add(event); }
+
+    public List<Event> getEvents() { return events; }
 }
