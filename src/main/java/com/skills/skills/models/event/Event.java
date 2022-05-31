@@ -15,7 +15,7 @@ import java.util.List;
 public class Event extends AbstractEntity {
 
     @NotBlank(message = "Name is required")
-    @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
+    @Size(max = 250, message = "Name must be 250 characters or less")
     private String name;
 
     @ManyToOne
@@ -26,6 +26,10 @@ public class Event extends AbstractEntity {
     @Valid
     @NotNull
     private EventDetails eventDetails;
+
+    @ManyToOne
+    @NotNull
+    public Tag tagName;
 
     @ManyToMany
     private final List<Tag> tags = new ArrayList<>();
@@ -64,6 +68,8 @@ public class Event extends AbstractEntity {
     public List<Tag> getTags() {
         return tags;
     }
+
+    public Tag getTagName() { return tagName; }
 
     public void addTag(Tag tag) {
         this.tags.add(tag);

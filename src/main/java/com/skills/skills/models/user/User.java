@@ -2,12 +2,11 @@ package com.skills.skills.models.user;
 
 import com.skills.skills.models.AbstractEntity;
 import com.skills.skills.models.event.Event;
+import com.skills.skills.models.user.UserProfile;
 import com.skills.skills.models.skill.Skill;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
