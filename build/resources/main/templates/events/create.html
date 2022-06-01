@@ -16,31 +16,31 @@
         </div>
         <div class="form-group">
             <label>Details
-                <input th:field="${event.details}" class="form-control" />
+                <input th:field="${event.eventDetails}" class="form-control" />
             </label>
             <!--        <p class="errors" th:errors="${event.name}"></p>-->
         </div>
         <div class="form-group">
             <label>Event Category
-<!--                <select th:field="${event.eventCategory}">-->
-<!--                    <option th:each="cat : ${categories}"-->
-<!--                            th:value="${cat.id}"-->
-<!--                            th:text="${cat.eventCategory}"-->
-<!--                    ></option>-->
-<!--                </select>-->
-                <input th:field="${event.eventCategory}" th:value = "${event.Id}">
+                <select th:field="${event.eventCategory}">
+                    <option th:each="cat : ${categories}"
+                            th:value="${cat.id}"
+                            th:text="${cat.eventCategory}"
+                    ></option>
+                </select>
+<!--                <input th:field="${event.eventCategory}" th:value = "${event.Id}">-->
             </label>
             <!--            <p class="errors" th:errors="${event.catName}"></p>-->
         </div>
         <div class="form-group">
             <label>Event Tag
-<!--                <select th:field="${event.tagName}">-->
-<!--                    <option th:each="event : ${events}"-->
-<!--                            th:value="${tag.id}"-->
-<!--                            th:text="${tag.tagName}"-->
-<!--                    ></option>-->
-<!--                </select>-->
-                <input th:field="${event.tagName}" th:value = "${tag.Id}">
+                <select th:field="${event.tagName}">
+                    <option th:each="event : ${events}"
+                            th:value="${tag.id}"
+                            th:text="${tag.tagName}"
+                    ></option>
+                </select>
+<!--                <input th:field="${event.tagName}" th:value = "${tag.Id}">-->
             </label>
         </div>
 
