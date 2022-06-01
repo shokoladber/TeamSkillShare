@@ -34,9 +34,11 @@ public class Event extends AbstractEntity {
     @ManyToMany
     private final List<Tag> tags = new ArrayList<>();
 
-    public Event(String name, EventCategory eventCategory) {
+    public Event(String name, EventCategory eventCategory, Tag tagName, EventDetails eventDetails) {
         this.name = name;
         this.eventCategory = eventCategory;
+        this.tagName = tagName;
+        this.eventDetails = eventDetails;
     }
 
     public Event() {}
