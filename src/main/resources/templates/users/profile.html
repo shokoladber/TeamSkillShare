@@ -4,10 +4,15 @@
 <body>
 
 <div th:replace="fragments :: navbar"></div>
-<main>
-    <p>Welcome, <span th:text="${user.username}"></span></p>
 
-    <li class="nav-link"><a th:href="@{/users/view/{id}(id=${user.id})}">User Profile</a></li>
+<main>
+    <div class="w3-container">
+    <p>Welcome, <span th:text="${user.username}"></span></p>
+    </div>
+
+    <li class="nav-link"><a th:href="@{/users/view/{id}(id=${user.id})}">User Info</a></li>
+
+    <div>
     <form method="post">
         <div class="form-group">
             <label>Filter By:
@@ -23,6 +28,7 @@
             <input type="submit" value="Filter" class="btn btn-success">
         </div>
     </form>
+    </div>
     <div>
         <table class="table table-striped">
             <thead class="thead-dark">
@@ -44,6 +50,7 @@
         <li class="nav-link"><a th:href="@{/skills/delete/{id}(id=${user.id})}">Remove Skill</a></li>
     </div>
 </main>
+
 </body>
 </html>
 
