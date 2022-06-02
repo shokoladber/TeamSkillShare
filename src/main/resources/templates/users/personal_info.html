@@ -12,7 +12,7 @@
     <p>Email: <span th:text="${user.userProfile.email}"></span></p>
     <p>Phone Number: <span th:text="${user.userProfile.phoneNumber}"></span></p>
     <p>Zip Code: <span th:text="${user.userProfile.zipCode}"></span></p>
-    <form class="noPaddingLeft" th:action="@{/users/edit/{id}(id=${user.id})}" method="get">
+    <form class="noPaddingLeft" th:action="@{/users/edit_personal_info/{id}(id=${user.id})}" method="get">
         <button class="submit">Update Information</button>
     </form>
 

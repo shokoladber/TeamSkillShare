@@ -56,7 +56,7 @@ public class UserController {
        //return user.get();
         return "users/personal_info";
     }
-    @GetMapping("edit/{userId}")
+    @GetMapping("edit_personal_info/{userId}")
     public String editUser(@PathVariable Integer userId, Model model, HttpSession session){
         User userLoggedIn = authenticationController.getUserFormSession(session);
         Optional<User> getUser = userRepository.findById(userId);
@@ -69,15 +69,15 @@ public class UserController {
             return "redirect:/users/";
         }
         model.addAttribute("user", currentUser.getUserProfile());
-        return "users/edit";
+        return "users/edit_personal_info";
     }
-    @PostMapping("edit/{userId}")
+    @PostMapping("edit_personal_info/{userId}")
     public String processEdit(@ModelAttribute @Valid UserProfile user, Errors errors,
                               @PathVariable Integer userId, HttpSession session, Model model){
 
         if(errors.hasErrors()) {
             model.addAttribute("user", user);
-            return "users/edit";
+            return "users/personal_info";
         }
         User userLoggedIn = authenticationController.getUserFormSession(session);
         Optional<User> getUser = userRepository.findById(userId);
