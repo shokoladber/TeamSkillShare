@@ -34,8 +34,8 @@ public class UserController {
         return "users/index";
     }
 
-    //logged in profile page
-    @GetMapping("view/{userId}")
+    //logged in personal information page
+    @GetMapping("personal_info/{userId}")
     public String viewUser(@PathVariable int userId, HttpSession session, Model model){
 
         User currentUser = authenticationController.getUserFormSession(session);
@@ -54,7 +54,7 @@ public class UserController {
         }
 
        //return user.get();
-        return "users/view";
+        return "users/personal_info";
     }
     @GetMapping("edit/{userId}")
     public String editUser(@PathVariable Integer userId, Model model, HttpSession session){
@@ -98,7 +98,7 @@ public class UserController {
         }
 
         userRepository.save(currentUser);
-        return "redirect:/users/view/" + userId;
+        return "redirect:/users/personal_info/" + userId;
     }
 
 
