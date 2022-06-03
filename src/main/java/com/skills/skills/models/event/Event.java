@@ -2,9 +2,11 @@ package com.skills.skills.models.event;
 
 import com.skills.skills.models.AbstractEntity;
 import com.skills.skills.models.Tag;
+import com.skills.skills.models.skill.SkillsCategory;
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,67 +20,46 @@ public class Event extends AbstractEntity {
     @Size(max = 250, message = "Name must be 250 characters or less")
     private String name;
 
-    @ManyToOne
-    @NotNull(message = "Event category is required")
-    private EventCategory eventCategory;
+    @Size(max = 500, message = "Description too long!")
+    private String description;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @Valid
-    @NotNull
-    private EventDetails eventDetails;
+    @NotBlank(message = "Email is required")
+    @Email(message = "Invalid email. Try again.")
+    private String contactEmail;
+//
+//    @ManyToOne
+//    @NotNull(message = "Skill category is required")
+//    private SkillsCategory catName;
 
 //    @ManyToOne
 //    public Tag tagName;
+//
+//    @ManyToMany
+//    private final List<Tag> tags = new ArrayList<>();
 
-    @ManyToMany
-    private final List<Tag> tags = new ArrayList<>();
-
-    public Event(String name, EventCategory eventCategory, EventDetails eventDetails) {
+    public Event(String name, SkillsCategory catName, String description, String contactEmail) {
         this.name = name;
-        this.eventCategory = eventCategory;
-//        this.tagName = tagName;
-        this.eventDetails = eventDetails;
+//        this.catName = catName;
+        this.description = description;
+        this.contactEmail = contactEmail;
     }
 
     public Event() {}
 
-    public String getName() {
-        return name;
-    }
+    public String getName() {  return name; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
+//
+//    public SkillsCategory getEventSkillCategory() { return catName; }
+//
+//    public void setEventSkillCategory(SkillsCategory catName) { this.catName = catName; }
 
-    public EventCategory getEventCategory() {
-        return eventCategory;
-    }
+    public String getDescription() { return description; }
 
-    public void setEventCategory(EventCategory eventCategory) {
-        this.eventCategory = eventCategory;
-    }
+    public void setDescription(String description) { this.description = description; }
 
-    public EventDetails getEventDetails() {
-        return eventDetails;
-    }
+    public String getContactEmail() { return contactEmail; }
 
-    public void setEventDetails(EventDetails eventDetails) {
-        this.eventDetails = eventDetails;
-    }
-
-//    public List<Tag> getTags() {
-//        return tags;
-//    }
-
-//    public Tag getTagName() { return tagName; }
-
-//    public void addTag(Tag tag) {
-//        this.tags.add(tag);
-//    }
-
-    @Override
-    public String toString() {
-        return name;
-    }
+    public void setContactEmail(String contactEmail) { this.contactEmail = contactEmail; }
 
 }

@@ -33,8 +33,9 @@ public class User extends AbstractEntity {
     @ManyToMany
     private final List<Skill> skills = new ArrayList<>();
 
- @ManyToMany
- private final List<Event> events = new ArrayList<>();
+    @ManyToMany
+    private final List<Event> events = new ArrayList<>();
+
 
     public User(String username, String password) {
         this.username = username;
@@ -62,9 +63,11 @@ public class User extends AbstractEntity {
 
     public List<Skill> getSkills() { return skills; }
 
+    public List<Event> getEvents() { return events; }
+
     public void addSkillsToProfile (Skill skill){ this.skills.add(skill); }
 
     public void addEventToProfile(Event event) { this.events.add(event); }
 
-    public List<Event> getEvents() { return events; }
+
 }

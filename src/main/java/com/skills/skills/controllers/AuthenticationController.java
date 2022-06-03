@@ -1,9 +1,6 @@
 package com.skills.skills.controllers;
 
-import com.skills.skills.data.SkillsCategoryRepository;
-import com.skills.skills.data.SkillsRepository;
-import com.skills.skills.data.TagRepository;
-import com.skills.skills.data.UserRepository;
+import com.skills.skills.data.*;
 import com.skills.skills.models.Tag;
 import com.skills.skills.models.dto.LoginFormDTO;
 import com.skills.skills.models.dto.RegisterFormDTO;
@@ -36,6 +33,9 @@ public class AuthenticationController {
 
     @Autowired
     public TagRepository tagRepository;
+
+    @Autowired
+    private EventRepository eventRepository;
 
     @Autowired
     public SkillsCategoryRepository skillsCategoryRepository;
@@ -74,6 +74,7 @@ public class AuthenticationController {
         User user = getUserFormSession(session);
         model.addAttribute("user", user);
         model.addAttribute("skills", user.getSkills());
+        model.addAttribute("events", user.getEvents());
         model.addAttribute(new Skill());
         model.addAttribute(new Tag());
         model.addAttribute("tags", tagRepository.findAll());

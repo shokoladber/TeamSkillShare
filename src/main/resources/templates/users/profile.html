@@ -9,17 +9,17 @@
 
     <li class="nav-link"><a th:href="@{/users/view/{id}(id=${user.id})}">User Profile</a></li>
 
-<!--    <form method="post">-->
-<!--        <div class="form-group">-->
-<!--            <label>Filter By:-->
-<!--                <select th:name="tagId">-->
-<!--                    <option th:each="tag : ${tags}"-->
-<!--                            th:value="${tag.getId}"-->
-<!--                            th:text="${tag.tagName}"-->
-<!--                    ></option>-->
-<!--                </select>-->
-<!--            </label>-->
-<!--        </div>-->
+    <form method="post">
+        <div class="form-group">
+            <label>Filter By:
+                <select th:name="tagId">
+                    <option th:each="tag : ${tags}"
+                            th:value="${tag.getId}"
+                            th:text="${tag.tagName}"
+                    ></option>
+                </select>
+            </label>
+        </div>
         <div class="form-group">
             <input type="submit" value="Filter" class="btn btn-success">
         </div>
@@ -30,14 +30,16 @@
             <thead class="thead-dark">
             <tr>
                 <th>Event</th>
-                <th>Event Category</th>
-                <th>Tag</th>
+<!--                <th>Event Category</th>-->
+                <th>Contact Email</th>
+                <th>Description</th>
             </tr>
             </thead>
             <tr th:each="event : ${events}">
                 <td th:text="${event.name}"></a></td>
-                <td th:text="${event.catName.catName}"></a></td>
-                <td th:text="${event.eventTag}"></a></td>
+<!--                <td th:text="${event.catName.catName}"></a></td>-->
+                <td th:text="${event.contactEmail}"></a></td>
+                <td th:text="${event.description}"></a></td>
             </tr>
         </table>
     </div>

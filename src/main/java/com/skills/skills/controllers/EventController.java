@@ -3,9 +3,9 @@ package com.skills.skills.controllers;
 import com.skills.skills.data.*;
 import com.skills.skills.models.Tag;
 import com.skills.skills.models.event.Event;
-import com.skills.skills.models.event.EventCategory;
 import com.skills.skills.models.event.EventDetails;
 import com.skills.skills.models.skill.Skill;
+import com.skills.skills.models.skill.SkillsCategory;
 import com.skills.skills.models.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,16 +26,13 @@ public class EventController {
     private EventRepository eventRepository;
 
     @Autowired
-    private EventDetailsRepository eventDetailsRepository;
-
-    @Autowired
     UserRepository userRepository;
 
     @Autowired
     public TagRepository tagRepository;
 
     @Autowired
-    private EventCategoryRepository eventCategoryRepository;
+    public SkillsCategoryRepository skillsCategoryRepository;
 
     private static final String userSessionKey = "user";
 
@@ -61,18 +58,15 @@ public class EventController {
         User currentUser = result.get();
         model.addAttribute("title", "Create New Event");
         model.addAttribute(new Event());
-//        model.addAttribute(new Tag());
-//        model.addAttribute("tags", tagRepository.findAll());
-        model.addAttribute("categories", eventCategoryRepository.findAll());
+        model.addAttribute("categories", skillsCategoryRepository.findAll());
         return  "events/create";
     }
 
     @PostMapping("create/{userId}")
-    public String processNewEvent(@PathVariable Integer userId, HttpSession session, Model model, @ModelAttribute @Valid Event newEvent, EventDetails newEventDetails, Errors errors) {
+    public String processNewEvent(@PathVariable Integer userId, HttpSession session, Model model, @ModelAttribute @Valid Event newEvent, Errors errors) {
 
         Optional<User> result = userRepository.findById(userId);
         User currentUser = result.get();
-        eventDetailsRepository.save(newEventDetails);
         // save new event
         eventRepository.save(newEvent);
         //add event to user
