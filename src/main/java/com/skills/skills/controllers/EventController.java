@@ -1,12 +1,10 @@
 package com.skills.skills.controllers;
 
-import com.skills.skills.data.EventCategoryRepository;
-import com.skills.skills.data.EventRepository;
-import com.skills.skills.data.TagRepository;
-import com.skills.skills.data.UserRepository;
+import com.skills.skills.data.*;
 import com.skills.skills.models.Tag;
 import com.skills.skills.models.event.Event;
 import com.skills.skills.models.event.EventCategory;
+import com.skills.skills.models.event.EventDetails;
 import com.skills.skills.models.skill.Skill;
 import com.skills.skills.models.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
 @Controller
@@ -25,6 +24,9 @@ public class EventController {
 
     @Autowired
     private EventRepository eventRepository;
+
+    @Autowired
+    private EventDetailsRepository eventDetailsRepository;
 
     @Autowired
     UserRepository userRepository;
@@ -54,22 +56,23 @@ public class EventController {
 
     //responds to request at events/create?userId=##
     @GetMapping("create/{userId}")
-    public String createNewSkill (@PathVariable Integer userId, Model model){
+    public String createNewEvent (@PathVariable Integer userId, Model model){
         Optional<User> result = userRepository.findById(userId);
         User currentUser = result.get();
         model.addAttribute("title", "Create New Event");
         model.addAttribute(new Event());
-        model.addAttribute(new Tag());
-        model.addAttribute("tags", tagRepository.findAll());
+//        model.addAttribute(new Tag());
+//        model.addAttribute("tags", tagRepository.findAll());
         model.addAttribute("categories", eventCategoryRepository.findAll());
         return  "events/create";
     }
 
     @PostMapping("create/{userId}")
-    public String processNewEvent(@PathVariable Integer userId, HttpSession session, Model model, @ModelAttribute @Valid Event newEvent, Errors errors) {
+    public String processNewEvent(@PathVariable Integer userId, HttpSession session, Model model, @ModelAttribute @Valid Event newEvent, EventDetails newEventDetails, Errors errors) {
 
         Optional<User> result = userRepository.findById(userId);
         User currentUser = result.get();
+        eventDetailsRepository.save(newEventDetails);
         // save new event
         eventRepository.save(newEvent);
         //add event to user
