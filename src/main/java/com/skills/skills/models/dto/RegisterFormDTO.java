@@ -1,7 +1,7 @@
 package com.skills.skills.models.dto;
 
+public class RegisterFormDTO extends LoginFormDTO {
 
-public class RegisterFormDTO  extends LoginFormDTO {
     private String verifyPassword;
 
     public String getVerifyPassword() {
@@ -11,7 +11,5 @@ public class RegisterFormDTO  extends LoginFormDTO {
     public void setVerifyPassword(String verifyPassword) {
         this.verifyPassword = verifyPassword;
     }
+
 }
-
-
-
