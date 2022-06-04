@@ -1,5 +1,9 @@
-package com.skills.skills.models;
+package com.skills.skills.models.user;
 
+import com.skills.skills.models.AbstractEntity;
+import com.skills.skills.models.event.Event;
+import com.skills.skills.models.user.UserProfile;
+import com.skills.skills.models.skill.Skill;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
@@ -29,6 +33,10 @@ public class User extends AbstractEntity {
     @ManyToMany
     private final List<Skill> skills = new ArrayList<>();
 
+    @ManyToMany
+    private final List<Event> events = new ArrayList<>();
+
+
     public User(String username, String password) {
         this.username = username;
         this.pwHash = encoder.encode(password);
@@ -55,6 +63,11 @@ public class User extends AbstractEntity {
 
     public List<Skill> getSkills() { return skills; }
 
+    public List<Event> getEvents() { return events; }
+
     public void addSkillsToProfile (Skill skill){ this.skills.add(skill); }
+
+    public void addEventToProfile(Event event) { this.events.add(event); }
+
 
 }
