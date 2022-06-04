@@ -26,17 +26,17 @@
             </label>
             <!--        <p class="errors" th:errors="${event.name}"></p>-->
         </div>
-<!--                <div class="form-group">-->
-<!--                    <label>Event Skill Category-->
-<!--                        <select th:field="${event.skillCategory.catName}">-->
-<!--                            <option th:each="cat : ${categories}"-->
-<!--                                    th:value="${cat.getId}"-->
-<!--                                    th:text="${cat.getCatName}"-->
-<!--                            ></option>-->
-<!--                        </select>-->
-<!--                    </label>-->
-<!--                    &lt;!&ndash;            <p class="errors" th:errors="${skill.catName}"></p>&ndash;&gt;-->
-<!--                </div>-->
+                <div class="form-group">
+                    <label>Event Skill Category
+                        <select th:field="${event.catName}">
+                            <option th:each="cat : ${categories}"
+                                    th:value="${cat.id}"
+                                    th:text="${cat.catName}"
+                            ></option>
+                        </select>
+                    </label>
+                    <!--            <p class="errors" th:errors="${skill.catName}"></p>-->
+                </div>
         <div>
             <input type="submit" value="Create" class="btn btn-success">
         </div>

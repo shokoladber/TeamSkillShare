@@ -1,11 +1,10 @@
 package com.skills.skills.controllers;
 
-import com.skills.skills.data.*;
-import com.skills.skills.models.Tag;
+import com.skills.skills.data.EventRepository;
+import com.skills.skills.data.SkillsCategoryRepository;
+import com.skills.skills.data.TagRepository;
+import com.skills.skills.data.UserRepository;
 import com.skills.skills.models.event.Event;
-import com.skills.skills.models.event.EventDetails;
-import com.skills.skills.models.skill.Skill;
-import com.skills.skills.models.skill.SkillsCategory;
 import com.skills.skills.models.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
 @Controller
@@ -23,7 +21,7 @@ import java.util.Optional;
 public class EventController {
 
     @Autowired
-    private EventRepository eventRepository;
+    public EventRepository eventRepository;
 
     @Autowired
     UserRepository userRepository;
