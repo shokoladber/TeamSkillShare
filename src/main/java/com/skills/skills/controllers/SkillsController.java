@@ -53,7 +53,9 @@ public class SkillsController {
 
     //responds to request at skills/create?userId=##
     @GetMapping("create/{userId}")
-    public String createNewSkill (@PathVariable Integer userId, Model model){
+    public String createNewSkill (@PathVariable Integer userId, Model model, HttpSession session){
+        User user = getUserFormSession(session);
+        model.addAttribute("user", user);
         Optional<User> result = userRepository.findById(userId);
         User currentUser = result.get();
         model.addAttribute("title", "Create New Skill");
@@ -66,7 +68,8 @@ public class SkillsController {
 
     @PostMapping("create/{userId}")
     public String processNewSkill(@PathVariable Integer userId, HttpSession session, Model model, @ModelAttribute @Valid Skill newSkill, Errors errors) {
-
+        User user = getUserFormSession(session);
+        model.addAttribute("user", user);
         Optional<User> result = userRepository.findById(userId);
         User currentUser = result.get();
          // save new skill
@@ -80,13 +83,17 @@ public class SkillsController {
     }
 
     @GetMapping("delete/{userId}")
-    public String displayDeleteSkillForm(Model model){
+    public String displayDeleteSkillForm(Model model, HttpSession session){
+        User user = getUserFormSession(session);
+        model.addAttribute("user", user);
         model.addAttribute("skills", skillsRepository.findAll());
         return "skills/delete";
     }
 
     @PostMapping("delete/{userId}")
     public String processDeleteSkillForm(@RequestParam (required = false) int [] skillIds, HttpSession session, Model model, @PathVariable Integer userId){
+        User user = getUserFormSession(session);
+        model.addAttribute("user", user);
         Optional<User> result = userRepository.findById(userId);
         User currentUser = result.get();
         if(skillIds != null){

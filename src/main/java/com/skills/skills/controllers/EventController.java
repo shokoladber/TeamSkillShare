@@ -6,6 +6,7 @@ import com.skills.skills.data.TagRepository;
 import com.skills.skills.data.UserRepository;
 import com.skills.skills.models.event.Event;
 import com.skills.skills.models.user.User;
+import com.skills.skills.models.user.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,7 +52,9 @@ public class EventController {
 
     //responds to request at events/create?userId=##
     @GetMapping("create/{userId}")
-    public String createNewEvent (@PathVariable Integer userId, Model model){
+    public String createNewEvent (@PathVariable Integer userId, Model model, HttpSession session){
+        User user = getUserFormSession(session);
+        model.addAttribute("user", user);
         Optional<User> result = userRepository.findById(userId);
         User currentUser = result.get();
         model.addAttribute("title", "Create New Event");
@@ -76,7 +79,9 @@ public class EventController {
     }
 
     @GetMapping("delete/{userId}")
-    public String displayDeleteSkillForm(Model model){
+    public String displayDeleteSkillForm(Model model, HttpSession session){
+        User user = getUserFormSession(session);
+        model.addAttribute("user", user);
         model.addAttribute("events", eventRepository.findAll());
         return "events/delete";
     }
@@ -93,5 +98,45 @@ public class EventController {
         model.addAttribute("events", currentUser.getEvents());
         return "redirect:/users/profile";
     }
+//
+//    @GetMapping("edit/{userId}")
+//    public String editEvent (@PathVariable Integer userId, Model model, HttpSession session){
+//        Optional<User> result = userRepository.findById(userId);
+//        User currentUser = result.get();
+//
+//
+//        model.addAttribute("user", currentUser.getUserProfile());
+//        return "users/edit";
+//    }
+//    @PostMapping("edit/{userId}")
+//    public String processEdit(@ModelAttribute @Valid UserProfile user, Errors errors,
+//                              @PathVariable Integer userId, HttpSession session, Model model){
+//
+//        if(errors.hasErrors()) {
+//            model.addAttribute("user", user);
+//            return "users/edit";
+//        }
+//        User userLoggedIn = authenticationController.getUserFormSession(session);
+//        Optional<User> getUser = userRepository.findById(userId);
+//        if(getUser.isEmpty()) {
+//            return "redirect:/users/";
+//        }
+//        User currentUser = getUser.get();
+//        if(userLoggedIn.getId() != userId) {
+//            return "redirect:/users/";
+//
+//        }
+//        if(currentUser.getUserProfile() != user) {
+//            currentUser.getUserProfile().setFirstName(user.getFirstName());
+//            currentUser.getUserProfile().setLastName(user.getLastName());
+//            currentUser.getUserProfile().setEmail(user.getEmail());
+//            currentUser.getUserProfile().setPhoneNumber(user.getPhoneNumber());
+//            currentUser.getUserProfile().setZipCode(user.getZipCode());
+//        }
+//
+//        userRepository.save(currentUser);
+//        return "redirect:/users/view/" + userId;
+//    }
+
 
 }

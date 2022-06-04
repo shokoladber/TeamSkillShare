@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <div th:replace="fragments :: head"></div>
+
+</head>
+<body class="d-flex flex-column min-vh-100">
+<div th:replace="fragments :: navbar"></div>
+<main>
+    <form method="post" th:object="${user}">
+
+        <label>Name: <input type="text" th:field="${event.name}"></label>
+        <label>Description: <input type="text" th:field="${event.description}"></label>
+        <label>Contact Email: <input type="text" th:field="${event.contactEmail}"></label>
+        <div class="form-group">
+            <label>Event Skill Category
+                <select th:field="${event.catName}">
+                    <option th:each="cat : ${categories}"
+                            th:value="${cat.id}"
+                            th:text="${cat.catName}"
+                    ></option>
+                </select>
+            </label>
+        </div>
+        <input type="submit" value="Save Changes">
+    </form>
+</main>
+
+</body>
+</html>

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 <div th:replace="fragments :: navbar"></div>
 <main>
     <p>Welcome, <span th:text="${user.username}"></span></p>
 
-    <li class="nav-link"><a th:href="@{/users/view/{id}(id=${user.id})}">User Profile</a></li>
+    <li class="nav-link"><a th:href="@{/users/view/{id}(id=${user.id})}">Account Settings</a></li>
 
     <form method="post">
         <div class="form-group">
@@ -46,6 +46,7 @@
 
     <div>
         <li class="nav-link"><a th:href="@{/events/create/{id}(id=${user.id})}">Add Event</a></li>
+<!--        <li class="nav-link"><a th:href="@{/events/delete/{id}(id=${user.id})}">Edit Event</a></li>-->
         <li class="nav-link"><a th:href="@{/events/delete/{id}(id=${user.id})}">Remove Event</a></li>
     </div>
 
