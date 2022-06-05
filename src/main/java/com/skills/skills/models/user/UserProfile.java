@@ -20,7 +20,7 @@ public class UserProfile extends AbstractEntity {
     @Size(min= 2, max=20, message = "Please enter 2 to 20 characters")
     private String lastName;
 
-   @NotBlank(message = "Email is required")
+    @NotBlank(message = "Email is required")
     @Email(message = "Invalid email. Try again.")
     private String email;
 

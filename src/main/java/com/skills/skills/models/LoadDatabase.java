@@ -1,10 +1,8 @@
 //package com.skills.skills.models;
 //
-//import com.skills.skills.data.EventRepository;
+//
 //import com.skills.skills.data.SkillsCategoryRepository;
 //import com.skills.skills.data.TagRepository;
-//import com.skills.skills.models.event.Event;
-//import com.skills.skills.models.event.EventCategory;
 //import com.skills.skills.models.skill.SkillsCategory;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
@@ -18,12 +16,12 @@
 //    private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 //
 //    @Bean
-//    CommandLineRunner initDatabase(EventRepository repository) {
+//    CommandLineRunner initDatabase(SkillsCategoryRepository repository) {
 //
 //        return args -> {
 //
-//            log.info("Preloading " + repository.save(new Event("Cool")));
-//            log.info("Preloading " + repository.save(new Event("Cool")));
+//            log.info("Preloading " + repository.save(new SkillsCategory("Charity/Non-Profit")));
+//            log.info("Preloading " + repository.save(new SkillsCategory("Ceramics")));
 //
 //        };
 //    }
