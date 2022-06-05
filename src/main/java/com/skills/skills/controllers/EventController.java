@@ -5,6 +5,7 @@ import com.skills.skills.data.SkillsCategoryRepository;
 import com.skills.skills.data.TagRepository;
 import com.skills.skills.data.UserRepository;
 import com.skills.skills.models.event.Event;
+import com.skills.skills.models.skill.SkillsCategory;
 import com.skills.skills.models.user.User;
 import com.skills.skills.models.user.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,45 +99,37 @@ public class EventController {
         model.addAttribute("events", currentUser.getEvents());
         return "redirect:/users/profile";
     }
-//
-//    @GetMapping("edit/{userId}")
-//    public String editEvent (@PathVariable Integer userId, Model model, HttpSession session){
-//        Optional<User> result = userRepository.findById(userId);
-//        User currentUser = result.get();
-//
-//
-//        model.addAttribute("user", currentUser.getUserProfile());
-//        return "users/edit";
-//    }
-//    @PostMapping("edit/{userId}")
-//    public String processEdit(@ModelAttribute @Valid UserProfile user, Errors errors,
-//                              @PathVariable Integer userId, HttpSession session, Model model){
-//
-//        if(errors.hasErrors()) {
-//            model.addAttribute("user", user);
-//            return "users/edit";
-//        }
-//        User userLoggedIn = authenticationController.getUserFormSession(session);
-//        Optional<User> getUser = userRepository.findById(userId);
-//        if(getUser.isEmpty()) {
-//            return "redirect:/users/";
-//        }
-//        User currentUser = getUser.get();
-//        if(userLoggedIn.getId() != userId) {
-//            return "redirect:/users/";
-//
-//        }
-//        if(currentUser.getUserProfile() != user) {
-//            currentUser.getUserProfile().setFirstName(user.getFirstName());
-//            currentUser.getUserProfile().setLastName(user.getLastName());
-//            currentUser.getUserProfile().setEmail(user.getEmail());
-//            currentUser.getUserProfile().setPhoneNumber(user.getPhoneNumber());
-//            currentUser.getUserProfile().setZipCode(user.getZipCode());
-//        }
-//
-//        userRepository.save(currentUser);
-//        return "redirect:/users/view/" + userId;
-//    }
+
+    @GetMapping("edit/id={userId}&event={eventId}")
+    public String editEvent (@PathVariable Integer userId, @PathVariable Integer eventId, Model model, HttpSession session){
+        Optional<User> result = userRepository.findById(userId);
+        User currentUser = result.get();
+        Optional<Event> event = eventRepository.findById(eventId);
+        Event currentEvent = event.get();
+        model.addAttribute("user", currentUser.getUserProfile());
+        model.addAttribute("event", currentEvent);
+        model.addAttribute("cats", skillsCategoryRepository.findAll());
+        return "events/edit";
+    }
+    @PostMapping("edit/id={userId}&event={eventId}")
+    public String processEditEvent (@PathVariable Integer userId, @PathVariable Integer eventId,
+                                    HttpSession session, Model model, @ModelAttribute @Valid Event event){
+        Optional<User> result = userRepository.findById(userId);
+        User currentUser = result.get();
+        Optional<Event> oldEvent = eventRepository.findById(eventId);
+        Event currentEvent = oldEvent.get();
+
+        currentEvent.setName(event.getName());
+        currentEvent.setDescription(event.getDescription());
+        currentEvent.setContactEmail(event.getContactEmail());
+        currentEvent.setCatName(event.getCatName());
+
+        eventRepository.save(currentEvent);
+        userRepository.save(currentUser);
+        model.addAttribute("skills", currentUser.getSkills());
+        model.addAttribute("events", currentUser.getEvents());
+        return "redirect:/users/profile";
+    }
 
 
 }

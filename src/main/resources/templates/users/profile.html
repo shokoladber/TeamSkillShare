@@ -35,7 +35,7 @@
             </tr>
             </thead>
             <tr th:each="event : ${events}">
-                <td th:text="${event.name}"></a></td>
+                <td><a th:href="@{/events/edit/id={id}&event={eventId}(id=${user.id}, eventId=${event.id})}" th:text="${event.name}"></a></td>
                 <td th:text="${event.catName.catName}"></a></td>
                 <td th:text="${event.contactEmail}"></a></td>
                 <td th:text="${event.description}"></a></td>
@@ -45,7 +45,7 @@
 
     <div>
         <li class="nav-link"><a th:href="@{/events/create/{id}(id=${user.id})}">Add Event</a></li>
-<!--        <li class="nav-link"><a th:href="@{/events/delete/{id}(id=${user.id})}">Edit Event</a></li>-->
+<!---->
         <li class="nav-link"><a th:href="@{/events/delete/{id}(id=${user.id})}">Remove Event</a></li>
     </div>
 
