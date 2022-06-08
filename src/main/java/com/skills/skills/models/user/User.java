@@ -2,7 +2,6 @@ package com.skills.skills.models.user;
 
 import com.skills.skills.models.AbstractEntity;
 import com.skills.skills.models.event.Event;
-import com.skills.skills.models.user.UserProfile;
 import com.skills.skills.models.skill.Skill;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -29,6 +28,9 @@ public class User extends AbstractEntity {
     @Valid
     @NotNull
     private UserProfile userProfile;
+
+    @OneToMany(mappedBy = "id")
+    private final List<Message> messages = new ArrayList<>();
 
     @ManyToMany
     private final List<Skill> skills = new ArrayList<>();
@@ -68,6 +70,10 @@ public class User extends AbstractEntity {
     public void addSkillsToProfile (Skill skill){ this.skills.add(skill); }
 
     public void addEventToProfile(Event event) { this.events.add(event); }
+
+    public List<Message> getMessages () {return messages; }
+
+    public void addMessageToInbox (Message message) { this.messages.add(message); }
 
 
 }
