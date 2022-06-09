@@ -1,18 +1,13 @@
 package com.skills.skills.models.event;
 
 import com.skills.skills.models.AbstractEntity;
-import com.skills.skills.models.Tag;
 import com.skills.skills.models.skill.SkillsCategory;
-import com.skills.skills.models.user.User;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Event extends AbstractEntity {
@@ -26,14 +21,14 @@ public class Event extends AbstractEntity {
 
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid email. Try again.")
-    private String contactEmail;
+    private String email;
 //
     @ManyToOne
     @NotNull(message = "Skill category is required")
     private SkillsCategory catName;
 
-    @NotNull
-    private int eventCreatorId;
+//    @NotNull
+//    private int eventCreatorId;
 
 
 //    @ManyToOne
@@ -42,11 +37,11 @@ public class Event extends AbstractEntity {
 //    @ManyToMany
 //    private final List<Tag> tags = new ArrayList<>();
 
-    public Event(String name, SkillsCategory catName, String description, String contactEmail) {
+    public Event(String name, SkillsCategory catName, String description, String email) {
         this.name = name;
         this.catName = catName;
         this.description = description;
-        this.contactEmail = contactEmail;
+        this.email = email;
     }
 
     public Event() {}
@@ -63,11 +58,11 @@ public class Event extends AbstractEntity {
 
     public void setDescription(String description) { this.description = description; }
 
-    public String getContactEmail() { return contactEmail; }
+    public String getEmail() { return email; }
 
-    public void setContactEmail(String contactEmail) { this.contactEmail = contactEmail; }
+    public void setEmail(String email) { this.email = email; }
 
-    public int getEventCreator(Event event) { return event.eventCreatorId; }
-
-    public void setEventCreator(int userId) { this.eventCreatorId = eventCreatorId; }
+//    public int getEventCreator(Event event) { return event.eventCreatorId; }
+//
+//    public void setEventCreator(int userId) { this.eventCreatorId = eventCreatorId; }
 }

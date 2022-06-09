@@ -31,14 +31,12 @@
             <tr>
                 <th>My Events</th>
                 <th>Event Category</th>
-                <th>Contact Email</th>
                 <th>Description</th>
             </tr>
             </thead>
             <tr th:each="creatorEvent : ${creatorEvents}">
                 <td><a th:href="@{/events/edit/id={id}&event={eventId}(id=${user.id}, eventId=${creatorEvent.id})}" th:text="${creatorEvent.name}"></a></td>
                 <td th:text="${creatorEvent.catName.catName}"></a></td>
-                <td th:text="${creatorEvent.contactEmail}"></a></td>
                 <td th:text="${creatorEvent.description}"></a></td>
             </tr>
         </table>
@@ -54,14 +52,12 @@
             <tr>
                 <th>Events I'm Attending</th>
                 <th>Event Category</th>
-                <th>Contact Email</th>
                 <th>Description</th>
             </tr>
             </thead>
             <tr th:each="guestEvent : ${guestEvents}">
                 <td th:text="${guestEvent.name}"></a></td>
                 <td th:text="${guestEvent.catName.catName}"></a></td>
-                <td th:text="${guestEvent.contactEmail}"></a></td>
                 <td th:text="${guestEvent.description}"></a></td>
             </tr>
         </table>

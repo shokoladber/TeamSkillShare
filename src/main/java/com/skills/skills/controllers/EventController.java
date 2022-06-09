@@ -5,9 +5,7 @@ import com.skills.skills.data.SkillsCategoryRepository;
 import com.skills.skills.data.TagRepository;
 import com.skills.skills.data.UserRepository;
 import com.skills.skills.models.event.Event;
-import com.skills.skills.models.skill.SkillsCategory;
 import com.skills.skills.models.user.User;
-import com.skills.skills.models.user.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,9 +53,9 @@ public class EventController {
     @GetMapping("create/{userId}")
     public String createNewEvent (@PathVariable Integer userId, Model model, HttpSession session){
         User user = getUserFormSession(session);
-        model.addAttribute("user", user);
         Optional<User> result = userRepository.findById(userId);
         User currentUser = result.get();
+        model.addAttribute("user", currentUser);
         model.addAttribute("title", "Create New Event");
         model.addAttribute(new Event());
         model.addAttribute("categories", skillsCategoryRepository.findAll());
@@ -122,7 +120,7 @@ public class EventController {
 
         currentEvent.setName(event.getName());
         currentEvent.setDescription(event.getDescription());
-        currentEvent.setContactEmail(event.getContactEmail());
+        currentEvent.setEmail(event.getEmail());
         currentEvent.setCatName(event.getCatName());
 
         eventRepository.save(currentEvent);
@@ -134,15 +132,15 @@ public class EventController {
     }
 
     //responds to request at events/id={userId}&event={eventId}
-    @GetMapping("id={userId}&event={eventId}")
+    @GetMapping("event_details/id={userId}&event={eventId}")
     public String rsvpToEvent (@PathVariable Integer eventId, @PathVariable Integer userId, Model model, HttpSession session){
         User user = getUserFormSession(session);
         model.addAttribute("user", user);
         model.addAttribute("event", eventRepository.findById(eventId));
-        return  "events/event_details";
+        return "event/event_details";
     }
 
-    @PostMapping("id={userId}&event={eventId}")
+    @PostMapping("event_details/id={userId}&event={eventId}")
     public String processRSVPToEvent (@PathVariable Integer eventId, @PathVariable Integer userId, Model model, HttpSession session){
         User user = getUserFormSession(session);
         model.addAttribute("user", user);
