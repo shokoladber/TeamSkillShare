@@ -72,10 +72,11 @@ public class EventController {
         // save new event
         eventRepository.save(newEvent);
         //add event to user
-        currentUser.addEventToProfile(newEvent);
+        currentUser.addCreatorEventToProfile(newEvent);
         //re-save user to update
         userRepository.save(currentUser);
-        model.addAttribute("events", currentUser.getEvents());
+        model.addAttribute("creatorEvents", currentUser.getCreatorEvents());
+        model.addAttribute("guestEvents", currentUser.getGuestEvents());
         return "redirect:/users/profile";
     }
 
@@ -96,7 +97,7 @@ public class EventController {
             }
         }
         userRepository.save(currentUser);
-        model.addAttribute("events", currentUser.getEvents());
+        model.addAttribute("events", currentUser.getCreatorEvents());
         return "redirect:/users/profile";
     }
 
@@ -127,9 +128,34 @@ public class EventController {
         eventRepository.save(currentEvent);
         userRepository.save(currentUser);
         model.addAttribute("skills", currentUser.getSkills());
-        model.addAttribute("events", currentUser.getEvents());
+        model.addAttribute("creatorEvents", currentUser.getCreatorEvents());
+        model.addAttribute("guestEvents", currentUser.getGuestEvents());
         return "redirect:/users/profile";
     }
 
+    //responds to request at events/id={userId}&event={eventId}
+    @GetMapping("id={userId}&event={eventId}")
+    public String rsvpToEvent (@PathVariable Integer eventId, @PathVariable Integer userId, Model model, HttpSession session){
+        User user = getUserFormSession(session);
+        model.addAttribute("user", user);
+        model.addAttribute("event", eventRepository.findById(eventId));
+        return  "events/event_details";
+    }
+
+    @PostMapping("id={userId}&event={eventId}")
+    public String processRSVPToEvent (@PathVariable Integer eventId, @PathVariable Integer userId, Model model, HttpSession session){
+        User user = getUserFormSession(session);
+        model.addAttribute("user", user);
+        Optional<User> result = userRepository.findById(userId);
+        User currentUser = result.get();
+        Optional<Event> result1 = eventRepository.findById(eventId);
+        Event currentEvent = result1.get();
+        currentUser.addGuestEventToProfile(currentEvent);
+        userRepository.save(currentUser);
+        model.addAttribute("skills", currentUser.getSkills());
+        model.addAttribute("creatorEvents", currentUser.getCreatorEvents());
+        model.addAttribute("guestEvents", currentUser.getGuestEvents());
+        return "redirect:/users/profile";
+    }
 
 }

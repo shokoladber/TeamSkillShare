@@ -3,6 +3,7 @@ package com.skills.skills.models.event;
 import com.skills.skills.models.AbstractEntity;
 import com.skills.skills.models.Tag;
 import com.skills.skills.models.skill.SkillsCategory;
+import com.skills.skills.models.user.User;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -30,6 +31,10 @@ public class Event extends AbstractEntity {
     @ManyToOne
     @NotNull(message = "Skill category is required")
     private SkillsCategory catName;
+
+    @NotNull
+    private int eventCreatorId;
+
 
 //    @ManyToOne
 //    public Tag tagName;
@@ -62,4 +67,7 @@ public class Event extends AbstractEntity {
 
     public void setContactEmail(String contactEmail) { this.contactEmail = contactEmail; }
 
+    public int getEventCreator(Event event) { return event.eventCreatorId; }
+
+    public void setEventCreator(int userId) { this.eventCreatorId = eventCreatorId; }
 }

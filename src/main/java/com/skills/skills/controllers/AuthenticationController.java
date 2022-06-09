@@ -74,7 +74,8 @@ public class AuthenticationController {
         User user = getUserFormSession(session);
         model.addAttribute("user", user);
         model.addAttribute("skills", user.getSkills());
-        model.addAttribute("events", user.getEvents());
+        model.addAttribute("creatorEvents", user.getCreatorEvents());
+        model.addAttribute("guestEvents", user.getGuestEvents());
         model.addAttribute(new Skill());
         model.addAttribute(new Tag());
         model.addAttribute("tags", tagRepository.findAll());

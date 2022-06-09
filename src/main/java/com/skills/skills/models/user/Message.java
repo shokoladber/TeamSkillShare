@@ -20,7 +20,7 @@ public class Message extends AbstractEntity {
     private String messageBody;
 
     @Timestamp
-    private Timestamp timestamp;
+    private Long timestamp;
 
     @NotBlank
     private int recipientId;
@@ -28,7 +28,7 @@ public class Message extends AbstractEntity {
     @NotBlank
     private int senderId;
 
-    public Message(String messageSubject, String messageBody, Timestamp timestamp, int recipientId, int senderId) {
+    public Message(String messageSubject, String messageBody, Long timestamp, int recipientId, int senderId) {
         this.messageSubject = messageSubject;
         this.messageBody = messageBody;
         this.timestamp = timestamp;
@@ -54,11 +54,11 @@ public class Message extends AbstractEntity {
         this.messageBody = messageBody;
     }
 
-    public Timestamp getTimestamp() {
+    public Long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(Long timestamp) {
         this.timestamp = timestamp;
     }
 

@@ -39,14 +39,14 @@ public class MessageController {
 
     private static final String userSessionKey = "user";
 
-    @GetMapping("/users/profile/inbox")
+    @GetMapping("/users/inbox")
     public String displayInbox (HttpSession session, Model model) {
         User user = getUserFormSession(session);
         model.addAttribute("user", user);
         model.addAttribute("messages", user.getMessages());
-        return "users/profile/inbox";
-
-
+        return "users/inbox";
     }
+
+
 
 }
