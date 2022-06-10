@@ -32,5 +32,5 @@ We would like to create an app that would allow users to both learn and teach th
 
 ### License
 
-https://github.com/April-2022-LC-LiftOff/TeamSkillShare/blob/dev/LICENSE.md (license)
+[https://github.com/April-2022-LC-LiftOff/TeamSkillShare/blob/dev/LICENSE.md](license)
 ### Authors
