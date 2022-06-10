@@ -22,6 +22,14 @@
 //
 //            log.info("Preloading " + repository.save(new SkillsCategory("Charity/Non-Profit")));
 //            log.info("Preloading " + repository.save(new SkillsCategory("Ceramics")));
+//            log.info("Preloading " + repository.save(new SkillsCategory("Woodworking")));
+//            log.info("Preloading " + repository.save(new SkillsCategory("Dance")));
+//            log.info("Preloading " + repository.save(new SkillsCategory("Languages")));
+//            log.info("Preloading " + repository.save(new SkillsCategory("Ceramics")));
+//            log.info("Preloading " + repository.save(new SkillsCategory("Home Improvement")));
+//            log.info("Preloading " + repository.save(new SkillsCategory("Sports")));
+//            log.info("Preloading " + repository.save(new SkillsCategory("Music")));
+//            log.info("Preloading " + repository.save(new SkillsCategory("Arts and Crafts")));
 //
 //        };
 //    }
