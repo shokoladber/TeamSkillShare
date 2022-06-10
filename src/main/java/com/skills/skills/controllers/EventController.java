@@ -135,9 +135,18 @@ public class EventController {
     @GetMapping("event_details/id={userId}&event={eventId}")
     public String rsvpToEvent (@PathVariable Integer eventId, @PathVariable Integer userId, Model model, HttpSession session){
         User user = getUserFormSession(session);
+        Optional<Event> event = eventRepository.findById(eventId);
+        Event currentEvent = event.get();
+        String eventCheck = new String();
+        if(user.getGuestEvents().contains(currentEvent)){
+            eventCheck = "guest";
+        } else if(user.getCreatorEvents().contains(currentEvent)){
+            eventCheck = "creator";
+        }
+        model.addAttribute("eventCheck", eventCheck);
         model.addAttribute("user", user);
-        model.addAttribute("event", eventRepository.findById(eventId));
-        return "event/event_details";
+        model.addAttribute("event", currentEvent);
+        return "events/event_details";
     }
 
     @PostMapping("event_details/id={userId}&event={eventId}")

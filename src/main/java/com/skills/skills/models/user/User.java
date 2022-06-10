@@ -74,7 +74,7 @@ public class User extends AbstractEntity {
 
     public void addSkillsToProfile (Skill skill){ this.skills.add(skill); }
 
-    public void addCreatorEventToProfile(Event event) { this.creatorEvents.add(event); }
+    public void addCreatorEventToProfile(Event event ) { this.creatorEvents.add(event); }
 
     public void addGuestEventToProfile(Event event) { this.guestEvents.add(event); }
 

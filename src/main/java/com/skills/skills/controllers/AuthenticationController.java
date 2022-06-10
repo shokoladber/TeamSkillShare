@@ -143,17 +143,12 @@ public class AuthenticationController {
         User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), userProfile);
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
-
-        //return "redirect:login";
-        //return "users/index";
-        //return "register_success";
         return "redirect:/users/profile";
 
     }
 
     @GetMapping("login")
     public String displayLoginForm(Model model) {
-
         model.addAttribute(new LoginFormDTO());
         model.addAttribute("title", "LOG IN");
         return "login";

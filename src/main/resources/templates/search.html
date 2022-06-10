@@ -14,7 +14,6 @@
     <li class="nav-link"><a th:href="@{/users/profile}">Back to Profile</a></li>
 </div>
 
-<h1>Let's find Some Users!</h1>
 <form th:action="@{/search/results}" method = "post">
     <!--        <form th:action="">-->
     <h2>Search by:</h2>
@@ -85,11 +84,11 @@
         <td>
             <p>
                 Event Name:
-                <a th:href="@{events/event_details/id={user.id}&event={eventId}(eventId=${event.id})}" th:text="${event.name}"></a>
+                <a th:href="@{/events/event_details/id={id}&event={eventId}(id=${user.id}, eventId=${event.id})}" th:text="${event.name}"></a>
             </p>
             <p>
                 Event Description:
-                <a th:href="@{events/event_details/id={user.id}&event={eventId}(eventId=${event.id})}" th:text="${event.description}"></a>
+                <a th:href="@{/events/event_details/id={id}&event={eventId}(id=${user.id}, eventId=${event.id})}" th:text="${event.description}"></a>
             </p>
 
         </td>
