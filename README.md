@@ -27,10 +27,12 @@ We would like to create an app that would allow users to both learn and teach th
 
 ---
 ### Project Tracker
-- https://trello.com/b/lak5fpZP/teamskillshare
+
+- [Trello](https://trello.com/b/lak5fpZP/teamskillshare)
 ---
 
 ### License
 
-[https://github.com/April-2022-LC-LiftOff/TeamSkillShare/blob/dev/LICENSE.md](license)
+[License](https://github.com/April-2022-LC-LiftOff/TeamSkillShare/blob/dev/LICENSE.md)
+
 ### Authors
