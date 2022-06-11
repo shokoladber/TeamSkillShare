@@ -4,6 +4,7 @@
 
 <body>
 <main>
+    <h1>Edit Personal Information</h1>
     <form method="post" th:object="${user}">
         <label>First Name: <input type="text" th:field="${user.firstName}"></label>
         <p class="errors" th:errors="${user.firstName}"></p><br>
@@ -15,7 +16,7 @@
         <p class="errors" th:errors="${user.email}"></p><br>
         <label>Zip Code: <input type="text" th:field="${user.ZipCode}"></label>
         <p class="errors" th:errors="${user.zipCode}"></p><br>
-        <input type="submit" value="Save Changes">
+        <input class="nav-link" type="submit" value="Save Changes">
     </form>
 </main>
 </body>

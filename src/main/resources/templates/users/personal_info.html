@@ -6,7 +6,7 @@
 <div th:replace="fragments :: navbar"></div>
 
 <main>
-    <h1 th:text="${user.userProfile.firstName} +' '+ ${user.userProfile.lastName}"></h1>
+    <h1>Personal Information</h1>
     <p>First Name: <span th:text="${user.userProfile.firstName}"></span></p>
     <p>Last Name: <span th:text="${user.userProfile.lastName}"></span></p>
     <p>Email: <span th:text="${user.userProfile.email}"></span></p>
@@ -16,6 +16,9 @@
         <button class="submit">Update Information</button>
     </form>
 
+    <div>
+        <li class="nav-link"><a th:href="@{/users/profile}">Back to Profile</a></li>
+    </div>
 
 </main>
 </body>
