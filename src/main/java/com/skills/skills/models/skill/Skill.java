@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 public class Skill extends AbstractEntity {
 
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "What is your skill called?")
     @Size(max = 30, message = "Name must be 30 characters or less")
     public String name;
 

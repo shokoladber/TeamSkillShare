@@ -36,7 +36,7 @@
             </thead>
             <tr th:each="event : ${events}">
                 <td><a th:href="@{/events/edit/id={id}&event={eventId}(id=${user.id}, eventId=${event.id})}" th:text="${event.name}"></a></td>
-                <td th:text="${event.catName.catName}"></a></td>
+                <td th:text="${event.skillsCategory.catName}"></a></td>
                 <td th:text="${event.contactEmail}"></a></td>
                 <td th:text="${event.description}"></a></td>
             </tr>

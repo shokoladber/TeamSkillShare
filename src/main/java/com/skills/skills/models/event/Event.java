@@ -20,28 +20,23 @@ public class Event extends AbstractEntity {
     @Size(max = 250, message = "Name must be 250 characters or less")
     private String name;
 
-    @Size(max = 500, message = "Description too long!")
+    @NotBlank(message ="Say something about your event!")
+    @Size(max = 500, message = "Description too long.")
     private String description;
 
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid email. Try again.")
     private String contactEmail;
-//
+
     @ManyToOne
     @NotNull(message = "Skill category is required")
-    private SkillsCategory catName;
+    private SkillsCategory skillsCategory;
 
-//    @ManyToOne
-//    public Tag tagName;
-//
-//    @ManyToMany
-//    private final List<Tag> tags = new ArrayList<>();
-
-    public Event(String name, SkillsCategory catName, String description, String contactEmail) {
+    public Event(String name, String description, String contactEmail, SkillsCategory skillsCategory) {
         this.name = name;
-        this.catName = catName;
         this.description = description;
         this.contactEmail = contactEmail;
+        this.skillsCategory = skillsCategory;
     }
 
     public Event() {}
@@ -50,9 +45,9 @@ public class Event extends AbstractEntity {
 
     public void setName(String name) { this.name = name; }
 
-    public SkillsCategory getCatName() { return catName; }
+    public SkillsCategory getSkillsCategory() { return skillsCategory; }
 
-    public void setCatName(SkillsCategory catName) { this.catName = catName; }
+    public void setSkillsCategory(SkillsCategory skillsCategory) { this.skillsCategory = skillsCategory; }
 
     public String getDescription() { return description; }
 
