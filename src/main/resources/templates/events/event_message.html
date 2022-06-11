@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
 <head>
     <div th:replace="fragments :: head"></div>
 
@@ -7,7 +7,38 @@
 <body class="d-flex flex-column min-vh-100">
 <div th:replace="fragments :: navbar"></div>
 <main>
- stuff
+    <form method="post" th:object="${message}">
+        <div class="form-group">
+<!--            <label>Time:-->
+<!--                <input th:field="${message.timeStamp}" th:text="${event.creatorId}"></a></td>-->
+<!--            </label>-->
+<!--        </div>-->
+        <div class="form-group">
+            <label>Event Host:
+                <td th:text="${creator.username}"></a></td>
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Subject:
+                <input th:field="${message.subject}" th:placeholder="${event.name}"></a>
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Message:
+                <input th:field="${message.body}" class="form-control" />
+            </label>
+        </div>
+        <label>Sender:
+            <td th:text="${user.username}"></a></td>
+        </label>
+        <input type="hidden" th:value="${creator.id}" name="recipientId" />
+        <input type="hidden" th:value="${user.id}" name="senderId" />
+        <div>
+            <input type="submit" value="Send" class="btn btn-success">
+        </div>
+        </div>
+    </form>
+
 </main>
 
 </body>

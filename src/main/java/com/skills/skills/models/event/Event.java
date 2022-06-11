@@ -27,9 +27,8 @@ public class Event extends AbstractEntity {
     @NotNull(message = "Skill category is required")
     private SkillsCategory catName;
 
-//    @NotNull
-//    private int eventCreatorId;
-
+    @NotNull
+    private int creatorId;
 
 //    @ManyToOne
 //    public Tag tagName;
@@ -37,11 +36,12 @@ public class Event extends AbstractEntity {
 //    @ManyToMany
 //    private final List<Tag> tags = new ArrayList<>();
 
-    public Event(String name, SkillsCategory catName, String description, String email) {
+    public Event(String name, SkillsCategory catName, String description, String email, int creatorId) {
         this.name = name;
         this.catName = catName;
         this.description = description;
         this.email = email;
+        this.creatorId = creatorId;
     }
 
     public Event() {}
@@ -62,7 +62,7 @@ public class Event extends AbstractEntity {
 
     public void setEmail(String email) { this.email = email; }
 
-//    public int getEventCreator(Event event) { return event.eventCreatorId; }
-//
-//    public void setEventCreator(int userId) { this.eventCreatorId = eventCreatorId; }
+    public int getCreatorId(Event event) { return creatorId; }
+
+    public void setCreatorId(int creatorId) { this.creatorId = creatorId; }
 }

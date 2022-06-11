@@ -20,9 +20,9 @@
             </label>
             <!--        <p class="errors" th:errors="${event.name}"></p>-->
         </div>
-        <label>Contact Email
-            <input th:field="${event.email}" class="form-control" />
-        </label>
+<!--        <label>Contact Email-->
+<!--            <input th:field="${event.email}" class="form-control" />-->
+<!--        </label>-->
                 <div class="form-group">
                     <label>Event Skill Category
                         <select th:field="${event.catName}">
@@ -34,6 +34,8 @@
                     </label>
                 </div>
         <div>
+            <input type="hidden" th:value="${user.id}" name="creatorId" />
+            <input type="hidden" th:value="${user.userProfile.email}" name="email" />
             <input type="submit" value="Create" class="btn btn-success">
         </div>
     </form>
