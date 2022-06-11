@@ -42,6 +42,8 @@ public class Skill extends AbstractEntity {
 
     public SkillsCategory getCatName() { return catName; }
 
+    public String getCatNameString(Skill skill) { return skill.catName.getCatName(); }
+
     public void setCatName(SkillsCategory catName) { this.catName = catName; }
 
     public Tag getTagName() { return tagName; }

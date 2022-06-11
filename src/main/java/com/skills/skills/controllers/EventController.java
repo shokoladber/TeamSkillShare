@@ -153,16 +153,20 @@ public class EventController {
     public String processRSVPToEvent (@PathVariable Integer eventId, @PathVariable Integer userId, Model model, HttpSession session){
         User user = getUserFormSession(session);
         model.addAttribute("user", user);
-        Optional<User> result = userRepository.findById(userId);
-        User currentUser = result.get();
+//        Optional<User> result = userRepository.findById(userId);
+//        User currentUser = result.get();
         Optional<Event> result1 = eventRepository.findById(eventId);
         Event currentEvent = result1.get();
-        currentUser.addGuestEventToProfile(currentEvent);
-        userRepository.save(currentUser);
-        model.addAttribute("skills", currentUser.getSkills());
-        model.addAttribute("creatorEvents", currentUser.getCreatorEvents());
-        model.addAttribute("guestEvents", currentUser.getGuestEvents());
+        if(user.getGuestEvents().contains(currentEvent) == false){
+            user.addGuestEventToProfile(currentEvent);
+        }else if(user.getGuestEvents().contains(currentEvent) != false){
+            user.removeGuestEventFromProfile(currentEvent);
+        }
+        userRepository.save(user);
+        model.addAttribute("skills", user.getSkills());
+        model.addAttribute("creatorEvents", user.getCreatorEvents());
+        model.addAttribute("guestEvents", user.getGuestEvents());
         return "redirect:/users/profile";
     }
-
+//changed currentUser to user
 }

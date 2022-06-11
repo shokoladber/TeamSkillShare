@@ -53,13 +53,11 @@ public class SkillData {
             if(skill.getName().toLowerCase().contains(value.toLowerCase())){
                 skillResults.add(skill);
 
-            }else if(skill.getCatName().toString().toLowerCase().contains(value.toLowerCase())){
+            }else if(skill.getCatNameString(skill).toLowerCase().contains(value.toLowerCase())){
                 skillResults.add(skill);
             }
         }
-
         return skillResults;
-
     }
 
 }
