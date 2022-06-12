@@ -14,7 +14,7 @@ import java.util.Comparator;
 public class Message extends AbstractEntity {
 
     @NotBlank(message = "Message subject is required")
-    @Size(max = 250, message = "Subject line must be 100 characters or less")
+    @Size(max = 250, message = "Subject line must be 250 characters or less")
     private String subject;
 
     @NotBlank(message = "Message required.")

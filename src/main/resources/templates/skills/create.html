@@ -8,12 +8,14 @@
 <main>
 
     <form method="post" th:object="${skill}">
+
        <div class="form-group">
         <label>Skill
             <input th:field="${skill.name}" class="form-control" />
         </label>
         <p class="errors" th:errors="${skill.name}"></p>
        </div>
+
         <div class="form-group">
         <label>Category
             <select th:field="${skill.skillsCategory}">
@@ -25,6 +27,7 @@
         </label>
             <p class="errors" th:errors="${skill.skillsCategory}"></p>
         </div>
+
         <div class="form-group">
             <label>Tag
             <select th:field="${skill.tagName}">
