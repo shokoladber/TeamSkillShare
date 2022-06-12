@@ -78,6 +78,10 @@ public class SkillsController {
 
         //validate skills inputs
         if (errors.hasErrors()){
+            model.addAttribute(new Skill());
+            model.addAttribute(new Tag());
+            model.addAttribute("tags", tagRepository.findAll());
+            model.addAttribute("categories", skillsCategoryRepository.findAll());
             return "skills/create";
         }
 
