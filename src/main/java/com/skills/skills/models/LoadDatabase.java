@@ -20,7 +20,6 @@
 //
 //        return args -> {
 
-            //to load skill categories
 //            log.info("Preloading " + repository.save(new SkillsCategory("Charity/Non-Profit")));
 //            log.info("Preloading " + repository.save(new SkillsCategory("Ceramics")));
 //            log.info("Preloading " + repository.save(new SkillsCategory("Woodworking")));
@@ -30,12 +29,13 @@
 //            log.info("Preloading " + repository.save(new SkillsCategory("Home Improvement")));
 //            log.info("Preloading " + repository.save(new SkillsCategory("Sports")));
 //            log.info("Preloading " + repository.save(new SkillsCategory("Music")));
-//            log.info("Preloading " + repository.save(new SkillsCategory("Arts and Crafts")));
-//
-            //to load tags
-//            log.info("Preloading " + repository.save(new Tag("Sports")));
-//            log.info("Preloading " + repository.save(new Tag("Music")));
-//            log.info("Preloading " + repository.save(new Tag("Arts and Crafts")));
+//            log.info("Preloading " + repository.save(new SkillsCategory("Film")));
+//            log.info("Preloading " + repository.save(new SkillsCategory("Science")));
+//            log.info("Preloading " + repository.save(new SkillsCategory("Crafting")));
+//            log.info("Preloading " + repository.save(new SkillsCategory("Painting/Drawing")));
+//            log.info("Preloading " + repository.save(new SkillsCategory("Gardening")));
+//            log.info("Preloading " + repository.save(new SkillsCategory("Cooking")));
+//            log.info("Preloading " + repository.save(new SkillsCategory("Baking")));
 //
 //        };
 //    }
