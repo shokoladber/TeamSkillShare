@@ -43,6 +43,15 @@ public class HomeController {
         model.addAttribute("title","What is SkillShare");
         return "index";
     }
+
+    @GetMapping("home")
+    public String displayHome (Model model, HttpSession session){
+        User user = getUserFormSession(session);
+        model.addAttribute("user", user);
+        model.addAttribute("title","Home");
+        return "/home";
+    }
+
     @GetMapping("about")
     public String displayAboutUs (Model model, HttpSession session){
         User user = getUserFormSession(session);

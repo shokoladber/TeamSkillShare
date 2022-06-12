@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --title-font: "Urbanist", sans-serif;
+    --title-font: "Montserrat", sans-serif;
     --body-font: "Open Sans", sans-serif;
     --bg-color: #FFFFFF;
     --bg-darker-100: #EAE8ED;
@@ -25,7 +25,9 @@ html {
     font-family: var(--body-font);
 }
 
-body {
+h1,h2,h3,h4,h5,h6 {
+    font-family: var(--title-font);
+    font-weight:600;
 }
 
 .navbar-dark {
@@ -46,7 +48,7 @@ body {
 }
 
 .footer {
-    padding-top: 40px;
+    padding: 40px 0px 0px 0px;
     background: var(--main-darker-200);
     color: var(--bg-color);
 
@@ -56,8 +58,12 @@ body {
     color: var(--accent-color);
 }
 
-i {
+i.search-on-dark-bg {
     color: var(--bg-color);
+}
+
+i.search-on-light-bg {
+    color: var(--main-darker-200);
 }
 
 section {
@@ -81,6 +87,10 @@ section {
     padding: 80px 50px;
     border: 2px solid var(--accent-color);
     border-radius: 15px;
+}
+
+.about-section h1, .about-team h1, .about-thanks h1 {
+    margin: 1.5em;
 }
 
 hr {
