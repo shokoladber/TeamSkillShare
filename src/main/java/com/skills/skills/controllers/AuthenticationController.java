@@ -61,20 +61,14 @@ public class AuthenticationController {
         session.setAttribute(userSessionKey, user.getId());
 
     }
-//
-//    @GetMapping
-//    public String displayPageAfterLogin(HttpSession session, Model model) {
-//        User user = getUserFormSession(session);
-//        model.addAttribute("user", user);
-//        return "index";
-//    }
 
     @GetMapping("/users/profile")
     public String displayPageAfterLogin (HttpSession session, Model model) {
         User user = getUserFormSession(session);
         model.addAttribute("user", user);
         model.addAttribute("skills", user.getSkills());
-        model.addAttribute("events", user.getEvents());
+        model.addAttribute("creatorEvents", user.getCreatorEvents());
+        model.addAttribute("guestEvents", user.getGuestEvents());
         model.addAttribute(new Skill());
         model.addAttribute(new Tag());
         model.addAttribute("tags", tagRepository.findAll());
@@ -142,17 +136,12 @@ public class AuthenticationController {
         User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), userProfile);
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
-
-        //return "redirect:login";
-        //return "users/index";
-        //return "register_success";
         return "redirect:/users/profile";
 
     }
 
     @GetMapping("login")
     public String displayLoginForm(Model model) {
-
         model.addAttribute(new LoginFormDTO());
         model.addAttribute("title", "LOG IN");
         return "login";

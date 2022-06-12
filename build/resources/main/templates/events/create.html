@@ -7,7 +7,7 @@
 
 <main>
 
-    <form method="post">
+    <form method="post" th:object="${event}">
         <div class="form-group">
             <label>Event Name
                 <input th:field="${event.name}" class="form-control" />
@@ -19,12 +19,6 @@
                 <input th:field="${event.description}" class="form-control" />
             </label>
                     <p class="errors" th:errors="${event.description}"></p>
-        </div>
-        <div class="form-group">
-            <label>Contact Email
-                <input th:field="${event.contactEmail}" class="form-control" />
-            </label>
-                    <p class="errors" th:errors="${event.contactEmail}"></p>
         </div>
                 <div class="form-group">
                     <label>Category
@@ -38,6 +32,8 @@
                                 <p class="errors" th:errors="${event.skillsCategory}"></p>
                 </div>
         <div>
+            <input type="hidden" th:value="${user.id}" name="creatorId" />
+            <input type="hidden" th:value="${user.userProfile.email}" name="email" />
             <input type="submit" value="Create" class="btn btn-success">
         </div>
     </form>

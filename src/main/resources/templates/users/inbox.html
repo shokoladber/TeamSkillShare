@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="d-flex flex-column min-vh-100">
+
+<div th:replace="fragments :: navbar"></div>
+
+<h2>Inbox</h2>
+<!--th:each="message : ${receivedMessages}"-->
+<h3>Received</h3>
+<div class="container body-content">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Date:</th>
+            <th>From:</th>
+            <th>Subject:</th>
+            <th>Message:</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tr th:each="message : ${receivedMessages}">
+            <td th:text="${message.timestamp}"></td>
+            <td th:text="${message.senderUsername}"></td>
+            <td th:text="${message.subject}"></a></td>
+            <td th:text="${message.body}"></a></td>
+            <td><a th:href="@{/users/compose/{messageId}(messageId=${message.getId})}">Reply</a></td>
+        </tr>
+    </table>
+</div>
+
+
+<h3>Sent</h3>
+<div class="container body-content">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Date:</th>
+            <th>To:</th>
+            <th>Subject:</th>
+            <th>Message:</th>
+<!--            <th>Action</th>-->
+        </tr>
+        </thead>
+        <tr th:each="message : ${sentMessages}">
+            <td th:text="${message.timestamp}"></td>
+            <td th:text="${message.recipientUsername}"></td>
+            <td th:text="${message.subject}"></a></td>
+            <td th:text="${message.body}"></a></td>
+<!--            <td><a th:href="@{/users/compose/{messageId}(messageId=${message.getId})}">Reply</a></td>-->
+        </tr>
+    </table>
+</div>
+
+
+</body>
+</html>
+

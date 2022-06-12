@@ -1,17 +1,13 @@
 package com.skills.skills.models.event;
 
 import com.skills.skills.models.AbstractEntity;
-import com.skills.skills.models.Tag;
 import com.skills.skills.models.skill.SkillsCategory;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Event extends AbstractEntity {
@@ -26,17 +22,22 @@ public class Event extends AbstractEntity {
 
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid email. Try again.")
-    private String contactEmail;
+
+    private String email;
 
     @ManyToOne
     @NotNull(message = "Skill category is required")
     private SkillsCategory skillsCategory;
 
-    public Event(String name, String description, String contactEmail, SkillsCategory skillsCategory) {
+    @NotNull
+    private int creatorId;
+
+    public Event(String name, SkillsCategory skillsCategory, String description, String email, int creatorId) {
         this.name = name;
-        this.description = description;
-        this.contactEmail = contactEmail;
         this.skillsCategory = skillsCategory;
+        this.description = description;
+        this.email = email;
+        this.creatorId = creatorId;
     }
 
     public Event() {}
@@ -53,8 +54,11 @@ public class Event extends AbstractEntity {
 
     public void setDescription(String description) { this.description = description; }
 
-    public String getContactEmail() { return contactEmail; }
+    public String getEmail() { return email; }
 
-    public void setContactEmail(String contactEmail) { this.contactEmail = contactEmail; }
+    public void setEmail(String email) { this.email = email; }
 
+    public int getCreatorId(Event event) { return creatorId; }
+
+    public void setCreatorId(int creatorId) { this.creatorId = creatorId; }
 }
