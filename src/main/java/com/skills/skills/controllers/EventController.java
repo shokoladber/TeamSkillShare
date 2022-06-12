@@ -70,11 +70,14 @@ public class EventController {
                                   Errors errors) {
 
         //find user
+        User user = getUserFormSession(session);
+        model.addAttribute("user", user);
         Optional<User> result = userRepository.findById(userId);
         User currentUser = result.get();
 
         //validate event inputs
         if (errors.hasErrors()){
+            model.addAttribute("categories", skillsCategoryRepository.findAll());
             return "events/create";
         }
 

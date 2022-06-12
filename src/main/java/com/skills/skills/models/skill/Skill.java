@@ -23,7 +23,6 @@ public class Skill extends AbstractEntity {
     private SkillsCategory skillsCategory;
 
     @ManyToOne
-    @NotNull
     public Tag tagName;
 
     public Skill(String name, SkillsCategory skillsCategory, Tag tagName) {
@@ -42,7 +41,7 @@ public class Skill extends AbstractEntity {
 
     public SkillsCategory getSkillsCategory() { return skillsCategory; }
 
-    public void setSkillsCategory(SkillsCategory catName) { this.skillsCategory = skillsCategory; }
+    public void setSkillsCategory(SkillsCategory skillsCategory) { this.skillsCategory = skillsCategory; }
 
     public Tag getTagName() { return tagName; }
 

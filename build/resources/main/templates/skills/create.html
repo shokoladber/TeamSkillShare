@@ -27,13 +27,15 @@
         </div>
         <div class="form-group">
             <label>Tag
-            <select th:field="${skill.skillsCategory}">
+            <select th:field="${skill.tagName}">
                 <option th:each="tag : ${tags}"
                         th:value="${tag.id}"
                         th:text="${tag.tagName}"
                 ></option>
             </select>
             </label>
+                <p class="errors" th:errors="${skill.tagName}"></p>
+
         </div>
         <div class="form-group">
         <input type="submit" value="Create" class="btn btn-success">

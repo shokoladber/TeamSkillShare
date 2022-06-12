@@ -71,15 +71,14 @@ public class SkillsController {
                                   Model model, @ModelAttribute @Valid Skill newSkill,
                                   Errors errors) {
 
+        //find user
         User user = getUserFormSession(session);
         model.addAttribute("user", user);
         Optional<User> result = userRepository.findById(userId);
         User currentUser = result.get();
 
-        //validate skills inputs
+        //validate skill inputs
         if (errors.hasErrors()){
-            model.addAttribute(new Skill());
-            model.addAttribute(new Tag());
             model.addAttribute("tags", tagRepository.findAll());
             model.addAttribute("categories", skillsCategoryRepository.findAll());
             return "skills/create";
