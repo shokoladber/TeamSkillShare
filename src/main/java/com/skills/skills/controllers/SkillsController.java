@@ -7,6 +7,7 @@ import com.skills.skills.data.UserRepository;
 import com.skills.skills.models.event.Event;
 import com.skills.skills.models.skill.Skill;
 import com.skills.skills.models.Tag;
+import com.skills.skills.models.skill.SkillsCategory;
 import com.skills.skills.models.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -95,7 +96,7 @@ public class SkillsController {
         userRepository.save(currentUser);
 
         //send re-saved user back through model
-        model.addAttribute("skills", currentUser.getSkills());
+//        model.addAttribute("skills", currentUser.getSkills());
         return "redirect:/users/profile";
     }
 

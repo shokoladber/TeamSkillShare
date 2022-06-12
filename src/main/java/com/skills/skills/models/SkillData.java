@@ -38,7 +38,7 @@ public class SkillData {
         if(attributeName.equals("skill")){
             theValue = skill.getName();
         }else{
-            theValue = skill.getCatName().toString();
+            theValue = skill.getSkillsCategory().getCatName().toString();
         }
 
         return theValue;

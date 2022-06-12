@@ -7,7 +7,7 @@
 
 <main>
 
-    <form method="post">
+    <form method="post" th:object="${skill}">
        <div class="form-group">
         <label>Skill
             <input th:field="${skill.name}" class="form-control" />

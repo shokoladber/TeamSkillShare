@@ -5,6 +5,7 @@ import com.skills.skills.models.Tag;
 import com.skills.skills.models.dto.LoginFormDTO;
 import com.skills.skills.models.dto.RegisterFormDTO;
 import com.skills.skills.models.skill.Skill;
+import com.skills.skills.models.skill.SkillsCategory;
 import com.skills.skills.models.user.User;
 import com.skills.skills.models.user.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;

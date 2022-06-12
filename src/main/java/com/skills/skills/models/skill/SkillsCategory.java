@@ -18,7 +18,7 @@ public class SkillsCategory extends AbstractEntity {
     @NotBlank (message = "People need to know what category to search for.")
     private String catName;
 
-    @OneToMany(mappedBy = "catName")
+    @OneToMany(mappedBy = "skillsCategory")
     private static final List<Skill> skills = new ArrayList<>();
 
     public SkillsCategory(String catName) { this.catName = catName; }
