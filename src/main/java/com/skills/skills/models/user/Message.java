@@ -5,7 +5,9 @@ import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.Comparator;
 
 
 @Entity
@@ -72,5 +74,13 @@ public class Message extends AbstractEntity {
     public String getRecipientUsername() { return recipientUsername; }
 
     public void setRecipientUsername(String recipientUsername) { this.recipientUsername = recipientUsername; }
+
+    public static Comparator<Message> compareByTimeStamp = new Comparator<Message>() {
+        @Override
+        public int compare(Message o1, Message o2) {
+            return o1.timestamp.compareTo(o2.timestamp);
+        }
+    };
+
 }
 

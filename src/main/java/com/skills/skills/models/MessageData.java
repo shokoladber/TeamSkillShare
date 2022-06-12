@@ -3,9 +3,11 @@ package com.skills.skills.models;
 import com.skills.skills.models.skill.Skill;
 import com.skills.skills.models.user.Message;
 import com.skills.skills.models.user.User;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 public class MessageData {
@@ -20,6 +22,7 @@ public class MessageData {
                 usersSentMessages.add(message);
             }
         }
+        Collections.sort(usersSentMessages, Message.compareByTimeStamp);
         return usersSentMessages;
     }
 
@@ -33,6 +36,9 @@ public class MessageData {
                 usersReceivedMessages.add(message);
             }
         }
+        Collections.sort(usersReceivedMessages, Message.compareByTimeStamp);
         return usersReceivedMessages;
     }
+
+
 }

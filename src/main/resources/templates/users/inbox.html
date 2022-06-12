@@ -44,7 +44,7 @@
         </thead>
         <tr th:each="message : ${sentMessages}">
             <td th:text="${message.timestamp}"></td>
-            <td th:text="${message.senderUsername}"></td>
+            <td th:text="${message.recipientUsername}"></td>
             <td th:text="${message.subject}"></a></td>
             <td th:text="${message.body}"></a></td>
 <!--            <td><a th:href="@{/users/compose/{messageId}(messageId=${message.getId})}">Reply</a></td>-->
