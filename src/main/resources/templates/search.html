@@ -58,7 +58,7 @@
 
             <p>
                 User Name:
-                <a th:href="@{/users/personal_info/{id}(id=${user.id})}" th:text="${user.username}"></a>
+                <a th:href="@{/users/user_details/{userId}(userId=${user.id})}" th:text="${user.username}"></a>
             </p>
 
         </td>
@@ -80,8 +80,6 @@
             <p>
                 Event Name:
                 <a th:href="@{/events/event_details/id={id}&event={eventId}(id=${user.id}, eventId=${event.id})}" th:text="${event.name}"></a>
-            </p>
-            <p>
                 Event Description:
                 <a th:href="@{/events/event_details/id={id}&event={eventId}(id=${user.id}, eventId=${event.id})}" th:text="${event.description}"></a>
             </p>

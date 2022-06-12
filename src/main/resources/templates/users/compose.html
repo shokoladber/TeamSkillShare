@@ -8,19 +8,14 @@
 <div th:replace="fragments :: navbar"></div>
 <main>
     <form method="post">
-<!--        <div class="form-group">-->
-<!--            <label>Time:-->
-<!--                <input th:field="${message.timeStamp}" th:text="${event.creatorId}"></a></td>-->
-<!--            </label>-->
-<!--        </div>-->
         <div class="form-group">
-            <label>Event Host:
-                <td th:text="${creator.username}"></a></td>
+            <label>Recipient:
+                <td th:text="${recipient.getUsername}"></a></td>
             </label>
         </div>
         <div class="form-group">
             <label>Subject:
-                <input type="text" th:field="${message.subject}" th:placeholder="${event.name}" />
+                <input type="text" th:field="${message.subject}"/>
             </label>
         </div>
         <div class="form-group">
@@ -29,12 +24,12 @@
             </label>
         </div>
         <label>Sender:
-            <td type="text" th:text="${user.username}"></a></td>
+            <td type="text" th:text="${user.getUsername}"></a></td>
         </label>
         <div>
-        <input type="hidden" th:value="${creator.getId}" name="recipient" />
-            <input type="hidden" th:value="${creator.getUsername}" name="recipientUsername" />
-        <input type="hidden" th:value="${user.getId}" name="sender" />
+            <input type="hidden" th:value="${recipient.getId}" name="recipient" />
+            <input type="hidden" th:value="${recipient.getUsername}" name="recipientUsername" />
+            <input type="hidden" th:value="${user.getId}" name="sender" />
             <input type="hidden" th:value="${user.getUsername}" name="senderUsername" />
         </div>
         <div>

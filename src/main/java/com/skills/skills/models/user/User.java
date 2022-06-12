@@ -82,7 +82,7 @@ public class User extends AbstractEntity {
 
     public void removeGuestEventFromProfile(Event event) { this.guestEvents.remove(event); }
 
-    public List<Message> getMessages () {return messages; }
+    public List<Message> getMessages (User user) {return user.messages; }
 
     public void addMessageToInbox (Message message) { this.messages.add(message); }
 
