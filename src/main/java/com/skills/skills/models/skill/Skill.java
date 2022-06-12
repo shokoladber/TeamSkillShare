@@ -39,6 +39,8 @@ public class Skill extends AbstractEntity {
 
     public int getTagId(Tag tag) { return tag.getId(); }
 
+    public int getSkillsCategoryId(SkillsCategory skillsCategory) { return skillsCategory.getId(); }
+
     public SkillsCategory getSkillsCategory() { return skillsCategory; }
 
     public String getCatNameString(Skill skill) { return skill.skillsCategory.getCatName(); }
