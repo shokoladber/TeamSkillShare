@@ -163,12 +163,6 @@ public class AuthenticationController {
                                    Errors errors, HttpServletRequest request,
                                    Model model) {
 
-
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "LOG IN");
-            return "login";
-        }
-
         User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
 
         if (theUser == null) {

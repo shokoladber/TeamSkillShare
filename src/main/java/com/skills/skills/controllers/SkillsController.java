@@ -67,17 +67,33 @@ public class SkillsController {
     }
 
     @PostMapping("create/{userId}")
-    public String processNewSkill(@PathVariable Integer userId, HttpSession session, Model model, @ModelAttribute @Valid Skill newSkill, Errors errors) {
+    public String processNewSkill(@PathVariable Integer userId, HttpSession session,
+                                  Model model, @ModelAttribute @Valid Skill newSkill,
+                                  Errors errors) {
+
+        //find user
         User user = getUserFormSession(session);
         model.addAttribute("user", user);
         Optional<User> result = userRepository.findById(userId);
         User currentUser = result.get();
-         // save new skill
+
+        //validate skill inputs
+        if (errors.hasErrors()){
+            model.addAttribute("tags", tagRepository.findAll());
+            model.addAttribute("categories", skillsCategoryRepository.findAll());
+            return "skills/create";
+        }
+
+        // save new skill
         skillsRepository.save(newSkill);
+
         //add skill to user
         currentUser.addSkillsToProfile(newSkill);
+
         //re-save user to update
         userRepository.save(currentUser);
+
+        //send re-saved user back through model
         model.addAttribute("skills", currentUser.getSkills());
         return "redirect:/users/profile";
     }

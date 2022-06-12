@@ -65,16 +65,32 @@ public class EventController {
     }
 
     @PostMapping("create/{userId}")
-    public String processNewEvent(@PathVariable Integer userId, HttpSession session, Model model, @ModelAttribute @Valid Event newEvent, Errors errors) {
+    public String processNewEvent(@PathVariable Integer userId, HttpSession session,
+                                  Model model, @ModelAttribute @Valid Event newEvent,
+                                  Errors errors) {
 
+        //find user
+        User user = getUserFormSession(session);
+        model.addAttribute("user", user);
         Optional<User> result = userRepository.findById(userId);
         User currentUser = result.get();
+
+        //validate event inputs
+        if (errors.hasErrors()){
+            model.addAttribute("categories", skillsCategoryRepository.findAll());
+            return "events/create";
+        }
+
         // save new event
         eventRepository.save(newEvent);
+
         //add event to user
         currentUser.addEventToProfile(newEvent);
+
         //re-save user to update
         userRepository.save(currentUser);
+
+        //send re-saved user back through model
         model.addAttribute("events", currentUser.getEvents());
         return "redirect:/users/profile";
     }
@@ -122,7 +138,7 @@ public class EventController {
         currentEvent.setName(event.getName());
         currentEvent.setDescription(event.getDescription());
         currentEvent.setContactEmail(event.getContactEmail());
-        currentEvent.setCatName(event.getCatName());
+        currentEvent.setSkillsCategory(event.getSkillsCategory());
 
         eventRepository.save(currentEvent);
         userRepository.save(currentUser);

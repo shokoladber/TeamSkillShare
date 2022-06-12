@@ -17,7 +17,7 @@
         <p class="errors" th:errors="${event.contactEmail}"></p><br>
         <div class="form-group">
             <label>Event Skill Category
-                <select th:field="${event.catName}">
+                <select th:field="${event.skillsCategory}">
                     <option th:each="cat : ${cats}"
                             th:value="${cat.id}"
                             th:text="${cat.catName}"

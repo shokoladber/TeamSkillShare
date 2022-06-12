@@ -14,21 +14,20 @@ import java.util.List;
 @Entity
 public class Skill extends AbstractEntity {
 
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "What is your skill called?")
     @Size(max = 30, message = "Name must be 30 characters or less")
     public String name;
 
     @ManyToOne
     @NotNull(message = "Skill category is required")
-    private SkillsCategory catName;
+    private SkillsCategory skillsCategory;
 
     @ManyToOne
-    @NotNull
     public Tag tagName;
 
-    public Skill(String name, SkillsCategory catName, Tag tagName) {
+    public Skill(String name, SkillsCategory skillsCategory, Tag tagName) {
         this.name = name;
-        this.catName = catName;
+        this.skillsCategory = skillsCategory;
         this.tagName = tagName;
     }
 
@@ -40,9 +39,9 @@ public class Skill extends AbstractEntity {
 
     public int getTagId(Tag tag) { return tag.getId(); }
 
-    public SkillsCategory getCatName() { return catName; }
+    public SkillsCategory getSkillsCategory() { return skillsCategory; }
 
-    public void setCatName(SkillsCategory catName) { this.catName = catName; }
+    public void setSkillsCategory(SkillsCategory skillsCategory) { this.skillsCategory = skillsCategory; }
 
     public Tag getTagName() { return tagName; }
 
