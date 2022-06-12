@@ -38,7 +38,7 @@
 
             <tr th:each="creatorEvent : ${creatorEvents}">
                 <td><a th:href="@{/events/edit/id={id}&event={eventId}(id=${user.id}, eventId=${creatorEvent.id})}" th:text="${creatorEvent.name}"></a></td>
-                <td th:text="${creatorEvent.skillsCategory.catName}"></a></td>
+                <td th:text="${creatorEvent.catName.catName}"></a></td>
                 <td th:text="${creatorEvent.description}"></a></td>
             </tr>
         </table>
@@ -60,7 +60,7 @@
             </thead>
             <tr th:each="guestEvent : ${guestEvents}">
               <td><a th:href="@{/events/event_details/id={id}&event={eventId}(id=${user.id}, eventId=${guestEvent.id})}" th:text="${guestEvent.name}"></a></td>
-                <td th:text="${guestEvent.skillsCategory.catName}"></a></td>
+                <td th:text="${guestEvent.catName.catName}"></a></td>
                 <td th:text="${guestEvent.description}"></a></td>
             </tr>
         </table>
@@ -78,7 +78,7 @@
             </thead>
             <tr th:each="skill : ${skills}">
                 <td th:text="${skill.name}"></a></td>
-                <td th:text="${skill.skillsCategory.catName}"></a></td>
+                <td th:text="${skill.catName.catName}"></a></td>
                 <td th:text="${skill.tagName.tagName}"></a></td>
             </tr>
         </table>

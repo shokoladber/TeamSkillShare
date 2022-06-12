@@ -27,14 +27,14 @@ public class Event extends AbstractEntity {
 
     @ManyToOne
     @NotNull(message = "Skill category is required")
-    private SkillsCategory skillsCategory;
+    private SkillsCategory catName;
 
     @NotNull
     private int creatorId;
 
-    public Event(String name, SkillsCategory skillsCategory, String description, String email, int creatorId) {
+    public Event(String name, SkillsCategory catName, String description, String email, int creatorId) {
         this.name = name;
-        this.skillsCategory = skillsCategory;
+        this.catName = catName;
         this.description = description;
         this.email = email;
         this.creatorId = creatorId;
@@ -46,9 +46,9 @@ public class Event extends AbstractEntity {
 
     public void setName(String name) { this.name = name; }
 
-    public SkillsCategory getSkillsCategory() { return skillsCategory; }
+    public SkillsCategory getSkillsCategory() { return catName; }
 
-    public void setSkillsCategory(SkillsCategory skillsCategory) { this.skillsCategory = skillsCategory; }
+    public void setSkillsCategory(SkillsCategory catName) { this.catName = catName; }
 
     public String getDescription() { return description; }
 

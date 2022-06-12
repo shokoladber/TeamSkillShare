@@ -20,14 +20,15 @@ public class Skill extends AbstractEntity {
 
     @ManyToOne
     @NotNull(message = "Skill category is required")
-    private SkillsCategory skillsCategory;
+    private SkillsCategory catName;
 
     @ManyToOne
+    @NotNull
     public Tag tagName;
 
-    public Skill(String name, SkillsCategory skillsCategory, Tag tagName) {
+    public Skill(String name, SkillsCategory catName, Tag tagName) {
         this.name = name;
-        this.skillsCategory = skillsCategory;
+        this.catName = catName;
         this.tagName = tagName;
     }
 
@@ -39,13 +40,11 @@ public class Skill extends AbstractEntity {
 
     public int getTagId(Tag tag) { return tag.getId(); }
 
-    public int getSkillsCategoryId(SkillsCategory skillsCategory) { return skillsCategory.getId(); }
+    public SkillsCategory getCatName() { return catName; }
 
-    public SkillsCategory getSkillsCategory() { return skillsCategory; }
+    public String getCatNameString(Skill skill) { return skill.catName.getCatName(); }
 
-    public String getCatNameString(Skill skill) { return skill.skillsCategory.getCatName(); }
-
-    public void setCatName(SkillsCategory skillsCategory) { this.skillsCategory = skillsCategory; }
+    public void setCatName(SkillsCategory catName) { this.catName = catName; }
 
     public Tag getTagName() { return tagName; }
 
