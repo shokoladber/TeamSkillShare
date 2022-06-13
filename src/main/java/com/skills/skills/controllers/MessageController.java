@@ -104,10 +104,11 @@ public class MessageController {
 
         List<Message> sent = MessageData.usersInboxSent(user, messagesRepository.findAll());
         List<Message> received = MessageData.usersInboxReceived(user, messagesRepository.findAll());
-
+        List<Message> allMessages = MessageData.allUsersMessages(user, messagesRepository.findAll());
         model.addAttribute("user", user);
         model.addAttribute("sentMessages", sent);
         model.addAttribute("receivedMessages", received);
+        model.addAttribute("allMessages", allMessages);
         return "users/inbox";
     }
 
@@ -151,9 +152,33 @@ public class MessageController {
         newMessage.setTimestamp(ts);
         messagesRepository.save(newMessage);
 
+
         model.addAttribute("skills", user.getSkills());
         model.addAttribute("creatorEvents", user.getCreatorEvents());
         model.addAttribute("guestEvents", user.getGuestEvents());
         return "redirect:/users/profile";
     }
+//
+//    @GetMapping("users/deleteMessages/{messageId}")
+//    public String displayDeleteMessageForm(Model model, HttpSession session){
+//        User user = getUserFormSession(session);
+//        List<Message> allMessages = MessageData.allUsersMessages(user, messagesRepository.findAll());
+//        model.addAttribute("user", user);
+//        model.addAttribute("allMessages", allMessages);
+//        return "users/deleteMessages";
+//    }
+//    @PostMapping("/users/inbox")
+//    public String displayInbox (HttpSession session, Model model, @RequestParam int messageId) {
+//        User user = getUserFormSession(session);
+//        messagesRepository.deleteById(messageId);
+//        List<Message> sent = MessageData.usersInboxSent(user, messagesRepository.findAll());
+//        List<Message> received = MessageData.usersInboxReceived(user, messagesRepository.findAll());
+//        List<Message> allMessages = MessageData.allUsersMessages(user, messagesRepository.findAll());
+//        model.addAttribute("user", user);
+//        model.addAttribute("sentMessages", sent);
+//        model.addAttribute("receivedMessages", received);
+//        model.addAttribute("allMessages", allMessages);
+//        return "users/inbox";
+//    }
+
 }

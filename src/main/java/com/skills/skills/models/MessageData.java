@@ -40,5 +40,19 @@ public class MessageData {
         return usersReceivedMessages;
     }
 
+    public static ArrayList<Message> allUsersMessages(User user, Iterable<Message> allMessages){
+
+        ArrayList<Message> allUsersMessages = new ArrayList<>();
+        int currentUserId = user.getId();
+        for (Message message : allMessages) {
+            if (message.getRecipient() == currentUserId || message.getSender() == currentUserId) {
+                allUsersMessages.add(message);
+            }
+        }
+            Collections.sort(allUsersMessages, Message.compareByTimeStamp);
+            return allUsersMessages;
+
+    }
+
 
 }
