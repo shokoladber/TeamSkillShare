@@ -60,7 +60,6 @@ public class SkillsController {
         model.addAttribute("user", user);
         Optional<User> result = userRepository.findById(userId);
         User currentUser = result.get();
-        model.addAttribute("title", "Create New Skill");
         model.addAttribute(new Skill());
         model.addAttribute(new Tag());
         model.addAttribute("tags", tagRepository.findAll());

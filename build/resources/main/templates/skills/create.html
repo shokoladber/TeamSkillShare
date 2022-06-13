@@ -10,12 +10,14 @@
     <div class="container">
         <div class="row justify-content-center mt-4">
             <div class="col-lg-6">
+
+
                 <h4 class="mb-3">New Skill</h4>
                 <hr class="mb-4"/>
 
                 <form method="post" th:object="${skill}">
 
-                    <div class="form-group" >
+                    <div class="form-group">
                         <input th:field="${skill.name}" class="form-control" placeholder="Skill">
                         <p class="errors" th:errors="${skill.name}"></p>
                     </div>

@@ -56,7 +56,6 @@ public class EventController {
         Optional<User> result = userRepository.findById(userId);
         User currentUser = result.get();
         model.addAttribute("user", currentUser);
-        model.addAttribute("title", "Create New Event");
         model.addAttribute(new Event());
         model.addAttribute("categories", skillsCategoryRepository.findAll());
         return  "events/create";
@@ -134,7 +133,7 @@ public class EventController {
         currentEvent.setName(event.getName());
         currentEvent.setDescription(event.getDescription());
         currentEvent.setEmail(event.getEmail());
-        currentEvent.setSkillsCategory(event.getSkillsCategory());
+        currentEvent.setCatName(event.getCatName());
 
         eventRepository.save(currentEvent);
         userRepository.save(currentUser);

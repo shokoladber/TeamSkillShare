@@ -46,9 +46,9 @@ public class Event extends AbstractEntity {
 
     public void setName(String name) { this.name = name; }
 
-    public SkillsCategory getSkillsCategory() { return catName; }
+    public void setCatName(SkillsCategory catName) { this.catName = catName; }
 
-    public void setSkillsCategory(SkillsCategory catName) { this.catName = catName; }
+    public SkillsCategory getCatName() {return catName; }
 
     public String getDescription() { return description; }
 
@@ -61,4 +61,6 @@ public class Event extends AbstractEntity {
     public int getCreatorId(Event event) { return creatorId; }
 
     public void setCreatorId(int creatorId) { this.creatorId = creatorId; }
+
+
 }
