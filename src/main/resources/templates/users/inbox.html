@@ -6,52 +6,63 @@
 <div th:replace="fragments :: navbar"></div>
 
 <h2>Inbox</h2>
-<!--th:each="message : ${receivedMessages}"-->
-<h3>Received</h3>
+
+<div class="card one-event-post mb-3">
+    <h4 class="card-header event-card-header">Received</h4>
+
+</div>
 <div class="container body-content">
-    <table class="table table-striped">
-        <thead class="thead-dark">
-        <tr>
-            <th>Date:</th>
-            <th>From:</th>
-            <th>Subject:</th>
-            <th>Message:</th>
-            <th>Action</th>
-        </tr>
-        </thead>
         <tr th:each="message : ${receivedMessages}">
-            <td th:text="${message.timestamp}"></td>
-            <td th:text="${message.senderUsername}"></td>
-            <td th:text="${message.subject}"></a></td>
-            <td th:text="${message.body}"></a></td>
-            <td><a th:href="@{/users/compose/{messageId}(messageId=${message.getId})}">Reply</a></td>
+            <div>
+            <h4 class="card-header event-card-header" th:text="${message.subject}"></h4>
+                </div>
+            <div class="card-body">
+                <h8 class="text-muted" th:text="${message.senderUsername}"></h8>
+                <p class="text-muted" th:text="${message.timestamp}">
+                <p class="card-text" th:text="${message.body}"></p>
+            </div>
+            <div class="card-footer bg-transparent">
+                <ul class="list-inline">
+                    <li class="list-inline-item float-left"><a th:href="@{/users/compose/{messageId}(messageId=${message.getId})}" class="btn btn-primary text-white">Reply</a></li>
+<!--                    <li class="list-inline-item float-right"><a href="/users/deleteMessages" class="btn btn-secondary text-white">Delete</a></li>-->
+                </ul>
+            </div>
         </tr>
-    </table>
 </div>
 
-
-<h3>Sent</h3>
+<div class="card one-event-post mb-3">
+    <h4 class="card-header event-card-header">Sent</h4>
+</div>
 <div class="container body-content">
-    <table class="table table-striped">
-        <thead class="thead-dark">
-        <tr>
-            <th>Date:</th>
-            <th>To:</th>
-            <th>Subject:</th>
-            <th>Message:</th>
-<!--            <th>Action</th>-->
-        </tr>
-        </thead>
-        <tr th:each="message : ${sentMessages}">
-            <td th:text="${message.timestamp}"></td>
-            <td th:text="${message.recipientUsername}"></td>
-            <td th:text="${message.subject}"></a></td>
-            <td th:text="${message.body}"></a></td>
-<!--            <td><a th:href="@{/users/compose/{messageId}(messageId=${message.getId})}">Reply</a></td>-->
-        </tr>
-    </table>
+<tr th:each="message : ${sentMessages}">
+    <h4 class="card-header event-card-header" th:text="${message.subject}"></h4>
+    <div class="card-body">
+        <h8 class="text-muted" th:text="${message.recipientUsername}"></h8>
+        <p class="text-muted" th:text="${message.timestamp}">
+        <p class="card-text" th:text="${message.body}"></p>
+    </div>
+<!--    <div class="card-footer bg-transparent">-->
+<!--        <ul class="list-inline">-->
+<!--            <li class="list-inline-item float-right"><a href="/users/deleteMessages" class="btn btn-secondary text-white">Delete</a></li>-->
+<!--        </ul>-->
+<!--    </div>-->
+</tr>
 </div>
 
+<!--<div class="col-lg-4 col-md-12 float-left home-sidebar">-->
+<!--<div>-->
+<!--    <tr th:each="message : ${allMessages}">-->
+<!--    <div class="card mb-3">-->
+<!--        <h5 class="card-header" th:text="${message.subject}"></h5>-->
+<!--        <div class="card-body">-->
+<!--            <p class="card-text" th:text="${message.senderUsername}"></p>-->
+<!--            <a th:href="@{/users/compose/{messageId}(messageId=${message.getId})}"></a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    </tr>-->
+<!--</div>-->
+
+<!--</div>-->
 
 </body>
 </html>

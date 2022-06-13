@@ -91,7 +91,7 @@ public class EventController {
     }
 
     @GetMapping("delete/{userId}")
-    public String displayDeleteSkillForm(Model model, HttpSession session){
+    public String displayDeleteEventForm(Model model, HttpSession session){
         User user = getUserFormSession(session);
         model.addAttribute("user", user);
         model.addAttribute("events", eventRepository.findAll());
