@@ -25,14 +25,15 @@
     <li class="nav-link"><a th:href="@{/users/inbox}">Inbox</a></li>
     <form method="post">
         <div class="form-group">
-            <label>Filter By:
+<!--            <label>Filter By:-->
                 <select th:name="tagId">
+                    <option value="" hidden>Filter</option>
                     <option th:each="tag : ${tags}"
                             th:value="${tag.getId}"
                             th:text="${tag.tagName}"
                     ></option>
                 </select>
-            </label>
+<!--            </label>-->
         </div>
         <div class="form-group">
             <input type="submit" value="Filter" class="btn btn-success">
