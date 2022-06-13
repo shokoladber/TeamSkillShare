@@ -40,8 +40,15 @@
 
             <div class="card mb-3">
                 <div class="card-body">
+                    <span th:if="${user}">
                     <a class="d-flex justify-content-center mb-4" href="/users/profile"><img class="rounded-circle" src="https://images.unsplash.com/photo-1622605831600-27dada003875?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" height="80" width="80"></a>
+                    </span>
+                    <span th:unless="${user}">
+                                            <a class="d-flex justify-content-center mb-4" href="/home"><img class="rounded-circle" src="https://images.unsplash.com/photo-1622605831600-27dada003875?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" height="80" width="80"></a>
+                    </span>
+                    <span th:if="${user}">
                     <h5 class="text-center" th:text="${user.username}"><a href="/users/profile">Username</a></h5>
+                    </span>>
                 </div>
             </div>
 
@@ -49,7 +56,9 @@
                 <h5 class="card-header">Want to share your skills?</h5>
                 <div class="card-body">
                     <p class="card-text">Offer up a class, taught by you, and share your knowledge with others in your community!</p>
-                    <a class="btn btn-primary text-white" th:href="@{/events/create/{id}(id=${user.id})}">Create Class</a>
+                    <span th:if="${user}">
+                        <a class="btn btn-primary text-white" th:href="@{/events/create/{id}(id=${user.id})}">Create Class</a>
+                    </span>
                 </div>
             </div>
 

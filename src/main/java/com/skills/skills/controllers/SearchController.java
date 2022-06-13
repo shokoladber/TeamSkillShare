@@ -16,9 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 @RequestMapping("search")
@@ -63,8 +61,17 @@ public class SearchController {
     @GetMapping("")
     public String search(Model model, HttpSession session){
         User user = getUserFormSession(session);
+        if(user == null){
+            List<Event> classes = new ArrayList<>();
+            classes = eventRepository.findAll();
+            Collections.shuffle(classes);
+            List<Event> homeClassList = new ArrayList<>();
+            model.addAttribute("events",classes);
+            return "/home";
+        }
         model.addAttribute("user", user);
         model.addAttribute("columns", columnChoices);
+
         return "search";
     }
 

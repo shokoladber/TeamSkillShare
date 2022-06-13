@@ -62,7 +62,6 @@ public class HomeController {
         Collections.shuffle(classes);
         List<Event> homeClassList = new ArrayList<>();
 
-
         model.addAttribute("user", user);
         model.addAttribute("events",classes);
         return "/home";
