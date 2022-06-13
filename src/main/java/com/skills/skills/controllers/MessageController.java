@@ -80,7 +80,6 @@ public class MessageController {
 
         if (errors.hasErrors()){
             model.addAttribute("creator", creatorUser);
-            model.addAttribute("message", new Message());
             model.addAttribute("user", user);
             model.addAttribute("event", currentEvent);
             return "events/event_message";
