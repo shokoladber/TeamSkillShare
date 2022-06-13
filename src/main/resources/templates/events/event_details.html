@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <div th:replace="fragments :: head"></div>
-
-</head>
+<head th:replace="fragments :: head"></head>
 <body class="d-flex flex-column min-vh-100">
+
 <div th:replace="fragments :: navbar"></div>
+
 <main>
     <span th:if="${eventCheck == 'creator'}"><h2>My Event Details</h2></span>
     <span th:unless="${eventCheck == 'creator'}"><h2>Event Details</h2></span>
@@ -32,6 +31,8 @@
         <span th:if="${eventCheck == 'creator'}"><a th:href="@{/events/edit/id={id}&event={eventId}(id=${user.id}, eventId=${event.id})}">Edit Event Details</a></span>
     </form>
 </main>
+
+<div th:replace="fragments :: footer"></div>
 
 </body>
 </html>

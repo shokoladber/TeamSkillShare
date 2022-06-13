@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
-<head>
-    <div th:replace="fragments :: head"></div>
-
-</head>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
 <body class="d-flex flex-column min-vh-100">
+
 <div th:replace="fragments :: navbar"></div>
+
 <main>
 
     <form method="post">
@@ -46,6 +45,7 @@
     </form>
 
 </main>
+
 
 </body>
 </html>

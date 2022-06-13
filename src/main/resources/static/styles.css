@@ -21,13 +21,24 @@
     box-sizing: border-box;
 }
 
-html {
+html,body {
     font-family: var(--body-font);
 }
 
 h1,h2,h3,h4,h5,h6 {
     font-family: var(--title-font);
     font-weight:600;
+}
+
+.page-content {
+    margin-top: 80px;
+    margin-bottom: 100px;
+    flex: 1;
+}
+
+.page-content-flush {
+    margin-bottom: 100px;
+    flex: 1;
 }
 
 .navbar-dark {
@@ -58,20 +69,21 @@ h1,h2,h3,h4,h5,h6 {
     color: var(--accent-color);
 }
 
-i.search-on-dark-bg {
+
+i.icon-dark-bg {
     color: var(--bg-color);
 }
 
-i.search-on-light-bg {
+i.icon-light-bg {
     color: var(--main-darker-200);
+}
+
+.about-social {
+    font-size: 1.25em;
 }
 
 section {
     margin-bottom: 150px;
-}
-
-.hero-section {
-    margin-top: 75px;
 }
 
 
@@ -93,13 +105,40 @@ section {
     margin: 1.5em;
 }
 
+
+.table .thead-dark th {
+    background-color: var(--main-darker-100) !important;
+}
+
+.team-member {
+    padding: 15px;
+}
+
+.team-member-description {
+    height: 200px;
+    font-size: .9em;
+}
+
+.team-image {
+        width:  100%;
+        height: 15rem;
+        object-fit: cover;
+}
+
 hr {
     background-color: var(--accent-color);
 }
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited{
     background-color: var(--accent-darker-200) !important;
+    color: var(--bg-color);
     border: 0px;
+}
+
+.btn-secondary, .btn-secondary:hover, .btn-secondary:active, .btn-secondary:visited{
+    background-color: transparent !important;
+    color: var(--main-darker-200);
+    border-color: var(--accent-darker-200) !important;
 }
 
 .error {
