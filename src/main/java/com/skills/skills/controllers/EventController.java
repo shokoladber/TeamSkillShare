@@ -135,6 +135,7 @@ public class EventController {
         currentEvent.setEmail(event.getEmail());
         currentEvent.setCatName(event.getCatName());
 
+
         eventRepository.save(currentEvent);
         userRepository.save(currentUser);
         model.addAttribute("skills", currentUser.getSkills());

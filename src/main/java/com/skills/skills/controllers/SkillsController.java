@@ -69,7 +69,8 @@ public class SkillsController {
 
     @PostMapping("create/{userId}")
     public String processNewSkill(@PathVariable Integer userId, HttpSession session,
-                                  Model model, @ModelAttribute @Valid Skill newSkill, Errors errors) {
+                                  Model model, @ModelAttribute @Valid Skill newSkill,
+                                  Errors errors) {
 
         //find user
         User user = getUserFormSession(session);
