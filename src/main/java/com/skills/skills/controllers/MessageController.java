@@ -9,6 +9,7 @@ import com.skills.skills.models.event.Event;
 import com.skills.skills.models.skill.Skill;
 import com.skills.skills.models.user.Message;
 import com.skills.skills.models.user.User;
+import com.skills.skills.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +35,9 @@ public class MessageController {
 
     @Autowired
     EventRepository eventRepository;
+
+    @Autowired
+    private MessageService service;
 
     public User getUserFormSession(HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
@@ -104,7 +108,7 @@ public class MessageController {
 
         List<Message> sent = MessageData.usersInboxSent(user, messagesRepository.findAll());
         List<Message> received = MessageData.usersInboxReceived(user, messagesRepository.findAll());
-        List<Message> allMessages = MessageData.allUsersMessages(user, messagesRepository.findAll());
+        List<Message> allMessages = MessageData.allUsersMessages(user, service.findAllMessages());
         model.addAttribute("user", user);
         model.addAttribute("sentMessages", sent);
         model.addAttribute("receivedMessages", received);
@@ -146,9 +150,9 @@ public class MessageController {
         }
 
         Timestamp ts = new Timestamp(System.currentTimeMillis());
-        String pattern = "MMM dd, yyyy HH:mm:ss";
+//        String pattern = "MMM dd, yyyy HH:mm:ss";
         Date date = ts;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         newMessage.setTimestamp(ts);
         messagesRepository.save(newMessage);
 

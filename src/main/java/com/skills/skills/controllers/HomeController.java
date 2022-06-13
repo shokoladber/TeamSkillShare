@@ -5,6 +5,7 @@ import com.skills.skills.data.EventRepository;
 import com.skills.skills.data.UserRepository;
 import com.skills.skills.models.Tag;
 import com.skills.skills.models.event.Event;
+import com.skills.skills.models.user.Message;
 import com.skills.skills.models.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -58,7 +59,9 @@ public class HomeController {
     public String displayHome (Model model, HttpSession session){
         User user = getUserFormSession(session);
         List<Event> classes = new ArrayList<>();
-        classes = eventRepository.findAll();
+        for(Event event : eventRepository.findAll() ){
+            classes.add(event);
+        }
         Collections.shuffle(classes);
         List<Event> homeClassList = new ArrayList<>();
 
