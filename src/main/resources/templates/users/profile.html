@@ -4,7 +4,21 @@
 <body class="d-flex flex-column min-vh-100">
 
 <div th:replace="fragments :: navbar"></div>
-<main>
+
+<div class="jumbotron jumbotron-fluid h-100 profile-header">
+    <div class="container">
+        <img class="mx-auto d-block rounded-circle mb-4" src="https://images.unsplash.com/photo-1622605831600-27dada003875?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" height="100" width="100">
+        <h3 class="text-center" th:text="${user.username}">Username</h3>
+
+    </div>
+
+</div>
+<div class="w-100 border-top border-bottom">
+    <a th:href="@{/users/personal_info/{id}(id=${user.id})}" class="btn btn-primary text-white shadow ml-auto">Settings</a>
+</div>
+
+
+<div>
     <p>Welcome, <span th:text="${user.username}"></span></p>
 
     <li class="nav-link"><a th:href="@{/users/personal_info/{id}(id=${user.id})}">Personal Information</a></li>
@@ -89,7 +103,7 @@
         <li class="nav-link"><a th:href="@{/skills/delete/{id}(id=${user.id})}">Remove Skill</a></li>
     </div>
 
-</main>
+</div>
 </body>
 </html>
 
