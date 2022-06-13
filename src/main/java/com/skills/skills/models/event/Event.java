@@ -1,6 +1,7 @@
 package com.skills.skills.models.event;
 
 import com.skills.skills.models.AbstractEntity;
+import com.skills.skills.models.skill.Skill;
 import com.skills.skills.models.skill.SkillsCategory;
 
 import javax.persistence.*;
@@ -48,7 +49,11 @@ public class Event extends AbstractEntity {
 
     public SkillsCategory getSkillsCategory() { return catName; }
 
-    public void setSkillsCategory(SkillsCategory catName) { this.catName = catName; }
+    public SkillsCategory getCatName() { return catName; }
+
+    public String getCatNameString(SkillsCategory skillsCategory) { return skillsCategory.getCatName(); }
+
+    public void setCatName(SkillsCategory catName) { this.catName = catName; }
 
     public String getDescription() { return description; }
 

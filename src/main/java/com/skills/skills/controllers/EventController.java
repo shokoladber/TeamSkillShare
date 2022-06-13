@@ -134,7 +134,7 @@ public class EventController {
         currentEvent.setName(event.getName());
         currentEvent.setDescription(event.getDescription());
         currentEvent.setEmail(event.getEmail());
-        currentEvent.setSkillsCategory(event.getSkillsCategory());
+        currentEvent.setCatName(event.getSkillsCategory());
 
         eventRepository.save(currentEvent);
         userRepository.save(currentUser);
