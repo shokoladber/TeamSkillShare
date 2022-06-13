@@ -62,12 +62,7 @@ public class SearchController {
     public String search(Model model, HttpSession session){
         User user = getUserFormSession(session);
         if(user == null){
-            List<Event> classes = new ArrayList<>();
-            classes = eventRepository.findAll();
-            Collections.shuffle(classes);
-            List<Event> homeClassList = new ArrayList<>();
-            model.addAttribute("events",classes);
-            return "/home";
+            return "index";
         }
         model.addAttribute("user", user);
         model.addAttribute("columns", columnChoices);
