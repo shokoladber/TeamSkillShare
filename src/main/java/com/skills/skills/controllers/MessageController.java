@@ -12,6 +12,7 @@ import com.skills.skills.models.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -60,20 +61,30 @@ public class MessageController {
         model.addAttribute("creator", creatorUser);
         model.addAttribute("message", new Message());
         model.addAttribute("user", user);
-
         model.addAttribute("event", currentEvent);
 
         return "events/event_message";
     }
 
     @PostMapping("/events/event_message/event={eventId}")
-    public String processEventMessage (@PathVariable Integer eventId, Model model, HttpSession session,  @ModelAttribute @Valid Message newMessage){
+    public String processEventMessage (@PathVariable Integer eventId, Model model,
+                                       HttpSession session,  @ModelAttribute @Valid Message newMessage,
+                                       Errors errors){
+
         User user = getUserFormSession(session);
         model.addAttribute("user", user);
         Optional<Event> result = eventRepository.findById(eventId);
         Event currentEvent = result.get();
         Optional<User> eventCreatorUser = userRepository.findById(currentEvent.getCreatorId(currentEvent));
         User creatorUser = eventCreatorUser.get();
+
+        if (errors.hasErrors()){
+            model.addAttribute("creator", creatorUser);
+            model.addAttribute("user", user);
+            model.addAttribute("event", currentEvent);
+            return "events/event_message";
+        }
+
         Timestamp ts = new Timestamp(System.currentTimeMillis());
         Date date = ts;
         newMessage.setTimestamp(ts);
@@ -99,7 +110,7 @@ public class MessageController {
         return "users/inbox";
     }
 
-    @GetMapping("/users/compose/{messageId}")
+    @GetMapping("users/compose/{messageId}")
     public String composeMessage (HttpSession session, Model model, @PathVariable Integer messageId) {
         User user = getUserFormSession(session);
         Optional<Message> result = messagesRepository.findById(messageId);
@@ -112,13 +123,25 @@ public class MessageController {
         model.addAttribute("recipient", currentRecipient);
         model.addAttribute("message", new Message());
         model.addAttribute("user", user);
-        return "/users/compose";
+        return "users/compose";
     }
 
-    @PostMapping("/users/compose/{messageId}")
-    public String processNewMessage (HttpSession session, Model model, @ModelAttribute @Valid Message newMessage) {
+    @PostMapping("users/compose/{messageId}")
+    public String processNewMessage (HttpSession session, Model model, @ModelAttribute @Valid Message newMessage,
+                                     Errors errors, @PathVariable Integer messageId) {
+
         User user = getUserFormSession(session);
         model.addAttribute("user", user);
+        Optional<Message> result = messagesRepository.findById(messageId);
+        Message currentMessage = result.get();
+        Optional<User> recipientUser = userRepository.findById(currentMessage.getSender());
+        User currentRecipient = recipientUser.get();
+
+        if (errors.hasErrors()){
+            model.addAttribute("earlierMessage", currentMessage);
+            model.addAttribute("recipient", currentRecipient);
+            return "users/compose";
+        }
 
         Timestamp ts = new Timestamp(System.currentTimeMillis());
         Date date = ts;
