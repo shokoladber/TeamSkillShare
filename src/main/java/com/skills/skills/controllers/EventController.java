@@ -132,7 +132,6 @@ public class EventController {
 
         currentEvent.setName(event.getName());
         currentEvent.setDescription(event.getDescription());
-        currentEvent.setEmail(event.getEmail());
         currentEvent.setCatName(event.getCatName());
 
 
