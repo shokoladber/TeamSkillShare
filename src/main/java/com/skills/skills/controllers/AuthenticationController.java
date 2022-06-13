@@ -81,8 +81,8 @@ public class AuthenticationController {
         User user = getUserFormSession(session);
 
         List<Skill> skills;
-        List<Skill> filteredSkills = new ArrayList<>();
         skills = user.getSkills();
+        List<Skill> filteredSkills = new ArrayList<>();
 
         skills.forEach(skill -> {
             Tag skillTag = skill.tagName;
@@ -94,6 +94,8 @@ public class AuthenticationController {
         model.addAttribute("skills", filteredSkills);
         model.addAttribute(new Skill());
         model.addAttribute("tags", tagRepository.findAll());
+        model.addAttribute("creatorEvents", user.getCreatorEvents());
+        model.addAttribute("guestEvents", user.getGuestEvents());
         return "users/profile";
     }
 
@@ -171,7 +173,7 @@ public class AuthenticationController {
 
         setUserInSession(request.getSession(), theUser);
 
-        return "redirect:/users/profile";
+        return "redirect:/";
     }
 
     @GetMapping("/logout")
