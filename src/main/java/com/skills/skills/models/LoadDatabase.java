@@ -16,13 +16,13 @@
 //    private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 //
 //    @Bean
-//    CommandLineRunner initDatabase(TagRepository repository) {
+//    CommandLineRunner initDatabase(SkillsCategoryRepository repository) {
 //
 //        return args -> {
 //
-//            log.info("Preloading " + repository.save(new Tag("Skills to Share")));
-//            log.info("Preloading " + repository.save(new Tag("Skills to Learn")));
-////            log.info("Preloading " + repository.save(new SkillsCategory("Ceramics")));
+////            log.info("Preloading " + repository.save(new Tag("Skills to Share")));
+////            log.info("Preloading " + repository.save(new Tag("Skills to Learn")));
+//            log.info("Preloading " + repository.save(new SkillsCategory("Coding")));
 ////            log.info("Preloading " + repository.save(new SkillsCategory("Woodworking")));
 ////            log.info("Preloading " + repository.save(new SkillsCategory("Dance")));
 ////            log.info("Preloading " + repository.save(new SkillsCategory("Languages")));

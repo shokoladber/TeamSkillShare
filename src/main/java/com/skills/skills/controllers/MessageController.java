@@ -9,6 +9,7 @@ import com.skills.skills.models.event.Event;
 import com.skills.skills.models.skill.Skill;
 import com.skills.skills.models.user.Message;
 import com.skills.skills.models.user.User;
+import com.skills.skills.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +18,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
@@ -34,6 +39,9 @@ public class MessageController {
 
     @Autowired
     EventRepository eventRepository;
+
+    @Autowired
+    private MessageService service;
 
     public User getUserFormSession(HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
@@ -104,7 +112,7 @@ public class MessageController {
 
         List<Message> sent = MessageData.usersInboxSent(user, messagesRepository.findAll());
         List<Message> received = MessageData.usersInboxReceived(user, messagesRepository.findAll());
-        List<Message> allMessages = MessageData.allUsersMessages(user, messagesRepository.findAll());
+        List<Message> allMessages = MessageData.allUsersMessages(user, service.findAllMessages());
         model.addAttribute("user", user);
         model.addAttribute("sentMessages", sent);
         model.addAttribute("receivedMessages", received);
@@ -144,11 +152,8 @@ public class MessageController {
             model.addAttribute("recipient", currentRecipient);
             return "users/compose";
         }
-
         Timestamp ts = new Timestamp(System.currentTimeMillis());
-        String pattern = "MMM dd, yyyy HH:mm:ss";
         Date date = ts;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         newMessage.setTimestamp(ts);
         messagesRepository.save(newMessage);
 

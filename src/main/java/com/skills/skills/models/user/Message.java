@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.Comparator;
 
 
@@ -35,7 +36,7 @@ public class Message extends AbstractEntity {
     @NotNull
     private String recipientUsername;
 
-    public Message(Timestamp timestamp, String subject, String body,  int recipientId, String recipientUsername, int senderId, String senderUsername) {
+    public Message(Timestamp timestamp, String subject, String body, int recipientId, String recipientUsername, int senderId, String senderUsername) {
         this.timestamp = timestamp;
         this.subject = subject;
         this.body = body;
