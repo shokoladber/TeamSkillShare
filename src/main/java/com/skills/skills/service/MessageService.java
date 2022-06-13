@@ -3,8 +3,10 @@ package com.skills.skills.service;
 import com.skills.skills.data.MessagesRepository;
 import com.skills.skills.models.user.Message;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,4 +23,8 @@ public class MessageService {
         return  allMessages;
 
     }
+//
+//    public List<Message> findMessagesWithSorting(Timestamp timestamp){
+//        return messagesRepository.findAll(Sort.by(timestamp));
+//    }
 }

@@ -18,7 +18,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
@@ -148,11 +152,8 @@ public class MessageController {
             model.addAttribute("recipient", currentRecipient);
             return "users/compose";
         }
-
         Timestamp ts = new Timestamp(System.currentTimeMillis());
-//        String pattern = "MMM dd, yyyy HH:mm:ss";
         Date date = ts;
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         newMessage.setTimestamp(ts);
         messagesRepository.save(newMessage);
 

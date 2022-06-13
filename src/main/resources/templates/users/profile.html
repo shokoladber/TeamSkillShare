@@ -21,7 +21,6 @@
 <div>
     <p>Welcome, <span th:text="${user.username}"></span></p>
 
-    <li class="nav-link"><a th:href="@{/users/personal_info/{id}(id=${user.id})}">Personal Information</a></li>
     <li class="nav-link"><a th:href="@{/users/inbox}">Inbox</a></li>
     <form method="post">
         <div class="form-group">
