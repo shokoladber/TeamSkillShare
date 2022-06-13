@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.sql.Timestamp;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -144,7 +145,9 @@ public class MessageController {
         }
 
         Timestamp ts = new Timestamp(System.currentTimeMillis());
+        String pattern = "MMM dd, yyyy HH:mm:ss";
         Date date = ts;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         newMessage.setTimestamp(ts);
         messagesRepository.save(newMessage);
 
