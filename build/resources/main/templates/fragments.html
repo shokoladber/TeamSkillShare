@@ -18,19 +18,28 @@
 
 <body>
 
-<div th:fragment="navbar" class="navbar navbar-dark navbar-expand-lg navbar-fixed-top shadow-sm mb-5" id="navbar">
+<div th:fragment="navbar" class="navbar navbar-dark navbar-expand-lg navbar-fixed-top shadow-sm" id="navbar">
+
+<!--    <span th:if="${user}"><a href="/" class="navbar-brand">Skill Share</a></span>-->
+<!--    <span th:unless="${user}"><a href="/home" class="navbar-brand">Skill Share</a></span>-->
+
     <a href="/" class="navbar-brand">Skill Share</a>
     <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
         <span class="navbar-toggler-icon"></span>
     </button>
 
+
     <div class="input-group w-25">
+<!--        <form th:action="@{/search/results}" method = "post" class="d-flex flex-row">-->
         <input class="form-control rounded-pill py-2 pr-5 mr-1 bg-transparent" type="text" name="searchTerm" id="searchTerm" placeholder="Search">
+<!--            <input type="hidden" th:value="${columns.key == 'all'}" name="searchType">-->
         <div class="input-group-append">
-            <button class="btn btn-link" type="submit"><i class="bi-search search-on-dark-bg"></i>
+            <button class="btn btn-link" type="submit"><i class="bi-search icon-dark-bg"></i>
             </button>
         </div>
+<!--        </form>-->
     </div>
+
 
     <div id="navbarSupportedContent" class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
@@ -107,6 +116,90 @@
                 </ul>
             </div>
         </div>
+    <!--    one card-->
+
+    <!--    one card-->
+    <div class="card one-event-post mb-3">
+        <h4 class="card-header event-card-header">Class Title</h4>
+        <div class="card-body">
+            <h6 class="text-muted">Event Category</h6>
+            <p class="card-text">
+                Event description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </div>
+
+        <div class="card-footer bg-transparent">
+            <ul class="list-inline">
+                <li class="list-inline-item badge">Tag 1</li>
+                <li class="list-inline-item badge">Tag 2</li>
+                <li class="list-inline-item badge">Tag 3</li>
+                <li class="list-inline-item float-right"><a href="/link-to-class-page" class="btn btn-primary text-white">View Class</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--    one card-->
+
+    <!--    one card-->
+    <div class="card one-event-post mb-3">
+        <h4 class="card-header event-card-header">Class Title</h4>
+        <div class="card-body">
+            <h6 class="text-muted">Event Category</h6>
+            <p class="card-text">
+                Event description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </div>
+
+        <div class="card-footer bg-transparent">
+            <ul class="list-inline">
+                <li class="list-inline-item badge">Tag 1</li>
+                <li class="list-inline-item badge">Tag 2</li>
+                <li class="list-inline-item badge">Tag 3</li>
+                <li class="list-inline-item float-right"><a href="/link-to-class-page" class="btn btn-primary text-white">View Class</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--    one card-->
+
+    <!--    one card-->
+    <div class="card one-event-post mb-3">
+        <h4 class="card-header event-card-header">Class Title</h4>
+        <div class="card-body">
+            <h6 class="text-muted">Event Category</h6>
+            <p class="card-text">
+                Event description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </div>
+
+        <div class="card-footer bg-transparent">
+            <ul class="list-inline">
+                <li class="list-inline-item badge">Tag 1</li>
+                <li class="list-inline-item badge">Tag 2</li>
+                <li class="list-inline-item badge">Tag 3</li>
+                <li class="list-inline-item float-right"><a href="/link-to-class-page" class="btn btn-primary text-white">View Class</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--    one card-->
+
+    <!--    one card-->
+    <div class="card one-event-post mb-3">
+        <h4 class="card-header event-card-header">Class Title</h4>
+        <div class="card-body">
+            <h6 class="text-muted">Event Category</h6>
+            <p class="card-text">
+                Event description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </div>
+
+        <div class="card-footer bg-transparent">
+            <ul class="list-inline">
+                <li class="list-inline-item badge">Tag 1</li>
+                <li class="list-inline-item badge">Tag 2</li>
+                <li class="list-inline-item badge">Tag 3</li>
+                <li class="list-inline-item float-right"><a href="/link-to-class-page" class="btn btn-primary text-white">View Class</a></li>
+            </ul>
+        </div>
+    </div>
     <!--    one card-->
 
     <!--    one card-->
