@@ -1,9 +1,18 @@
 package com.skills.skills.controllers;
 
+<<<<<<< HEAD
 import com.skills.skills.data.UserRepository;
 import com.skills.skills.models.User;
+=======
+import com.skills.skills.data.*;
+import com.skills.skills.models.Tag;
+>>>>>>> dev
 import com.skills.skills.models.dto.LoginFormDTO;
 import com.skills.skills.models.dto.RegisterFormDTO;
+import com.skills.skills.models.skill.Skill;
+import com.skills.skills.models.skill.SkillsCategory;
+import com.skills.skills.models.user.User;
+import com.skills.skills.models.user.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +32,21 @@ public class AuthenticationController {
     @Autowired(required = false)
     UserRepository userRepository;
 
+<<<<<<< HEAD
+=======
+    @Autowired
+    SkillsRepository skillsRepository;
+
+    @Autowired
+    public TagRepository tagRepository;
+
+    @Autowired
+    private EventRepository eventRepository;
+
+    @Autowired
+    public SkillsCategoryRepository skillsCategoryRepository;
+
+>>>>>>> dev
     private static final String userSessionKey = "user";
 
     public User getUserFromSession(HttpSession session) {
@@ -44,6 +68,46 @@ public class AuthenticationController {
         session.setAttribute(userSessionKey, user.getId());
     }
 
+<<<<<<< HEAD
+=======
+    @GetMapping("/users/profile")
+    public String displayPageAfterLogin (HttpSession session, Model model) {
+        User user = getUserFormSession(session);
+        model.addAttribute("user", user);
+        model.addAttribute("skills", user.getSkills());
+        model.addAttribute("creatorEvents", user.getCreatorEvents());
+        model.addAttribute("guestEvents", user.getGuestEvents());
+        model.addAttribute(new Skill());
+        model.addAttribute(new Tag());
+        model.addAttribute("tags", tagRepository.findAll());
+        return "users/profile";
+    }
+
+    @PostMapping("/users/profile")
+        public String displayPageAfterFilter (@RequestParam int tagId, HttpSession session, Model model) {
+        User user = getUserFormSession(session);
+
+        List<Skill> skills;
+        skills = user.getSkills();
+        List<Skill> filteredSkills = new ArrayList<>();
+
+        skills.forEach(skill -> {
+            Tag skillTag = skill.tagName;
+            if (skill.getTagId(skillTag) == tagId) {
+                filteredSkills.add(skill);
+            }
+        });
+        model.addAttribute("user", user);
+        model.addAttribute("skills", filteredSkills);
+        model.addAttribute(new Skill());
+        model.addAttribute("tags", tagRepository.findAll());
+        model.addAttribute("creatorEvents", user.getCreatorEvents());
+        model.addAttribute("guestEvents", user.getGuestEvents());
+        return "users/profile";
+    }
+
+
+>>>>>>> dev
     @GetMapping("/register")
     public String displayRegistrationForm(Model model) {
         model.addAttribute(new RegisterFormDTO());
@@ -80,8 +144,13 @@ public class AuthenticationController {
         User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword());
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
+<<<<<<< HEAD
 
         return "redirect:";
+=======
+        return "redirect:/users/profile";
+
+>>>>>>> dev
     }
 
     @GetMapping("/login")
@@ -96,11 +165,14 @@ public class AuthenticationController {
                                    Errors errors, HttpServletRequest request,
                                    Model model) {
 
+<<<<<<< HEAD
         if (errors.hasErrors()) {
             model.addAttribute("title", "Log In");
             return "login";
         }
 
+=======
+>>>>>>> dev
         User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
 
         if (theUser == null) {
@@ -119,11 +191,20 @@ public class AuthenticationController {
 
         setUserInSession(request.getSession(), theUser);
 
+<<<<<<< HEAD
         return "redirect:";
     }
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request){
+=======
+        return "redirect:/";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+
+>>>>>>> dev
         request.getSession().invalidate();
         return "redirect:/login";
     }

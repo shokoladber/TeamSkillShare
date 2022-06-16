@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
@@ -8,4 +9,41 @@
 <body>
 
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="d-flex flex-column min-vh-100">
+
+<div th:replace="fragments :: navbar"></div>
+
+<h2>Delete Messages</h2>
+
+<div class="card one-event-post mb-3">
+    <h4 class="card-header event-card-header">Received</h4>
+
+</div>
+<div class="container body-content">
+    <form method="post">
+
+
+        <th:block th:each="event : ${events}">
+            <div class="form-group">
+                <label>
+                    <span th:text="${event.name}"></span><br>
+                    <input type="checkbox" name="eventIds" th:value="${event.id}" class="form-control">
+                </label>
+            </div>
+        </th:block>
+        <input type="submit" value="Delete" class="btn btn-danger">
+    </form>
+    <div>
+        <li class="nav-link"><a th:href="@{/users/profile}">Back to Profile</a></li>
+    </div>
+</main>
+
+<div th:replace="fragments :: footer"></div>
+
+</body>
+>>>>>>> dev
 </html>
