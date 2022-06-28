@@ -35,6 +35,6 @@ We would like to create an app that would allow users to both learn and teach th
 
 ### Authors
 
-### JetBrains OSS development license. 
+### JetBrains OSS development license 
 Request ID=24062022/9563109
 
