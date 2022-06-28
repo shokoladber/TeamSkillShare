@@ -34,3 +34,7 @@ We would like to create an app that would allow users to both learn and teach th
 - [MIT License](https://github.com/April-2022-LC-LiftOff/TeamSkillShare/blob/dev/LICENSE.md)
 
 ### Authors
+
+### JetBrains OSS development license. 
+Request ID=24062022/9563109
+
