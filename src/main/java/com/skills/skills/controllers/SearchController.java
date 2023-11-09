@@ -11,17 +11,12 @@ import com.skills.skills.models.event.Event;
 import com.skills.skills.models.skill.Skill;
 import com.skills.skills.models.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
-import java.awt.print.Pageable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Optional;
 

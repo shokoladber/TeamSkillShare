@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
+<<<<<<< HEAD
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<form method="post">
+    <div class="form-group">
+        <label th:for="username">Username
+            <input class="form-control" th:field="${loginFormDTO.username}">
+        </label>
+        <p class="error" th:errors="${loginFormDTO.username}"></p>
+    </div>
+    <div class="form-group">
+        <label>Password
+            <input class="form-control" th:field="${loginFormDTO.password}" type="password">
+        </label>
+        <p class="error" th:errors="${loginFormDTO.password}"></p>
+=======
 <body class="d-flex flex-column min-vh-100">
 
 <div th:replace="fragments :: navbar"></div>
@@ -30,10 +48,16 @@
                 </div>
             </div>
         </div>
+>>>>>>> dev
     </div>
-</div>
 
-<div th:replace="fragments :: footer"></div>
+    <input type="submit" class="btn btn-primary" value="Log In" />
+</form>
 
+<<<<<<< HEAD
+<p>Don't have an account? <a href="/register">Register for one.</a></p>
+
+=======
+>>>>>>> dev
 </body>
 </html>

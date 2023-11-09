@@ -3,7 +3,6 @@ package com.skills.skills.controllers;
 import com.skills.skills.data.UserRepository;
 import com.skills.skills.models.user.User;
 import com.skills.skills.models.user.UserProfile;
-import com.skills.skills.models.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,106 +19,114 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    AuthenticationController authenticationController;
+    private AuthenticationController authenticationController;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
+    // Display a list of users
     @GetMapping
-    public String displayUsers(Model model, HttpSession session){
-        User user= authenticationController.getUserFormSession(session);
-        List<User> users = new ArrayList<>();
-        users.add(user);
-        model.addAttribute("Users", userRepository.findAll());
+    public String displayUsers(Model model, HttpSession session) {
+        User user = authenticationController.getUserFromSession(session);
+        List<User> users = (List<User>) userRepository.findAll();
+        model.addAttribute("users", users);
         return "users/index";
     }
 
-    //logged in personal information page
+    // View user's personal information
     @GetMapping("personal_info/{userId}")
-    public String viewUser(@PathVariable int userId, HttpSession session, Model model){
+    public String viewUser(@PathVariable int userId, HttpSession session, Model model) {
+        User currentUser = authenticationController.getUserFromSession(session);
+        Optional<User> userOptional = userRepository.findById(userId);
 
-        User currentUser = authenticationController.getUserFormSession(session);
-        Optional<User> user = userRepository.findById(userId);
-        User newUser = user.get();
-        model.addAttribute("skills", newUser.getSkills());
-
-        if(user.isEmpty()){
-           // return null;
+        if (userOptional.isEmpty()) {
             return "redirect:/users/";
         }
-        if(currentUser.getId() != user.get().getId()){
+
+        User user = userOptional.get();
+
+        if (currentUser.getId() != user.getId()) {
             return "redirect:/users";
-        }else {
+        } else {
             model.addAttribute("user", currentUser);
+            model.addAttribute("skills", user.getSkills());
+            return "users/personal_info";
         }
-
-       //return user.get();
-        return "users/personal_info";
     }
-    @GetMapping("edit_personal_info/{userId}")
-    public String editUser(@PathVariable Integer userId, Model model, HttpSession session){
-        User userLoggedIn = authenticationController.getUserFormSession(session);
-        Optional<User> getUser = userRepository.findById(userId);
 
-        if (getUser.isEmpty()){
+    // Edit user's personal information
+    @GetMapping("edit_personal_info/{userId}")
+    public String editUser(@PathVariable Integer userId, Model model, HttpSession session) {
+        User userLoggedIn = authenticationController.getUserFromSession(session);
+        Optional<User> getUserOptional = userRepository.findById(userId);
+
+        if (getUserOptional.isEmpty()) {
             return "redirect:/users/";
         }
-        User currentUser = getUser.get();
-        if(userLoggedIn.getId() != userId){
+
+        User currentUser = getUserOptional.get();
+
+        if (userLoggedIn.getId() != userId) {
             return "redirect:/users/";
         }
+
         model.addAttribute("user", currentUser.getUserProfile());
         return "users/edit_personal_info";
     }
-    @PostMapping("edit_personal_info/{userId}")
-    public String processEdit(@ModelAttribute @Valid UserProfile user, Errors errors,
-                              @PathVariable Integer userId, HttpSession session, Model model){
 
-        if(errors.hasErrors()) {
-            model.addAttribute("user", user);
+    @PostMapping("edit_personal_info/{userId}")
+    public String processEdit(@ModelAttribute @Valid UserProfile userProfile,
+                              Errors errors, @PathVariable Integer userId, HttpSession session, Model model) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("user", userProfile);
             return "users/personal_info";
         }
-        User userLoggedIn = authenticationController.getUserFormSession(session);
-        Optional<User> getUser = userRepository.findById(userId);
-        if(getUser.isEmpty()) {
+
+        User userLoggedIn = authenticationController.getUserFromSession(session);
+        Optional<User> getUserOptional = userRepository.findById(userId);
+
+        if (getUserOptional.isEmpty()) {
             return "redirect:/users/";
         }
-        User currentUser = getUser.get();
-        if(userLoggedIn.getId() != userId) {
-                return "redirect:/users/";
 
-    }
-        if(currentUser.getUserProfile() != user) {
-            currentUser.getUserProfile().setFirstName(user.getFirstName());
-            currentUser.getUserProfile().setLastName(user.getLastName());
-            currentUser.getUserProfile().setEmail(user.getEmail());
-            currentUser.getUserProfile().setPhoneNumber(user.getPhoneNumber());
-            currentUser.getUserProfile().setZipCode(user.getZipCode());
+        User currentUser = getUserOptional.get();
+
+        if (userLoggedIn.getId() != userId) {
+            return "redirect:/users/";
         }
+
+        UserProfile currentUserProfile = currentUser.getUserProfile();
+        currentUserProfile.setFirstName(userProfile.getFirstName());
+        currentUserProfile.setLastName(userProfile.getLastName());
+        currentUserProfile.setEmail(userProfile.getEmail());
+        currentUserProfile.setPhoneNumber(userProfile.getPhoneNumber());
+        currentUserProfile.setZipCode(userProfile.getZipCode());
 
         userRepository.save(currentUser);
         return "redirect:/users/personal_info/" + userId;
     }
 
-    //user search results
+    // View user search results
     @GetMapping("user_details/{userId}")
-    public String viewUserSearchResult(@PathVariable int userId, HttpSession session, Model model){
-        User currentUser= authenticationController.getUserFormSession(session);
-        Optional<User> searchResult = userRepository.findById(userId);
-        User searchResultUser = searchResult.get();
+    public String viewUserSearchResult(@PathVariable int userId, HttpSession session, Model model) {
+        User currentUser = authenticationController.getUserFromSession(session);
+        Optional<User> searchResultOptional = userRepository.findById(userId);
 
+        if (searchResultOptional.isEmpty()) {
+            return "redirect:/users/";
+        }
 
-        if(currentUser.getId() == searchResultUser.getId()){
+        User searchResultUser = searchResultOptional.get();
+
+        if (currentUser.getId() == searchResultUser.getId()) {
             return "redirect:/users/profile";
-        }else {
+        } else {
             model.addAttribute("user", currentUser);
             model.addAttribute("searchUser", searchResultUser);
             model.addAttribute("skills", searchResultUser.getSkills());
             model.addAttribute("events", searchResultUser.getCreatorEvents());
+            return "users/user_details";
         }
-
-        return "users/user_details";
     }
-
-
 }
