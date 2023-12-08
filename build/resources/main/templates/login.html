@@ -1,24 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<<<<<<< HEAD
-<body class="container">
-
-<header th:replace="fragments :: header"></header>
-
-<form method="post">
-    <div class="form-group">
-        <label th:for="username">Username
-            <input class="form-control" th:field="${loginFormDTO.username}">
-        </label>
-        <p class="error" th:errors="${loginFormDTO.username}"></p>
-    </div>
-    <div class="form-group">
-        <label>Password
-            <input class="form-control" th:field="${loginFormDTO.password}" type="password">
-        </label>
-        <p class="error" th:errors="${loginFormDTO.password}"></p>
-=======
 <body class="d-flex flex-column min-vh-100">
 
 <div th:replace="fragments :: navbar"></div>
@@ -31,33 +13,31 @@
                     <h2 class="mb-2">Log In</h2>
                     <hr class="mb-4"/>
                     <form method="post" class="form">
+
+                        <!-- Username Input -->
                         <div class="form-group">
                             <input type="text" class="form-control" th:field="${loginFormDTO.username}" placeholder="Username">
                             <p class="error" th:errors="${loginFormDTO.username}"></p>
                         </div>
+
+                        <!-- Password Input -->
                         <div class="form-group">
                             <input class="form-control" th:field="${loginFormDTO.password}" type="password" placeholder="Password">
                             <p class="error" th:errors="${loginFormDTO.password}"></p>
                         </div>
 
+                        <!-- Submit Button -->
                         <input type="submit" class="btn btn-primary btn-block form-group mt-4" value="Log In" />
                     </form>
 
+                    <!-- Link to Registration -->
                     <p class="mt-2">Don't have an account? <a href="/register">Sign up</a></p>
 
                 </div>
             </div>
         </div>
->>>>>>> dev
     </div>
+</div>
 
-    <input type="submit" class="btn btn-primary" value="Log In" />
-</form>
-
-<<<<<<< HEAD
-<p>Don't have an account? <a href="/register">Register for one.</a></p>
-
-=======
->>>>>>> dev
 </body>
 </html>

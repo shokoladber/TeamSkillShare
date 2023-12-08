@@ -129,4 +129,9 @@ public class UserController {
             return "users/user_details";
         }
     }
+
+    public String logout(HttpSession session) {
+        session.invalidate(); // Invalidate the current session
+        return "redirect:/home"; // Redirect to the home page
+    }
 }

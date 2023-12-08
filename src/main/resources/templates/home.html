@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
+
 <body class="d-flex flex-column min-vh-100">
 
 <div th:replace="fragments :: navbar"></div>
@@ -11,32 +12,13 @@
         <div class="col-lg-8 col-md-12 float-left home-event-content">
             <header class="page-header d-flex mb-2">
                 <h2 class="home-class-title">Classes Available</h2>
-
-<!--                <div class="dropdown ml-auto">-->
-<!--                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">-->
-<!--                        Categories-->
-<!--                    </a>-->
-
-<!--                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">-->
-<!--                        <a class="dropdown-item" href="#">Action</a>-->
-<!--                        <a class="dropdown-item" href="#">Another action</a>-->
-<!--                        <a class="dropdown-item" href="#">Something else here</a>-->
-<!--                    </div>-->
-
-<!--                </div>-->
             </header>
             <hr class="mb-4"/>
-
             <div class="home-event-pagination overflow-auto">
-
                 <div th:replace="fragments :: event-posts"></div>
-
             </div>
-
         </div>
-
         <div class="col-lg-4 col-md-12 float-right home-sidebar">
-
             <div class="card mb-3">
                 <div class="card-body">
                     <span th:if="${user}">
@@ -50,7 +32,6 @@
                     </span>
                 </div>
             </div>
-
             <div class="card mb-3">
                 <h5 class="card-header">Want to share your skills?</h5>
                 <div class="card-body">
@@ -60,9 +41,7 @@
                     </span>
                 </div>
             </div>
-
         </div>
-
     </div>
 </div>
 </div>
