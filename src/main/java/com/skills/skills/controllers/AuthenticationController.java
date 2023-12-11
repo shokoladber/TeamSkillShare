@@ -2,16 +2,21 @@ package com.skills.skills.controllers;
 
 import com.skills.skills.data.*;
 import com.skills.skills.models.Tag;
+import com.skills.skills.models.dto.RegisterFormDTO;
 import com.skills.skills.models.skill.Skill;
 import com.skills.skills.models.user.User;
+import com.skills.skills.models.user.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +48,56 @@ public class AuthenticationController {
     private static void setUserInSession(HttpSession session, User user) {
         session.setAttribute(userSessionKey, user.getId());
     }
+
+    @PostMapping("/register")
+    public String register(@ModelAttribute @Valid RegisterFormDTO registerFormDTO,
+                           @ModelAttribute @Valid UserProfile userProfile,
+                           Errors errors,
+                           HttpSession session,
+                           Model model) {
+
+        if (errors.hasErrors()) {
+            // Validation errors, return to the registration form with error messages
+            model.addAttribute("userProfile", userProfile);
+            model.addAttribute("registerFormDTO", registerFormDTO);
+            model.addAttribute("title", "Register");
+            return "register";
+        }
+
+        // Check if the username is already taken
+        if (userRepository.existsByUsername(registerFormDTO.getUsername())) {
+            model.addAttribute("userProfile", userProfile);
+            model.addAttribute("registerFormDTO", registerFormDTO);
+            model.addAttribute("error", "Username is already taken. Please choose another.");
+            model.addAttribute("title", "Register");
+            return "register";
+        }
+
+        // Check if the email is already taken
+        if (userRepository.existsByEmail(userProfile.getEmail())) {
+            model.addAttribute("userProfile", userProfile);
+            model.addAttribute("registerFormDTO", registerFormDTO);
+            model.addAttribute("error", "Email is already registered. Please use another email.");
+            model.addAttribute("title", "Register");
+            return "register";
+        }
+
+        // Creating a new user
+        User newUser = new User();
+        newUser.setUsername(registerFormDTO.getUsername());
+        newUser.setPassword(registerFormDTO.getPassword());
+        newUser.setUserProfile(userProfile);
+
+        // Save the new user to the database
+        User savedUser = userRepository.save(newUser);
+
+        // Set the user in the session
+        setUserInSession(session, savedUser);
+
+        // Redirect to the user's profile page after successful registration
+        return "redirect:/users/profile";
+    }
+
 
     @GetMapping("/users/profile")
     public String displayPageAfterLogin(HttpSession session, Model model) {
@@ -81,5 +136,6 @@ public class AuthenticationController {
         return "users/profile";
     }
 
-    // Other methods...
+
+
 }

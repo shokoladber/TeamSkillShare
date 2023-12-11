@@ -24,13 +24,34 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @GetMapping("/profile/{userId}")
+    public String viewUserProfile(@PathVariable int userId, Model model, HttpSession session) {
+        User currentUser = authenticationController.getUserFromSession(session);
+        Optional<User> userOptional = userRepository.findById(userId);
+
+        if (userOptional.isEmpty()) {
+            return "redirect:/";
+        }
+
+        User user = userOptional.get();
+
+        if (currentUser == null || currentUser.getId() != user.getId()) {
+            // If the current user is not the owner of the profile, redirect to home or another page
+            return "redirect:/";
+        }
+
+        model.addAttribute("user", currentUser);
+        model.addAttribute("skills", user.getSkills());
+        return "users/profile";
+    }
+
     // Display a list of users
     @GetMapping
     public String displayUsers(Model model, HttpSession session) {
         User user = authenticationController.getUserFromSession(session);
         List<User> users = (List<User>) userRepository.findAll();
         model.addAttribute("users", users);
-        return "users/index";
+        return "/index";
     }
 
     // View user's personal information
@@ -132,6 +153,6 @@ public class UserController {
 
     public String logout(HttpSession session) {
         session.invalidate(); // Invalidate the current session
-        return "redirect:/home"; // Redirect to the home page
+        return "redirect:/"; // Redirect to the home page
     }
 }

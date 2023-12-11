@@ -46,10 +46,10 @@ public class HomeController {
             model.addAttribute("title", "Welcome, " + user.getUsername() + "!");
         } else {
             // User is not logged in
-            model.addAttribute("title", "What is SkillShare");
+            model.addAttribute("title", "SkillShare");
         }
 
-        return "index";
+        return "home";
     }
 
 
@@ -96,16 +96,16 @@ public class HomeController {
 
         // If the user is already logged in, redirect to home
         if (user != null) {
-            return "redirect:/";
+            return "redirect:/users/profile";
+        } else {
+            LoginFormDTO loginFormDTO = new LoginFormDTO();
+
+            model.addAttribute("user", user);
+            model.addAttribute("loginFormDTO", loginFormDTO);
+            model.addAttribute("title", "Log In");
+
+            return "/login";
         }
-
-        LoginFormDTO loginFormDTO = new LoginFormDTO();
-
-        model.addAttribute("user", user);
-        model.addAttribute("loginFormDTO", loginFormDTO);
-        model.addAttribute("title", "Log In");
-
-        return "redirect:/";
     }
 
     // Logout user

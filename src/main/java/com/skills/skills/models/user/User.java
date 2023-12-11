@@ -19,6 +19,8 @@ public class User extends AbstractEntity {
     @NotNull
     private String pwHash;
 
+    private String email;
+
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -41,6 +43,11 @@ public class User extends AbstractEntity {
     public User(String username, String password) {
         this.username = username;
         this.pwHash = encoder.encode(password);
+        this.email = userProfile.getEmail();
+    }
+
+    public User() {
+
     }
 
     // Getters and setters
@@ -59,6 +66,10 @@ public class User extends AbstractEntity {
     public void setUserProfile(UserProfile userProfile) {
         this.userProfile = userProfile;
     }
+
+    public void setEmail(String email) {userProfile.setEmail(email);}
+
+    public String getEmail() { return userProfile.getEmail(); }
 
     public List<Skill> getSkills() {
         return skills;
@@ -103,5 +114,11 @@ public class User extends AbstractEntity {
 
     public void addMessageToInbox(Message message) {
         this.messages.add(message);
+    }
+
+    public void setUsername(String username) {
+    }
+
+    public void setPassword(String password) {
     }
 }
